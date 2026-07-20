@@ -452,10 +452,19 @@ Die echte Engine ist ein unabhängiger Zeuge.
   Textelemente mit bekanntem Text, bekannter Schrift und Größe — samt der von Excalidraw
   berechneten Breite. Stimmt die fontkit-Messung damit überein, stimmt sie auch in Obsidian.
 
-  **Ungleiche Abdeckung:** 1624 Proben für Excalifont, aber nur 72 für Nunito. Die
-  Nunito-Messung ist über Golden-Werte also deutlich schwächer abgesichert. Ausgleich:
-  Für Nunito wird die Genauigkeit zusätzlich gegen den Puppeteer-Renderer geprüft, der
-  beliebig viele Referenzwerte erzeugen kann.
+  **Tatsächlich verwertbare Menge (erhoben nach der Extraktion):** Von den 4141
+  Textelementen tragen 1624 Excalifont und 72 Nunito. Für die *Breiten*messung taugen
+  davon nur einzeilige Elemente — bei mehrzeiligen ist unbekannt, wo Excalidraw umbrochen
+  hat. Nach diesem Filter und nach Entdopplung über `(Schrift, Größe, Text)` bleiben
+  **469 Proben für Excalifont und 37 für Nunito**, davon 91 mit Umlauten.
+
+  **Ungleiche Abdeckung:** Die Nunito-Messung ist damit deutlich schwächer abgesichert
+  als die für Excalifont. Ausgleich: Für Nunito wird die Genauigkeit zusätzlich gegen den
+  Puppeteer-Renderer geprüft, der beliebig viele Referenzwerte erzeugen kann.
+
+  **Nicht abgedeckt:** Der Zeilenumbruch selbst. Die Golden-Werte belegen die Breite
+  einzelner Zeilen, nicht die Regel, nach der Excalidraw umbricht. Diese Regel wird
+  erst durch den Renderer in Stufe 2 überprüfbar.
 - **Roundtrip-Test.** Eine bestehende Datei einlesen und unverändert zurückschreiben
   ergibt identisches JSON.
 

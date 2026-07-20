@@ -4,7 +4,7 @@
 
 **Goal:** Aus einem Szenen-Skript entsteht eine gültige `.excalidraw.md`, die sich in Obsidian öffnet und Kästen, Texte und Frames im Hausstil korrekt darstellt.
 
-**Architecture:** Reine ESM-Node-Library ohne Framework. Die Textmessung (`lib/text.js`) steht am Anfang, weil sie das ganze Vorhaben trägt: Sie wird gegen 1624 echte Referenzwerte aus dem Vault geprüft, bevor irgendetwas darauf aufbaut. Darüber liegen Szenen-Objekt und Primitive, ganz oben die Serialisierung nach Markdown. Jedes Modul hat eine Aufgabe und kennt die Schichten über sich nicht.
+**Architecture:** Reine ESM-Node-Library ohne Framework. Die Textmessung (`lib/text.js`) steht am Anfang, weil sie das ganze Vorhaben trägt: Sie wird gegen echte Referenzwerte aus dem Vault geprüft, bevor irgendetwas darauf aufbaut (nach Filterung auf Einzeiler und Entdopplung: 469 Proben für Excalifont, 37 für Nunito, 91 davon mit Umlauten). Darüber liegen Szenen-Objekt und Primitive, ganz oben die Serialisierung nach Markdown. Jedes Modul hat eine Aufgabe und kennt die Schichten über sich nicht.
 
 **Tech Stack:** Node ≥ 20 (ESM), vitest, fontkit (Schriftmetrik), lz-string (Lesen bestehender Boards), fractional-indexing (z-Reihenfolge), `@excalidraw/excalidraw@0.18.1` (nur als Schriftquelle in dieser Stufe).
 
@@ -771,7 +771,7 @@ Schlägt der Referenztest fehl, gibt die Fehlermeldung die fünf schlimmsten Fä
 
 ```bash
 git add lib/text.js tests/text-measure.test.js
-git commit -m "feat: Textbreitenmessung, gegen 1600+ Vault-Referenzwerte geprüft"
+git commit -m "feat: Textbreitenmessung, gegen Vault-Referenzwerte geprüft"
 ```
 
 ---
@@ -1968,7 +1968,9 @@ git commit -m "feat: Serialisierung nach .excalidraw.md und build-Kommando"
 Nach Task 11 gilt:
 
 - Ein Szenen-Skript erzeugt eine gültige `.excalidraw.md`, die sich in Obsidian öffnet.
-- Die Textmessung ist gegen über 1600 echte Referenzwerte abgesichert.
+- Die Textmessung ist gegen 506 echte Referenzwerte aus dem Vault abgesichert
+  (469 Excalifont, 37 Nunito). Der Zeilenumbruch selbst ist damit **nicht** abgedeckt —
+  das leistet erst der Renderer in Stufe 2.
 - Die Ausgabe ist deterministisch — Voraussetzung für die Golden-Render-Tests der Stufe 2.
 - `bin/doctor.mjs` meldet eine unvollständige Umgebung verständlich.
 
