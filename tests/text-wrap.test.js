@@ -59,6 +59,47 @@ describe("wrapText", () => {
   it("erhält mehrere aufeinanderfolgende Leerzeichen zwischen Wörtern", () => {
     expect(wrapText("a  b", NUNITO, 24, 1000, register)).toEqual(["a  b"]);
   });
+
+  // Fix-Durchgang 2 (Review-Finding): Der Docstring behauptete, wrapText
+  // "verändert den Text selbst nicht" — das gilt aber nur innerhalb einer
+  // Zeile, nicht an einer Umbruchstelle. Dort wird das trennende
+  // Leerzeichen konsumiert (übliches Verhalten, siehe Docstring), aber
+  // bislang benutzten alle Whitespace-Tests oben `maxBreite: 1000`, sodass
+  // nie ein echter Umbruch ausgelöst wurde — das Verhalten AN einer
+  // Umbruchstelle war ungetestet.
+  //
+  // Diese Tests sind Charakterisierungstests: Sie schreiben fest, was der
+  // Code HEUTE tatsächlich tut (mit Breiten, die einen echten Umbruch
+  // erzwingen), nicht was "richtig" wäre — ob Excalidraws eigener Renderer
+  // an genau denselben Stellen genauso bricht, ist unverifiziert (siehe
+  // Docstring von wrapText). Schlägt einer dieser Tests künftig fehl, hat
+  // sich das Umbruchverhalten stillschweigend geändert — das soll laut und
+  // sichtbar auffallen, nicht unbemerkt durchrutschen.
+  describe("an der Umbruchstelle (charakterisierend)", () => {
+    it("bricht ein einzelnes führendes Leerzeichen zu einer leeren ersten Zeile um, wenn es selbst den Umbruch auslöst", () => {
+      expect(wrapText(" Hello", NUNITO, 24, 62.05, register)).toEqual(["", "Hello"]);
+    });
+
+    it("konsumiert das trennende Leerzeichen bei einer Folge mehrerer Leerzeichen, die über die Umbruchstelle hinwegreicht", () => {
+      expect(wrapText("Hello  World", NUNITO, 24, 59.92, register)).toEqual(["Hello", "", "Worl", "d"]);
+    });
+
+    it("konsumiert ein führendes Leerzeichen, das selbst den ersten Umbruch eines langen Wortes auslöst", () => {
+      expect(wrapText(" Donaudampfschifffahrtsgesellschaft", NUNITO, 24, 80, register)).toEqual([
+        "",
+        "Donau",
+        "dampf",
+        "schifffa",
+        "hrtsge",
+        "sellsch",
+        "aft",
+      ]);
+    });
+
+    it("bricht den konventionellen Zwei-Wort-Fall ohne das trennende Leerzeichen: 'Hello World' -> 'Hello' / 'World'", () => {
+      expect(wrapText("Hello World", NUNITO, 24, 73.45, register)).toEqual(["Hello", "World"]);
+    });
+  });
 });
 
 describe("measureText", () => {
