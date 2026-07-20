@@ -22,7 +22,13 @@
 - **Determinismus:** `id`, `seed` und `versionNonce` werden aus dem Elementinhalt abgeleitet, nie gewürfelt. Zweimal Bauen muss byte-identische Dateien ergeben.
 - **Der Vault wird zuletzt angefasst.** Alle Zwischenergebnisse landen im Scratchpad. Kein stilles Überschreiben bestehender Dateien.
 - **Die Plugin-Version für `source`** wird zur Laufzeit aus `.obsidian/plugins/obsidian-excalidraw-plugin/manifest.json` gelesen.
-- **Sprache im Code:** Bezeichner englisch, semantische Werte und Optionsschlüssel deutsch (`{ rolle: "kern", typo: "kernbegriff" }`), Kommentare deutsch.
+- **Sprache im Code:**
+  - **Exportierte Namen englisch** — Funktionen, Konstanten und Typen, die andere Module importieren (`measureLine`, `loadFontRegistry`, `FRAME_BREITE`). Sie grenzen an englischsprachige Fremd-APIs (fontkit, Node, Excalidraw) und bleiben deshalb einsprachig.
+  - **Lokale Variablen und Parameter dürfen deutsch sein** (`pfad`, `zeilen`, `roh`, `fehler`). Ausdrücklich erlaubt, nicht nur geduldet.
+  - **Semantische Werte und Optionsschlüssel deutsch** (`{ rolle: "kern", typo: "kernbegriff" }`).
+  - **Kommentare deutsch.**
+
+  Diese Regel wurde nach Task 1 präzisiert: Die ursprüngliche Fassung verlangte pauschal englische Bezeichner, während der Beispielcode des Plans durchgehend deutsche lokale Variablen verwendete. Aufgelöst zugunsten des Beispielcodes.
 
 ## Dateistruktur dieser Stufe
 
