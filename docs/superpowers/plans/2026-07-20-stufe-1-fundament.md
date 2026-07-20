@@ -23,7 +23,8 @@
 - **Der Vault wird zuletzt angefasst.** Alle Zwischenergebnisse landen im Scratchpad. Kein stilles Überschreiben bestehender Dateien.
 - **Die Plugin-Version für `source`** wird zur Laufzeit aus `.obsidian/plugins/obsidian-excalidraw-plugin/manifest.json` gelesen.
 - **Sprache im Code:**
-  - **Exportierte Namen englisch** — Funktionen, Konstanten und Typen, die andere Module importieren (`measureLine`, `loadFontRegistry`, `FRAME_BREITE`). Sie grenzen an englischsprachige Fremd-APIs (fontkit, Node, Excalidraw) und bleiben deshalb einsprachig.
+  - **Exportierte Namen englisch, wo der Code an Fremd-APIs grenzt** — Messung, Schriftladen, Dateiformat, Serialisierung (`measureLine`, `loadFontRegistry`, `szeneZuMarkdown`). Dort steht der Code neben fontkit, Node und Excalidraw und bleibt einsprachig.
+  - **Ausnahme: das Gestaltungsvokabular in `lib/style.js` ist deutsch** (`FARBROLLEN`, `TYPO`, `ABSTAND`, `STRICH`, `zoomL0`, `titelGroesse`, `istLesbar`). Diese Datei ist keine technische Schnittstelle, sondern die Sprache, in der über das Tafelbild gesprochen wird — und ihre Werte (`kern`, `kontra`, `frametitel`) sind ohnehin deutsch. Eine Hälfte davon einzudeutschen und die andere nicht wäre die schlechtere Wahl. Nach Task 7 vom Nutzer so entschieden.
   - **Lokale Variablen und Parameter dürfen deutsch sein** (`pfad`, `zeilen`, `roh`, `fehler`). Ausdrücklich erlaubt, nicht nur geduldet.
   - **Semantische Werte und Optionsschlüssel deutsch** (`{ rolle: "kern", typo: "kernbegriff" }`).
   - **Kommentare deutsch.**
@@ -1984,3 +1985,146 @@ Nach Task 11 gilt:
 **Weiterhin offen für spätere Stufen:**
 - Pfeilbindung an Frames (Stufe 3)
 - Deckkraft bei Mengenkreisen (Stufe 4)
+
+---
+
+### Task 12: Ersatzbreite für nicht abgedeckte Zeichen
+
+**Ausführungsreihenfolge:** nach Task 8, **vor** Task 9. Die Primitive rufen `measureText`
+auf; solange ein unbekanntes Zeichen dort eine Ausnahme wirft, bricht jedes Board mit
+einem `§` oder einem Emoji ab.
+
+**Files:**
+- Modify: `lib/fonts.js`, `lib/text.js`
+- Test: `tests/text-fallback.test.js`
+
+**Interfaces:**
+- Consumes: `loadFontRegistry`, `EXCALIFONT`, `NUNITO` aus `lib/fonts.js`; `measureLine` aus `lib/text.js`
+- Produces:
+  - `Registry.fontFor(codepoint, fontFamily)` bleibt unverändert und wirft weiterhin — der Fallback gehört nicht in die Schriftauflösung.
+  - `Registry.deckt(codepoint, fontFamily): boolean` — prüfungsfrei abfragbar, ob ein Zeichen abgedeckt ist.
+  - `measureLine(...)` wirft nicht mehr, sondern rechnet nicht abgedeckte Zeichen mit einer Ersatzbreite.
+  - `ERSATZBREITE: { emoji: number, standard: number }` — Faktoren relativ zu `fontSize`.
+  - `unbekannteZeichen(text, fontFamily, registry): string[]` — welche Zeichen geschätzt wurden; der Validator meldet das später als weiche Warnung.
+
+**Hintergrund.** Excalidraw rendert Zeichen, die Excalifont nicht führt, über eine
+System-Fallback-Schrift. Welche das ist, wissen wir nicht — die Breite ist grundsätzlich
+nicht vorhersagbar. Eine Schätzung ist deshalb keine Notlösung, sondern das Beste, was
+ohne Browser möglich ist. Der Renderer in Stufe 2 deckt die Abweichung dann auf.
+
+Vom Nutzer am 2026-07-21 so entschieden: Der Build soll durchlaufen, nicht abbrechen.
+
+- [ ] **Step 1: Betroffene Zeichen im Vault erheben**
+
+Vor dem Festlegen der Faktoren nachsehen, worum es tatsächlich geht:
+
+```bash
+node -e "
+import('./lib/compress.js').then(async ({ extractDrawing }) => {
+  const fs = await import('node:fs'); const path = await import('node:path');
+  const { VAULT_PATH } = await import('./lib/config.js');
+  const { loadFontRegistry } = await import('./lib/fonts.js');
+  const reg = loadFontRegistry();
+  function* d(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true}).sort((a,b)=>a.name<b.name?-1:a.name>b.name?1:0)){
+    if(e.name.startsWith('.'))continue; const p=path.join(dir,e.name);
+    if(e.isDirectory())yield* d(p); else if(e.name.endsWith('.excalidraw.md'))yield p;}}
+  const fehlend = new Map();
+  for(const f of d(VAULT_PATH)){
+    let s; try{ s=JSON.parse(extractDrawing(fs.readFileSync(f,'utf8')).json);}catch{continue}
+    for(const el of s.elements??[]) if(el.type==='text'&&!el.isDeleted&&(el.fontFamily===5||el.fontFamily===6))
+      for(const z of el.text){ const cp=z.codePointAt(0);
+        try{ reg.fontFor(cp, el.fontFamily); }catch{ fehlend.set(z,(fehlend.get(z)??0)+1); } }
+  }
+  console.log([...fehlend].sort((a,b)=>b[1]-a[1]).slice(0,40).map(([z,n])=>\`\${z} U+\${z.codePointAt(0).toString(16)} \${n}\`).join('\n'));
+  console.log('verschiedene Zeichen:', fehlend.size);
+});
+"
+```
+
+Das Ergebnis in den Bericht übernehmen. Es entscheidet, ob zwei Klassen (Emoji /
+sonstiges) ausreichen oder ob eine dritte nötig ist.
+
+- [ ] **Step 2: Test schreiben**
+
+```js
+// tests/text-fallback.test.js
+import { describe, it, expect } from "vitest";
+import { measureLine, unbekannteZeichen, ERSATZBREITE } from "../lib/text.js";
+import { loadFontRegistry, EXCALIFONT } from "../lib/fonts.js";
+
+const register = loadFontRegistry();
+
+describe("Ersatzbreite", () => {
+  it("wirft nicht mehr bei einem Paragraphenzeichen", () => {
+    expect(() => measureLine("§ 3 Abs. 2", EXCALIFONT, 20, register)).not.toThrow();
+  });
+
+  it("wirft nicht mehr bei einem Emoji", () => {
+    expect(() => measureLine("Ziel 🌐 erreicht", EXCALIFONT, 20, register)).not.toThrow();
+  });
+
+  it("rechnet abgedeckte Zeichen unverändert", () => {
+    // Referenzwert aus dem Vault, muss exakt gleich bleiben
+    expect(measureLine("Feline", EXCALIFONT, 20, register)).toBeCloseTo(53.8, 1);
+  });
+
+  it("schätzt Emoji breiter als ein schmales Satzzeichen", () => {
+    const emoji = measureLine("🌐", EXCALIFONT, 20, register);
+    const paragraf = measureLine("§", EXCALIFONT, 20, register);
+    expect(emoji).toBeGreaterThan(paragraf);
+  });
+
+  it("skaliert die Ersatzbreite mit der Schriftgröße", () => {
+    const klein = measureLine("🌐", EXCALIFONT, 20, register);
+    const gross = measureLine("🌐", EXCALIFONT, 40, register);
+    expect(gross).toBeCloseTo(klein * 2, 5);
+  });
+
+  it("benennt die geschätzten Zeichen", () => {
+    expect(unbekannteZeichen("§ 3 🌐", EXCALIFONT, register)).toEqual(["§", "🌐"]);
+  });
+
+  it("meldet nichts, wenn alles abgedeckt ist", () => {
+    expect(unbekannteZeichen("Mängelwesen", EXCALIFONT, register)).toEqual([]);
+  });
+
+  it("bleibt deterministisch", () => {
+    const a = measureLine("§ 3 🌐", EXCALIFONT, 20, register);
+    const b = measureLine("§ 3 🌐", EXCALIFONT, 20, register);
+    expect(a).toBe(b);
+  });
+});
+```
+
+- [ ] **Step 3: Test laufen lassen — muss fehlschlagen**
+
+Run: `npx vitest run tests/text-fallback.test.js`
+Expected: FAIL — `unbekannteZeichen is not a function`, und die ersten beiden Tests
+scheitern an der geworfenen Ausnahme.
+
+- [ ] **Step 4: Implementieren**
+
+`Registry.deckt(codepoint, fontFamily)` in `lib/fonts.js` ergänzen — eine reine
+Abfrage ohne Ausnahme, damit `lib/text.js` nicht über `try/catch` steuern muss.
+
+In `lib/text.js`: `ERSATZBREITE` als Faktoren relativ zur Schriftgröße definieren
+(Emoji annähernd quadratisch, also Faktor um 1,0; sonstige Zeichen etwa so breit wie
+eine Ziffer, also um 0,5 — die genauen Werte aus Step 1 herleiten und im Kommentar
+begründen). `laufweiten` so erweitern, dass nicht abgedeckte Zeichen als eigene Läufe
+mit Ersatzbreite behandelt werden, statt `fontFor` werfen zu lassen. `unbekannteZeichen`
+exportieren.
+
+**Wichtig:** Die Messung abgedeckter Zeichen darf sich um keinen Millipixel ändern.
+`tests/text-measure.test.js` muss unverändert grün bleiben — das ist die Probe darauf.
+
+- [ ] **Step 5: Tests laufen lassen**
+
+Run: `npx vitest run tests/text-fallback.test.js tests/text-measure.test.js tests/text-wrap.test.js`
+Expected: PASS. Die Verteilungswerte in `text-measure.test.js` müssen unverändert sein.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add lib/fonts.js lib/text.js tests/text-fallback.test.js
+git commit -m "feat: Ersatzbreite für Zeichen ohne Schriftabdeckung"
+```
