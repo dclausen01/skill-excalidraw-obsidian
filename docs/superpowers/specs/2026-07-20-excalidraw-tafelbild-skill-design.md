@@ -456,7 +456,7 @@ Die echte Engine ist ein unabhängiger Zeuge.
   Textelementen tragen 1624 Excalifont und 72 Nunito. Für die *Breiten*messung taugen
   davon nur einzeilige Elemente — bei mehrzeiligen ist unbekannt, wo Excalidraw umbrochen
   hat. Nach diesem Filter und nach Entdopplung über `(Schrift, Größe, Text)` bleiben
-  **469 Proben für Excalifont und 37 für Nunito**, davon 91 mit Umlauten.
+  **454 Proben für Excalifont und 37 für Nunito** (491 gesamt). Zusätzlich verworfen: Elemente mit `autoResize: false` (dort ist `width` die vom Nutzer gezogene Boxbreite, keine Textmessung) und Schlüssel, für die der Vault widersprüchliche Breiten führt.
 
   **Ungleiche Abdeckung:** Die Nunito-Messung ist damit deutlich schwächer abgesichert
   als die für Excalifont. Ausgleich: Für Nunito wird die Genauigkeit zusätzlich gegen den
