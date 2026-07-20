@@ -1,5 +1,5 @@
 {
-  "erzeugt": "2026-07-20T20:29:42.186Z",
+  "erzeugt": "2026-07-20T21:15:59.678Z",
   "proben": [
     {
       "text": "Feline",
@@ -578,14 +578,6 @@
       "zeilen": 1
     },
     {
-      "text": "Inhalte",
-      "fontFamily": 5,
-      "fontSize": 32.8,
-      "width": 115.75110290527347,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
       "text": "- Was ist schul.cloud? (Überblick)",
       "fontFamily": 5,
       "fontSize": 20,
@@ -614,14 +606,6 @@
       "fontFamily": 5,
       "fontSize": 20,
       "width": 279.01971435546875,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
-      "text": "schul.cloud",
-      "fontFamily": 5,
-      "fontSize": 23.2,
-      "width": 119.31749450683593,
       "lineHeight": 1.25,
       "zeilen": 1
     },
@@ -862,14 +846,6 @@
       "fontFamily": 5,
       "fontSize": 20,
       "width": 9.319992065429688,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
-      "text": "📍Radiobeitrag.mp4",
-      "fontFamily": 5,
-      "fontSize": 20,
-      "width": 186.2398681640625,
       "lineHeight": 1.25,
       "zeilen": 1
     },
@@ -1682,30 +1658,6 @@
       "zeilen": 1
     },
     {
-      "text": "Query (Q): Was suche ich? (Mein aktuelles Token).",
-      "fontFamily": 5,
-      "fontSize": 20,
-      "width": 495.3798217773437,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
-      "text": "Key (K): Was biete ich an (Schlagworte aller anderen Tokens).",
-      "fontFamily": 5,
-      "fontSize": 20,
-      "width": 606.6197509765625,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
-      "text": "Value (V): Was ist mein Inhalt? (Die eigentliche Information).",
-      "fontFamily": 5,
-      "fontSize": 20,
-      "width": 599.6198120117188,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
       "text": "Ein Multilayer Perceptron (MLP) - This is where the magic happens!",
       "fontFamily": 5,
       "fontSize": 20,
@@ -1734,14 +1686,6 @@
       "fontFamily": 5,
       "fontSize": 34.82252579714696,
       "width": 249.41554260253906,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
-      "text": "VALUES (555, \"Schraubroboter 071X\", NULL, DATE(23.07.2021), 4);",
-      "fontFamily": 5,
-      "fontSize": 20,
-      "width": 769.3638386425062,
       "lineHeight": 1.25,
       "zeilen": 1
     },
@@ -1790,14 +1734,6 @@
       "fontFamily": 5,
       "fontSize": 20,
       "width": 423.1997375488281,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
-      "text": "WHERE S.Bezeichnung = \"Zuschnitt\" AND H.name = \"XXXX\"",
-      "fontFamily": 5,
-      "fontSize": 20,
-      "width": 577.28511352209,
       "lineHeight": 1.25,
       "zeilen": 1
     },
@@ -2046,14 +1982,6 @@
       "fontFamily": 5,
       "fontSize": 20,
       "width": 571.1934814453125,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
-      "text": "Aufgabe",
-      "fontFamily": 5,
-      "fontSize": 20,
-      "width": 78.87992858886719,
       "lineHeight": 1.25,
       "zeilen": 1
     },
@@ -2394,14 +2322,6 @@
       "zeilen": 1
     },
     {
-      "text": "Start",
-      "fontFamily": 5,
-      "fontSize": 20,
-      "width": 55.85997009277344,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
       "text": "Tür öffnen",
       "fontFamily": 5,
       "fontSize": 20,
@@ -2486,14 +2406,6 @@
       "fontFamily": 5,
       "fontSize": 20,
       "width": 38.57997131347656,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
-      "text": "Ja",
-      "fontFamily": 5,
-      "fontSize": 20,
-      "width": 24.379989624023438,
       "lineHeight": 1.25,
       "zeilen": 1
     },
@@ -2818,14 +2730,6 @@
       "zeilen": 1
     },
     {
-      "text": "📍[[Radiobeitrag.mp4]]",
-      "fontFamily": 5,
-      "fontSize": 20,
-      "width": 230.46075439453125,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
       "text": "Gewalt ist ...",
       "fontFamily": 5,
       "fontSize": 45.6,
@@ -2838,14 +2742,6 @@
       "fontFamily": 5,
       "fontSize": 36,
       "width": 757.29736328125,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
-      "text": "„Gedanken ohne Inhalt sind leer, Anschauungen ohne Begriffe sind blind.“",
-      "fontFamily": 5,
-      "fontSize": 20,
-      "width": 729.7855224609374,
       "lineHeight": 1.25,
       "zeilen": 1
     },
@@ -3710,22 +3606,6 @@
       "fontFamily": 5,
       "fontSize": 47.08272035475795,
       "width": 341.45758056640625,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
-      "text": "🌐[[Anmeldungen]]",
-      "fontFamily": 5,
-      "fontSize": 36,
-      "width": 798.2277221679688,
-      "lineHeight": 1.25,
-      "zeilen": 1
-    },
-    {
-      "text": "🌐[[Evaluation nach FoBi]]",
-      "fontFamily": 5,
-      "fontSize": 36,
-      "width": 798.01171875,
       "lineHeight": 1.25,
       "zeilen": 1
     },
