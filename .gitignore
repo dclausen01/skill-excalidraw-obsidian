@@ -31,3 +31,6 @@ npm-debug.log*
 # Betriebssystem
 .DS_Store
 Thumbs.db
+
+# SDD-Arbeitsstand (nicht versioniert)
+.superpowers/

@@ -1614,10 +1614,11 @@ export function scene({ titel = null, registry = loadFontRegistry() } = {}) {
 // lib/index.js
 export { scene } from "./scene.js";
 export { FARBROLLEN, TYPO, ABSTAND, FRAME_BREITE, FRAME_HOEHE } from "./style.js";
-export { szeneZuMarkdown } from "./document.js";
 ```
 
-`lib/index.js` verweist auf `szeneZuMarkdown`, das erst in Task 11 entsteht. Diesen Export erst dort ergänzen — sonst schlägt der Import fehl.
+`lib/document.js` entsteht erst in Task 11. Der Export von `szeneZuMarkdown` wird deshalb
+dort ergänzt, nicht hier — ein Export auf ein noch nicht existierendes Modul würde jeden
+Import von `lib/index.js` zum Scheitern bringen.
 
 - [ ] **Step 4: Test laufen lassen — muss bestehen**
 
