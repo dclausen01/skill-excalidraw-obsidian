@@ -67,49 +67,80 @@ function schlimmsteAbweichungen(proben) {
     .sort((a, b) => b.diff - a.diff);
 }
 
+/**
+ * Kennzahlen der Abweichungsverteilung — bewusst statt eines einzelnen
+ * Höchstwert-Schwellwerts. Ein Höchstwert wird vom unrepräsentativsten
+ * Sample bestimmt (bei Nunito: der Ausreißer "Ablauf", dessen Abweichung
+ * durch Kerning gar nicht beeinflusst wird — dazu unten mehr) und sagt
+ * nichts über die übrigen Proben aus. Median und Ausreißeranteil kollabieren
+ * dagegen sofort, wenn die Messung strukturell kaputtgeht, und werden von
+ * einem einzelnen unerklärten Ausreißer kaum verschoben.
+ */
+function verteilungsKennzahlen(proben) {
+  const abweichungen = schlimmsteAbweichungen(proben).map((p) => p.diff);
+  const sortiert = [...abweichungen].sort((a, b) => a - b);
+  const mitte = sortiert.length / 2;
+  const median = Number.isInteger(mitte)
+    ? (sortiert[mitte - 1] + sortiert[mitte]) / 2
+    : sortiert[Math.floor(mitte)];
+  const anteilUeber05 = abweichungen.filter((d) => d > 0.5).length / abweichungen.length;
+  return { median, anteilUeber05 };
+}
+
 describe("measureLine — gegen alle Referenzwerte", () => {
-  it("weicht bei Excalifont nirgends um mehr als 3,6 px ab", () => {
-    // Toleranz bewusst über 0,5 px angehoben, nachdem Ursache 1 (Leerzeichen)
-    // und Ursache 2 (Ligaturen/Kerning) ausgeschlossen wurden: kein Ausreißer
-    // hat führende/folgende Leerzeichen; Ligaturen verschmelzen bei keinem
-    // Ausreißer Glyphen (glyphs.length === text.length); Kerning komplett zu
-    // deaktivieren macht es deutlich schlechter (mehr Proben über 0,5 px statt
-    // weniger), ist also nötig und überwiegend korrekt. Nach Ausschluss der 14
-    // strukturell unmessbaren Proben (Zeichenabdeckung, s. messbar()) bleiben
-    // 18 von 440 Proben (~4 %) mit 0,5–3,54 px Abweichung, ohne erkennbares
-    // gemeinsames Muster (nicht proportional zur Textlänge, keine konstante
-    // Prozentabweichung, kein Subset-Wechsel) — vermutlich feine
-    // Kerning-Tabellen-Unterschiede zwischen fontkit und der Browser-Textengine
-    // für einzelne Zeichenpaare. Gemessener Höchstwert: 3.5430065569412363 px
-    // ("Quellenverzeichnis", fontSize 170.23).
+  // Beide Tests prüfen dieselben zwei Kennzahlen der Abweichungsverteilung:
+  // den Median (typischer Fall) und den Anteil der Proben über 0,5 px
+  // (Ausreißerquote). Ein Höchstwert-Schwellwert wurde verworfen, weil ihn
+  // ein einzelnes unerklärtes Sample dauerhaft anheben kann, wonach er für
+  // echte Regressionen blind wird — siehe Fix-Durchgang 2 im Task-5-Report:
+  // mit deaktiviertem Kerning liegt der Nunito-Höchstwert bei 2,66 px, klar
+  // unter der alten 3,7-px-Schwelle, obwohl Kerning komplett fehlt.
+  //
+  // Empirisch verifiziert (Kontrollmessung mit deaktiviertem Kerning, siehe
+  // Task-5-Report): Median UND Ausreißeranteil schnellen bei beiden
+  // Schriften weit über die hier gesetzten Schwellen — der Median auf das
+  // 1000-Fache, der Ausreißeranteil auf über 45 %. Ein Bruch der
+  // Kerning-Berechnung fällt mit diesen Assertions also sicher auf.
+
+  it("Excalifont: Median- und Ausreißeranteil bleiben im beobachteten Normalbereich", () => {
+    // Beobachtet (aktuelle Fixture, 440 messbare Proben): Median 0,00033 px,
+    // Anteil > 0,5 px: 18/440 = 4,1 %. Schwellen mit großzügigem Headroom
+    // für gewöhnliche Fixture-Neuerzeugung (Median: >100-fach, Anteil:
+    // >3-fach über dem Beobachteten), aber weit unter dem, was ein
+    // Kerning-Ausfall verursacht (Median 0,400 px, Anteil 45,7 %).
     const proben = metriken.proben.filter((p) => p.fontFamily === EXCALIFONT && messbar(p.text, p.fontFamily));
     const schlimmste = schlimmsteAbweichungen(proben).slice(0, 5);
-    expect(schlimmste[0]?.diff ?? 0, `Größte Abweichungen: ${JSON.stringify(schlimmste)}`).toBeLessThan(3.6);
+    const { median, anteilUeber05 } = verteilungsKennzahlen(proben);
+    const kontext = `Median: ${median} px, Anteil > 0,5px: ${(anteilUeber05 * 100).toFixed(1)}%. Größte Abweichungen: ${JSON.stringify(schlimmste)}`;
+    expect(median, kontext).toBeLessThan(0.05);
+    expect(anteilUeber05, kontext).toBeLessThan(0.15);
   });
 
-  it("weicht bei Nunito nirgends um mehr als 3,7 px ab", () => {
-    // Diese Toleranz ist NICHT der Normalfall: 36 von 37 Nunito-Proben liegen
-    // unter 0,34 px Abweichung. Der Ausreißer ist "Ablauf" (fontSize ≈ 74.56,
-    // ein einzelnes Element aus dem Vault): measureLine liefert 228.0828 gegen
-    // Referenz 231.7362 — eine tatsächliche Abweichung von 3.6534 px.
+  it("Nunito: Median- und Ausreißeranteil bleiben im beobachteten Normalbereich", () => {
+    // Beobachtet (aktuelle Fixture, 37 messbare Proben): Median 0,000035 px,
+    // Anteil > 0,5 px: 1/37 = 2,7 % (dieser eine Ausreißer ist "Ablauf",
+    // s.u.). Dieselben Schwellen wie bei Excalifont — großzügiger Headroom
+    // gegenüber dem Beobachteten, weit unter dem Kerning-Ausfall-Wert
+    // (Median 0,339 px, Anteil 45,9 %).
     //
-    // Das Element wurde untersucht und erfüllt keinen der mechanischen
-    // Ausschlussgründe: autoResize ist true, es gibt keine widersprüchliche
-    // zweite Referenz für denselben Schlüssel, kein Leerzeichen, glyphs.length
-    // === text.length (keine Ligatur). Geprüft wurde zusätzlich, ob der
-    // Subset-Wechsel innerhalb von laufweiten() (siehe lib/text.js) die
-    // Ursache ist: "A" und "blauf" liegen laut Registry in zwei verschiedenen
-    // Subset-Dateien, werden also als zwei fontkit-layout()-Läufe gemessen.
-    // Eine Kontrollmessung mit einer einzelnen Nunito-Subset-Datei, die den
-    // gesamten Text "Ablauf" allein abdeckt (ein Lauf, keine Kerning-Lücke an
-    // der Laufgrenze), liefert exakt dieselbe Breite (228.0828) — der
-    // Lauf-Split ist also NICHT die Ursache. Es bleibt eine unerklärte
-    // Abweichung. Statt die Probe zu verwerfen, wird die Toleranz ehrlich auf
-    // den beobachteten Höchstwert angehoben (3.7 statt 0.5) — das ist eine
-    // Tatsache über die tatsächliche Messgenauigkeit bei Nunito, keine
-    // Ausnahme, die man wegdefinieren sollte.
+    // Zum Ausreißer "Ablauf" (fontSize ≈ 74.56): measureLine liefert
+    // 228.0828 gegen Referenz 231.7362 — 3,65 px Abweichung. Das Element
+    // wurde untersucht und erfüllt keinen der mechanischen Ausschlussgründe
+    // (autoResize:true, keine widersprüchliche Zweitreferenz, kein
+    // Leerzeichen, keine Ligatur, Lauf-Split in laufweiten() nachweislich
+    // nicht die Ursache — Kontrollmessung mit einer einzelnen Subset-Datei,
+    // die "Ablauf" an einem Stück abdeckt, liefert exakt dieselbe Breite).
+    // Mit deaktiviertem Kerning bleibt die Abweichung dieses Samples
+    // unverändert bei 3,65 px — seine Kerning-Beteiligung ist null. Der
+    // Median- und Anteils-Test lassen dieses eine unerklärte Sample bewusst
+    // in der Fixture (kein Ausschluss von Proben), werden von ihm aber nicht
+    // blind: ein zweites, drittes, ... Sample mit ähnlicher Abweichung würde
+    // den Anteil schnell über die Schwelle heben.
     const proben = metriken.proben.filter((p) => p.fontFamily === NUNITO && messbar(p.text, p.fontFamily));
     const schlimmste = schlimmsteAbweichungen(proben).slice(0, 5);
-    expect(schlimmste[0]?.diff ?? 0, `Größte Abweichungen: ${JSON.stringify(schlimmste)}`).toBeLessThan(3.7);
+    const { median, anteilUeber05 } = verteilungsKennzahlen(proben);
+    const kontext = `Median: ${median} px, Anteil > 0,5px: ${(anteilUeber05 * 100).toFixed(1)}%. Größte Abweichungen: ${JSON.stringify(schlimmste)}`;
+    expect(median, kontext).toBeLessThan(0.05);
+    expect(anteilUeber05, kontext).toBeLessThan(0.15);
   });
 });
