@@ -20,9 +20,15 @@ const BREITEN_EPSILON = 0.01;
 function* excalidrawDateien(dir) {
   // Sortiert, denn fs.readdirSync garantiert laut POSIX keine Reihenfolge —
   // ohne Sortierung wäre weder die Zuordnungsreihenfolge noch (über die
-  // Konfliktschlüssel-Erkennung hinaus) die Fixture reproduzierbar. Gleiches
-  // Vorgehen wie in lib/fonts.js:loadFontRegistry.
-  const eintraege = fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name));
+  // Konfliktschlüssel-Erkennung hinaus) die Fixture reproduzierbar. Bewusst
+  // plain .sort() (ordinal, lokal-unabhängig) statt localeCompare(): Der
+  // Vault enthält Dateinamen wie "Präsentation Elternabend.excalidraw.md"
+  // oder "Überblick...", die unter deutscher vs. ordinaler Kollation
+  // unterschiedlich sortieren würden — mit localeCompare hinge die
+  // Traversierungsreihenfolge und damit der Byteinhalt der Fixture vom
+  // Default-Intl-Locale der ausführenden Maschine ab. Gleiches Vorgehen wie
+  // in lib/fonts.js:loadFontRegistry (dort ebenfalls plain .sort()).
+  const eintraege = fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
   for (const eintrag of eintraege) {
     if (eintrag.name.startsWith(".")) continue;
     const p = path.join(dir, eintrag.name);

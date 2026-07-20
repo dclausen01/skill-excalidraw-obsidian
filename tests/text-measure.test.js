@@ -76,15 +76,16 @@ function schlimmsteAbweichungen(proben) {
  * dagegen sofort, wenn die Messung strukturell kaputtgeht, und werden von
  * einem einzelnen unerklärten Ausreißer kaum verschoben.
  */
-function verteilungsKennzahlen(proben) {
-  const abweichungen = schlimmsteAbweichungen(proben).map((p) => p.diff);
+function verteilungsKennzahlen(schlimmste) {
+  const abweichungen = schlimmste.map((p) => p.diff);
   const sortiert = [...abweichungen].sort((a, b) => a - b);
   const mitte = sortiert.length / 2;
   const median = Number.isInteger(mitte)
     ? (sortiert[mitte - 1] + sortiert[mitte]) / 2
     : sortiert[Math.floor(mitte)];
   const anteilUeber05 = abweichungen.filter((d) => d > 0.5).length / abweichungen.length;
-  return { median, anteilUeber05 };
+  const max = sortiert[sortiert.length - 1];
+  return { median, anteilUeber05, max };
 }
 
 describe("measureLine — gegen alle Referenzwerte", () => {
@@ -109,11 +110,20 @@ describe("measureLine — gegen alle Referenzwerte", () => {
     // >3-fach über dem Beobachteten), aber weit unter dem, was ein
     // Kerning-Ausfall verursacht (Median 0,400 px, Anteil 45,7 %).
     const proben = metriken.proben.filter((p) => p.fontFamily === EXCALIFONT && messbar(p.text, p.fontFamily));
-    const schlimmste = schlimmsteAbweichungen(proben).slice(0, 5);
-    const { median, anteilUeber05 } = verteilungsKennzahlen(proben);
+    const alleAbweichungen = schlimmsteAbweichungen(proben);
+    const schlimmste = alleAbweichungen.slice(0, 5);
+    const { median, anteilUeber05, max } = verteilungsKennzahlen(alleAbweichungen);
     const kontext = `Median: ${median} px, Anteil > 0,5px: ${(anteilUeber05 * 100).toFixed(1)}%. Größte Abweichungen: ${JSON.stringify(schlimmste)}`;
     expect(median, kontext).toBeLessThan(0.05);
     expect(anteilUeber05, kontext).toBeLessThan(0.15);
+    // Großzügige Notbremse gegen einzelne, beliebig große Ausreißer: Median
+    // und Ausreißeranteil sind gegen ein einzelnes Sample fast blind (siehe
+    // Kommentar oben), daher zusätzlich eine Obergrenze je Einzelabweichung.
+    // Beobachteter Höchstwert (aktuelle Fixture): 3.5430065569412363 px.
+    // 10 px liegt klar darüber (Headroom für normale Fixture-Neuerzeugung),
+    // aber weit unter dem, was ein grob falscher Wert (z. B. eine falsch
+    // gewählte Teilmenge für seltene Codepoints) verursachen würde.
+    expect(max, kontext).toBeLessThan(10);
   });
 
   it("Nunito: Median- und Ausreißeranteil bleiben im beobachteten Normalbereich", () => {
@@ -137,10 +147,16 @@ describe("measureLine — gegen alle Referenzwerte", () => {
     // blind: ein zweites, drittes, ... Sample mit ähnlicher Abweichung würde
     // den Anteil schnell über die Schwelle heben.
     const proben = metriken.proben.filter((p) => p.fontFamily === NUNITO && messbar(p.text, p.fontFamily));
-    const schlimmste = schlimmsteAbweichungen(proben).slice(0, 5);
-    const { median, anteilUeber05 } = verteilungsKennzahlen(proben);
+    const alleAbweichungen = schlimmsteAbweichungen(proben);
+    const schlimmste = alleAbweichungen.slice(0, 5);
+    const { median, anteilUeber05, max } = verteilungsKennzahlen(alleAbweichungen);
     const kontext = `Median: ${median} px, Anteil > 0,5px: ${(anteilUeber05 * 100).toFixed(1)}%. Größte Abweichungen: ${JSON.stringify(schlimmste)}`;
     expect(median, kontext).toBeLessThan(0.05);
     expect(anteilUeber05, kontext).toBeLessThan(0.15);
+    // Großzügige Notbremse, analog zu Excalifont oben. Beobachteter
+    // Höchstwert (aktuelle Fixture): 3.653367625094546 px (der unerklärte
+    // Ausreißer "Ablauf", s.o.). 10 px liegt klar darüber, aber weit unter
+    // dem, was ein grob falscher Wert verursachen würde.
+    expect(max, kontext).toBeLessThan(10);
   });
 });
