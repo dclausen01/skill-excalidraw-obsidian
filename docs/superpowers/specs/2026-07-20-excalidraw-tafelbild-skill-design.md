@@ -100,12 +100,24 @@ eingetragen — sonst veraltet sie beim nächsten Plugin-Update stillschweigend.
 
 ### 2.3 Schriften
 
-| Wert | Schrift |
-|---|---|
-| `fontFamily: 5` | Excalifont (handgezeichnet) |
-| `fontFamily: 6` | Nunito (serifenlos) |
+| Wert | Schrift | `lineHeight` | Vorkommen im Vault |
+|---|---|---|---|
+| `fontFamily: 5` | Excalifont (handgezeichnet) | **1.25** | 1624 |
+| `fontFamily: 6` | Nunito (serifenlos) | **1.35** | 72 |
+| `fontFamily: 1` | Virgil (Vorgänger von Excalifont) | 1.25 | 2280 |
+| `fontFamily: 2` | Helvetica | 1.15 | 82 |
+| `fontFamily: 3` | Cascadia | 1.25 | 45 |
+| `fontFamily: 7` / `8` | Lilita / Comic Shanns | 1.15 / 1.25 | 2 / 36 |
 
-Ältere Dokumentation nennt 1/2 — das ist für diese Plugin-Version **falsch**.
+**`lineHeight` ist eine Konstante der Schrift, kein globaler Wert.** Erhoben an allen
+4141 Textelementen des Vaults: `fontFamily: 5` führt ausnahmslos 1.25, `fontFamily: 6`
+führt 1.35 (Werte von 1.25 dort stammen aus älteren Dateien vor einer Plugin-Änderung).
+Eine ältere Fassung dieser Spezifikation nahm pauschal 1.25 an — das ist für Nunito falsch
+und hätte alle Höhenberechnungen für Fließtext um 8 % verfälscht.
+
+**Der Skill erzeugt ausschließlich `5` und `6`.** Die übrigen Werte müssen aber beim
+*Lesen* bestehender Boards toleriert werden: `fontFamily: 1` ist im Vault sogar der
+häufigste Wert, weil ältere Tafelbilder noch mit Virgil entstanden sind.
 
 ### 2.4 Pfeil-Bindings (neues Format)
 
@@ -136,6 +148,15 @@ Bildelemente führen zusätzlich `status: "pending"`, `scale: [1, 1]` und `crop:
 - Textelemente führen `text`, `rawText` und `originalText`. Bei Transklusionen enthält
   `rawText` den Verweis `![[Notiz#Abschnitt]]`, `text` den aufgelösten Inhalt.
 - `gridSize: 20` in `appState` — deckt sich mit der Basiseinheit des Hausstils.
+
+### 2.7 Bestätigte Höhenformel
+
+`height = Zeilenzahl × fontSize × lineHeight`
+
+Exakt bestätigt (Abweichung < 0,01 px) an allen Textelementen einer Referenzdatei,
+ein- wie mehrzeilig. Die Höhe ist damit **berechenbar, nicht messbar** — nur die
+**Breite** erfordert echte Schriftmetrik. Das verkleinert die riskante Fläche der
+Textmessung auf eine einzige Größe.
 
 ---
 
@@ -426,12 +447,22 @@ Die echte Engine ist ein unabhängiger Zeuge.
 
 ## 11. Tests
 
-- **Textmessung gegen Golden-Werte aus dem Vault.** Die 632 vorhandenen Dateien
-  enthalten tausende Textelemente mit bekanntem Text, bekannter Schrift und Größe —
-  samt der von Excalidraw berechneten Breite und Höhe. Daraus wird eine Testsuite
-  extrahiert. Stimmt die fontkit-Messung damit überein, stimmt sie auch in Obsidian.
-- **Roundtrip-Tests.** Dekomprimieren → Komprimieren ergibt das Original.
-  Datei einlesen → unverändert zurückschreiben ergibt identisches JSON.
+- **Textmessung gegen Golden-Werte aus dem Vault.** Erhoben: 627 der 632 Dateien lassen
+  sich dekomprimieren (die übrigen 5 sind leer oder unkomprimiert) und liefern 4141
+  Textelemente mit bekanntem Text, bekannter Schrift und Größe — samt der von Excalidraw
+  berechneten Breite. Stimmt die fontkit-Messung damit überein, stimmt sie auch in Obsidian.
+
+  **Ungleiche Abdeckung:** 1624 Proben für Excalifont, aber nur 72 für Nunito. Die
+  Nunito-Messung ist über Golden-Werte also deutlich schwächer abgesichert. Ausgleich:
+  Für Nunito wird die Genauigkeit zusätzlich gegen den Puppeteer-Renderer geprüft, der
+  beliebig viele Referenzwerte erzeugen kann.
+- **Roundtrip-Test.** Eine bestehende Datei einlesen und unverändert zurückschreiben
+  ergibt identisches JSON.
+
+  **Vereinfachung gegenüber dem ursprünglichen Entwurf:** Eine Komprimierungsfunktion
+  wird nicht gebaut. Der Skill schreibt grundsätzlich unkomprimiert, das Plugin
+  komprimiert selbst. Damit wird nur `decompress` benötigt — Code, den es nicht gibt,
+  kann nicht brechen.
 - **Unit-Tests** für Bindings, Layout-Helfer, Venn-Geometrie, PAP-Layout, SHA-1-Berechnung,
   Sektions-Serialisierung.
 - **Golden-Render-Tests.** Vier Referenz-Boards, die alle Muster abdecken, werden
