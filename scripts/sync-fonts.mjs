@@ -7,6 +7,16 @@ const QUELLE = path.join(PROJECT_ROOT, "node_modules", "@excalidraw", "excalidra
 const FAMILIEN = ["Excalifont", "Nunito"];
 
 fs.mkdirSync(FONT_DIR, { recursive: true });
+
+// Alte Subsets zuerst entfernen: sonst behält ein Versions-Upgrade (neue Datei-Hashes)
+// die alten Dateien bei, und die Überlappungsfläche zwischen Subsets wüchse mit jedem
+// sync-fonts-Lauf statt sich zu ersetzen.
+for (const familie of FAMILIEN) {
+  for (const datei of fs.readdirSync(FONT_DIR).filter((f) => f.startsWith(`${familie}__`) && f.endsWith(".woff2"))) {
+    fs.rmSync(path.join(FONT_DIR, datei));
+  }
+}
+
 let kopiert = 0;
 
 for (const familie of FAMILIEN) {
