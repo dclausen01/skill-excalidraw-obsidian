@@ -1,0 +1,4053 @@
+{
+  "erzeugt": "2026-07-20T20:29:42.186Z",
+  "proben": [
+    {
+      "text": "Feline",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 53.79994201660156,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Arbenita",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 81.57992553710938,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe 1",
+      "fontFamily": 5,
+      "fontSize": 19.550406901041676,
+      "width": 93.27294921875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- ",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 16.219985961914062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "14,5 Pkt.",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 86.89994812011719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "15 Pkt.",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 70.05995178222656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "schwieriger",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 105.35987854003906,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "einfach",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 69.01992797851562,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Gruppe 1",
+      "fontFamily": 5,
+      "fontSize": 26.947640841706693,
+      "width": 112.54481506347656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Gruppe 2",
+      "fontFamily": 5,
+      "fontSize": 26.947640841706693,
+      "width": 119.89875793457031,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Gruppe 3",
+      "fontFamily": 5,
+      "fontSize": 26.947640841706693,
+      "width": 117.42050170898438,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Gruppe 4",
+      "fontFamily": 5,
+      "fontSize": 26.947640841706693,
+      "width": 116.80093383789062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Das Video",
+      "fontFamily": 5,
+      "fontSize": 26.947640841706693,
+      "width": 131.37413024902344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "E",
+      "fontFamily": 5,
+      "fontSize": 38.56821024629034,
+      "width": 27.252593994140625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "x",
+      "fontFamily": 5,
+      "fontSize": 38.56821024629035,
+      "width": 22.781158447265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "p",
+      "fontFamily": 5,
+      "fontSize": 38.56821024629035,
+      "width": 20.699630737304688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "e",
+      "fontFamily": 5,
+      "fontSize": 38.56821024629035,
+      "width": 20.699630737304688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "r",
+      "fontFamily": 5,
+      "fontSize": 38.56821024629035,
+      "width": 15.88128662109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "t",
+      "fontFamily": 5,
+      "fontSize": 38.56821024629034,
+      "width": 21.316375732421875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "n",
+      "fontFamily": 5,
+      "fontSize": 38.568210246290356,
+      "width": 20.275619506835938,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "g",
+      "fontFamily": 5,
+      "fontSize": 38.56821024629035,
+      "width": 21.393478393554688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "u",
+      "fontFamily": 5,
+      "fontSize": 38.568210246290356,
+      "width": 21.123641967773438,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "S",
+      "fontFamily": 5,
+      "fontSize": 44.158378730701685,
+      "width": 27.4554443359375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "t",
+      "fontFamily": 5,
+      "fontSize": 44.158378730701685,
+      "width": 24.409744262695312,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "a",
+      "fontFamily": 5,
+      "fontSize": 44.158378730701685,
+      "width": 25.424972534179688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "m",
+      "fontFamily": 5,
+      "fontSize": 44.158378730701685,
+      "width": 29.26519775390625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "g",
+      "fontFamily": 5,
+      "fontSize": 44.158378730701685,
+      "width": 24.498016357421875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "r",
+      "fontFamily": 5,
+      "fontSize": 44.158378730701685,
+      "width": 18.1859130859375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "u",
+      "fontFamily": 5,
+      "fontSize": 44.158378730701685,
+      "width": 24.189041137695312,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "p",
+      "fontFamily": 5,
+      "fontSize": 44.158378730701685,
+      "width": 23.7034912109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "e",
+      "fontFamily": 5,
+      "fontSize": 44.158378730701685,
+      "width": 23.7034912109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "n",
+      "fontFamily": 5,
+      "fontSize": 44.158378730701685,
+      "width": 23.217941284179688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "P",
+      "fontFamily": 5,
+      "fontSize": 58.400654301282,
+      "width": 40.75665283203125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "l",
+      "fontFamily": 5,
+      "fontSize": 58.400654301282,
+      "width": 13.137893676757812,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "e",
+      "fontFamily": 5,
+      "fontSize": 58.400654301282,
+      "width": 31.355758666992188,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "n",
+      "fontFamily": 5,
+      "fontSize": 58.400654301282,
+      "width": 30.713470458984375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "u",
+      "fontFamily": 5,
+      "fontSize": 58.400654301282,
+      "width": 31.998062133789062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "m",
+      "fontFamily": 5,
+      "fontSize": 58.400654301282,
+      "width": 38.712982177734375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Diskussion über das Thema",
+      "fontFamily": 5,
+      "fontSize": 35.78135771942788,
+      "width": 473.53717041015625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "KI - Spiegel oder Abgrund der Menschheit?",
+      "fontFamily": 5,
+      "fontSize": 48.932388817496836,
+      "width": 1008.8170166015625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "(ca. 2 Seiten)",
+      "fontFamily": 6,
+      "fontSize": 16.09200973568899,
+      "width": 93.94940185546875,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Das Ich und das Selbst",
+      "fontFamily": 5,
+      "fontSize": 33.40940501747414,
+      "width": 385.87005615234375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ergebnisse:",
+      "fontFamily": 5,
+      "fontSize": 28,
+      "width": 150.72393798828125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kunst gibt dem Leben Tiefe und Bedeutung",
+      "fontFamily": 5,
+      "fontSize": 24.410862511523455,
+      "width": 515.4110364904325,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Frühe , mittlere und später Phase",
+      "fontFamily": 5,
+      "fontSize": 24.410862511523455,
+      "width": 399.6057828933525,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Passiver Nihilismus —> Resignation, Müdigkeit",
+      "fontFamily": 5,
+      "fontSize": 33.810347241724706,
+      "width": 744.4361172165361,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Übermensch als Schöpfer neuer Werte",
+      "fontFamily": 5,
+      "fontSize": 33.810347241724706,
+      "width": 613.3197338269661,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aktiver Nihilismus —> Zerstörung alter Werte",
+      "fontFamily": 5,
+      "fontSize": 33.810347241724706,
+      "width": 744.6728490781862,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Umwertung aller Werte",
+      "fontFamily": 5,
+      "fontSize": 33.810347241724706,
+      "width": 366.7408613994396,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Begriff",
+      "fontFamily": 5,
+      "fontSize": 20.395947605253472,
+      "width": 69.97842407226562,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Textstelle",
+      "fontFamily": 5,
+      "fontSize": 20.395947605253472,
+      "width": 103.54032897949219,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "eigene Formulierung",
+      "fontFamily": 5,
+      "fontSize": 20.39594760525347,
+      "width": 188.3422393798828,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe 2",
+      "fontFamily": 5,
+      "fontSize": 20.95232282366069,
+      "width": 105.67173767089844,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Infoblatt für Grundlagen",
+      "fontFamily": 5,
+      "fontSize": 20.95232282366069,
+      "width": 254.26998901367188,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Arbeitsbogen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 125.85989379882812,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe 3",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 99.0399169921875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Zum Einstieg - und der philosophischen Einordnung",
+      "fontFamily": 5,
+      "fontSize": 29.06705034086381,
+      "width": 714.4688720703125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Wer war eigentlich Sisyphos? ",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 281.999755859375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe 3:",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 104.31991577148438,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Zitat",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 55.15997314453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe 4:",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 103.85992431640625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aristoteles oder der Verrat der Wörter",
+      "fontFamily": 5,
+      "fontSize": 41.119995117187514,
+      "width": 780.5966186523438,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Beispiele für andere Zeichen",
+      "fontFamily": 5,
+      "fontSize": 17.371640284481124,
+      "width": 238.00355529785156,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "arbiträr",
+      "fontFamily": 5,
+      "fontSize": 17.371640284481124,
+      "width": 64.3731689453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "konventionell",
+      "fontFamily": 5,
+      "fontSize": 17.371640284481124,
+      "width": 106.947021484375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Mindmaps",
+      "fontFamily": 5,
+      "fontSize": 24.949151931658257,
+      "width": 111.23237609863281,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Diskussion",
+      "fontFamily": 5,
+      "fontSize": 28.319995117187514,
+      "width": 144.4941864013672,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "1)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 16.579986572265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "2)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 22.039993286132812,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Mündliche Prüfungen zum Thema Sprachphilosophie",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 485.27960205078125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Verschiedene Themenkomplexe der Medienpädagogik",
+      "fontFamily": 5,
+      "fontSize": 13.452055871792677,
+      "width": 332.7122497558594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Start",
+      "fontFamily": 5,
+      "fontSize": 27.30764467859108,
+      "width": 74.96575927734375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Inhalte",
+      "fontFamily": 5,
+      "fontSize": 32.8,
+      "width": 115.75110290527347,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Was ist schul.cloud? (Überblick)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 319.0596923828125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Anmeldung und Zugang",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 234.8598175048828,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Benachrichtigungen & Kommunikation",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 368.79962158203125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- \"Stille Zeiten\", Nettiquette",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 279.01971435546875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "schul.cloud",
+      "fontFamily": 5,
+      "fontSize": 23.2,
+      "width": 119.31749450683593,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Inhalte",
+      "fontFamily": 5,
+      "fontSize": 27.50965694948345,
+      "width": 97.08149794050091,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Was ist Moodle? (Überblick)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 282.8597412109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Einloggen & Kurse suchen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 261.0397644042969,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- In Kurse einschreiben",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 220.3397979736328,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Aufgaben in Kursen bearbeiten",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 308.63970947265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Anleitung",
+      "fontFamily": 5,
+      "fontSize": 28,
+      "width": 122.91993713378906,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Dokument einrichten - Tipps zur Textbe- und verarbeitung",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 569.61962890625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Welche Themen möchtet ihr gerne bearbeiten ...?",
+      "fontFamily": 5,
+      "fontSize": 24.378601773134733,
+      "width": 566.8702392578125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "...und welche lieber nicht?",
+      "fontFamily": 5,
+      "fontSize": 24.378601773134733,
+      "width": 295.70538330078125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Medienpädagogik",
+      "fontFamily": 5,
+      "fontSize": 37.81591689599044,
+      "width": 301.0430908203125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Einführung BookCreator",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 233.6598358154297,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Die eigene Medienchronologie",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 277.6397705078125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Die Grundlagen der Medienpädagogik & Medienkompetenz",
+      "fontFamily": 5,
+      "fontSize": 24.48000488281249,
+      "width": 669.7234497070312,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "+ weitere Recherchen",
+      "fontFamily": 5,
+      "fontSize": 45.657729892257606,
+      "width": 468.82537841796875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ideensammlung - Einsatzszenarien für BeeBots & OzoBots",
+      "fontFamily": 5,
+      "fontSize": 26.95692103812117,
+      "width": 778.77392578125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "🌐https://forms.office.com/e/AwyM64nmxt",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 417.24066162109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Abfrage: Interesse am Thema \"Krieg und Frieden als Thema in der Philosophie\"?",
+      "fontFamily": 5,
+      "fontSize": 38.651424943590705,
+      "width": 1491.6575927734375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "• Bemerkenswert unterschiedlich zu Deltarianern",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 471.1195983886719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "• Zu voprogrammierten Zeiten Haus verlassen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 442.7397155761719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "• Geld -> von Menschen erfunden, aber Unterschiede",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 508.53961181640625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Der Blick der religiösen Schriften",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 319.9197082519531,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Der Blick der Evolutionstheorie",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 305.8197937011719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Der Mensch als Mängelwesen (Gehlen)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 362.3597412109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Der Mensch als Freiheit (Sartre)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 316.31976318359375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Frieden ist, wenn ...",
+      "fontFamily": 5,
+      "fontSize": 33.23612772703773,
+      "width": 313.79071044921875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Beurteilen Sie: Entspricht ihr Wandbild eher ",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 429.8196716308594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "positivem Frieden",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 167.75985717773438,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "negativem Frieden",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 173.15985107421875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "oder ",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 51.07997131347656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "?",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 9.319992065429688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "📍Radiobeitrag.mp4",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 186.2398681640625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Das Transkript findet sich unter 03 - Krieg und Frieden unter dem Dateinamen 02 - Sendemanuskript",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 985.9791870117188,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Warum gibt es Krieg? – Zwei Menschenbilder",
+      "fontFamily": 5,
+      "fontSize": 52.38438282439656,
+      "width": 1112.0794677734375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Hobbes",
+      "fontFamily": 5,
+      "fontSize": 18.50131415920423,
+      "width": 62.21543884277344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kant",
+      "fontFamily": 5,
+      "fontSize": 18.50131415920423,
+      "width": 41.03297424316406,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Menschenbild",
+      "fontFamily": 5,
+      "fontSize": 33.302365486567616,
+      "width": 204.29542541503906,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Naturzustand",
+      "fontFamily": 5,
+      "fontSize": 33.302365486567616,
+      "width": 220.5791015625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Perspektive",
+      "fontFamily": 5,
+      "fontSize": 33.302365486567616,
+      "width": 187.34573364257812,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aspekt",
+      "fontFamily": 5,
+      "fontSize": 18.50131415920423,
+      "width": 62.51145935058594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Podiumsdiskussion",
+      "fontFamily": 5,
+      "fontSize": 25.763732388583687,
+      "width": 226.6878662109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Möchte jemand von Ihnen moderieren?",
+      "fontFamily": 5,
+      "fontSize": 22.42746034333796,
+      "width": 408.3575439453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Moderator:in",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 121.09991455078125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ablauf",
+      "fontFamily": 5,
+      "fontSize": 35.5555013020834,
+      "width": 109.40418419068074,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "personelle Gewalt",
+      "fontFamily": 5,
+      "fontSize": 23.10016005751404,
+      "width": 194.3401641845703,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "strukturelle Gewalt",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 186.79986572265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "kulturelle Gewalt",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 161.139892578125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Das Gewaltdreieck nach Johann Galtung",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 389.69970703125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Beispiele",
+      "fontFamily": 5,
+      "fontSize": 28.026048987881772,
+      "width": 116.7032470703125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe 1",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 95.419921875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe 3",
+      "fontFamily": 5,
+      "fontSize": 19.82149155611546,
+      "width": 98.14857482910156,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe 2",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 100.87992858886719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Frieden?",
+      "fontFamily": 5,
+      "fontSize": 104.37899055515192,
+      "width": 418.31494140625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Arbeitsbogen",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 226.5479278564453,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Beleidigungen in der Schule",
+      "fontFamily": 5,
+      "fontSize": 21.469332805619334,
+      "width": 277.41326904296875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Inhaltlich richtig",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 160.62001037597656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kreativ",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 68.20000457763672,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Komplex",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 74.5199966430664,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "gar nicht",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 86.74000549316406,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "vollständig",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 102.85999298095703,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Lia, Emma, Anna B., Judith",
+      "fontFamily": 5,
+      "fontSize": 31.358320642402727,
+      "width": 400.383056640625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Elias, Constantin, Serdar, Noah, Justin",
+      "fontFamily": 5,
+      "fontSize": 31.358320642402727,
+      "width": 585.1776123046875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Anna M., Anni, Jasi, Greta, ",
+      "fontFamily": 5,
+      "fontSize": 31.358320642402727,
+      "width": 411.23297119140625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Emily, Sarah, Eka, Olivia",
+      "fontFamily": 5,
+      "fontSize": 31.358320642402727,
+      "width": 359.052734375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Michelle, Carina, Emily, Anna S.",
+      "fontFamily": 5,
+      "fontSize": 31.358320642402727,
+      "width": 455.5736999511719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Nieke & Cansu",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 136.49989318847656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Das eigene Ich erkunden",
+      "fontFamily": 5,
+      "fontSize": 25.433223748347704,
+      "width": 301.88458251953125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Etymologie",
+      "fontFamily": 5,
+      "fontSize": 57.17076562898437,
+      "width": 298.08428955078125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Weiter",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 109.40396118164062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Autonomes Fahren",
+      "fontFamily": 5,
+      "fontSize": 52.79999999999996,
+      "width": 467.54388427734375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Organspende",
+      "fontFamily": 5,
+      "fontSize": 52.79999999999996,
+      "width": 321.07672119140625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Rationalismus vs. Empirismus",
+      "fontFamily": 5,
+      "fontSize": 34.67728061167707,
+      "width": 479.9366149902344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kleines Quiz auf Basis der 4 Handouts",
+      "fontFamily": 5,
+      "fontSize": 34.494674283006205,
+      "width": 645.2386474609375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Bearbeiten Sie das Szenario unten!",
+      "fontFamily": 5,
+      "fontSize": 26.193664268557274,
+      "width": 447.3349954973544,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "🌐https://forms.office.com/e/QSHVps6ayP",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 415.7605895996094,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "* Anschläge",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 201.5999298095703,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Sophie, Yamama, …",
+      "fontFamily": 5,
+      "fontSize": 31.358320642402727,
+      "width": 271.8139343261719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Maxi, Amir, Mandy, Hannah, …",
+      "fontFamily": 5,
+      "fontSize": 31.358320642402727,
+      "width": 432.6194152832031,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Henning, Lars, …",
+      "fontFamily": 5,
+      "fontSize": 31.358320642402727,
+      "width": 237.82151794433594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Pia, …",
+      "fontFamily": 5,
+      "fontSize": 31.358320642402727,
+      "width": 90.43739318847656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Relationales Datenbankmodell",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 285.8997802734375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "SQL-Anweisungen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 164.29981994628906,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Pseudocode",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 115.5399169921875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Pseudocode 2",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 137.5399169921875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "XML-JSON",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 98.35993957519531,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "📍[[Aufgabe 5 - Austauschformate]]",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 367.60064697265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Was ist Obsidian?",
+      "fontFamily": 5,
+      "fontSize": 27.68867686938409,
+      "width": 235.8611602783203,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Gemeinsame Arbeitsbasis: Obsidian",
+      "fontFamily": 5,
+      "fontSize": 46.61470393394328,
+      "width": 778.8994140625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Weiter mit Git",
+      "fontFamily": 5,
+      "fontSize": 40.772786458333215,
+      "width": 280.3344421386719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Repo mit Unterrichtsmaterial (f. Obsidian): https://github.com/dclausen01/IT23-LFAE-ClauD.git",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 935.539306640625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Deckblatt",
+      "fontFamily": 5,
+      "fontSize": 170.23256138392605,
+      "width": 819.8394285803275,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Inhaltsverzeichnis",
+      "fontFamily": 5,
+      "fontSize": 170.23256138392605,
+      "width": 1491.3966064453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Eidesstattliche Erklärung *",
+      "fontFamily": 5,
+      "fontSize": 170.23256138392605,
+      "width": 2261.602783203125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "* nicht mehr zwangläufig erforderlich, weil beim Einreichung in der Online-Maske abgefragt - aber schadet nicht.",
+      "fontFamily": 5,
+      "fontSize": 40.030970982142044,
+      "width": 2154.184950700784,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Quellenverzeichnis",
+      "fontFamily": 5,
+      "fontSize": 170.23256138392605,
+      "width": 1463.627685546875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Spickzettel Kundengespräch",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 266.77978515625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Vorbereitung Kundengepräch",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 267.9997863769531,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Design Patterns in der Software-Entwicklung",
+      "fontFamily": 5,
+      "fontSize": 44.4643792026728,
+      "width": 975.096435546875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Definition und Geschichte:",
+      "fontFamily": 5,
+      "fontSize": 19.890823948827492,
+      "width": 255.1884765625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Was sind Design Patterns?",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 275.8597412109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Ursprung und Evolution der Design Patterns (Erwähnung von \"Gang of Four\").",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 773.7794799804688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Bedeutung und Vorteile:",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 232.2598419189453,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Warum sind Design Patterns wichtig?",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 372.6596984863281,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Vorteile bei der Verwendung von Design Patterns in der Software-Entwicklung.",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 775.1793212890625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kategorisierung:",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 153.7798614501953,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Kurze Übersicht über die drei Hauptkategorien von Design Patterns:",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 676.439453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Erzeugungsmuster (Creational)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 312.41973876953125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Strukturmuster (Structural)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 288.07977294921875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "- Verhaltensmuster (Behavioral)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 306.6197509765625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgaben:",
+      "fontFamily": 5,
+      "fontSize": 19.875514183875566,
+      "width": 94.06451416015625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Singleton (Erzeugungsmuster)",
+      "fontFamily": 5,
+      "fontSize": 23.141543312808363,
+      "width": 332.98443603515625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Adapter (Strukturmuster)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 251.51980590820312,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Observer (Verhaltensmuster)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 276.4997863769531,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "mittel",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 55.49993896484375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "hoch",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 44.75996398925781,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "niedrig",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 62.85992431640625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Eintrittswahrscheinlichkeit",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 258.0196838378906,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Schadensausmaß",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 159.1798553466797,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "🌐https://1drv.ms/x/s!ArliqAnE_q9ezJhjinjH7Zvhf4VgOA?e=yonYYB",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 652.4005126953125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Sequenzdiagramm",
+      "fontFamily": 5,
+      "fontSize": 38.40000000000001,
+      "width": 312.3839416503906,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Optimierungsalgorithmus",
+      "fontFamily": 5,
+      "fontSize": 38.40000000000001,
+      "width": 446.01593017578125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Materialsammlung",
+      "fontFamily": 5,
+      "fontSize": 27.6800048828125,
+      "width": 227.1973876953125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ablaufdefinition / Aufgaben und Materialliste",
+      "fontFamily": 5,
+      "fontSize": 27.6800048828125,
+      "width": 608.2401123046875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Vom Wort zum Token - die Mathematisierung der Sprache",
+      "fontFamily": 5,
+      "fontSize": 49.0909090909091,
+      "width": 1354.3189752752137,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Vektoren schaffen semantische (also inhaltliche) Nähe",
+      "fontFamily": 5,
+      "fontSize": 32.950144183987156,
+      "width": 857.4244995117188,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Das Prinzip der Kosinus-Ähnlichkeiten",
+      "fontFamily": 5,
+      "fontSize": 31.531145735113345,
+      "width": 570.47216796875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Beispiel: Geschwindigkeiten und Größen von Tieren",
+      "fontFamily": 5,
+      "fontSize": 28.933361105622268,
+      "width": 707.6854248046875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Größe",
+      "fontFamily": 5,
+      "fontSize": 32.28338749434033,
+      "width": 92.41758728027344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Vektoren - wir bringen Sinn in die Daten",
+      "fontFamily": 5,
+      "fontSize": 80.81356718804435,
+      "width": 1553.24853515625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "vs.",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 26.839981079101562,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Das Attention-Prinzip",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 214.61981201171875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Frage: Woher \"weiß\" das LLM, welche Bank gemeint ist?",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 530.779541015625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Antwort:",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 86.13995361328125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Query (Q): Was suche ich? (Mein aktuelles Token).",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 495.3798217773437,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Key (K): Was biete ich an (Schlagworte aller anderen Tokens).",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 606.6197509765625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Value (V): Was ist mein Inhalt? (Die eigentliche Information).",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 599.6198120117188,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ein Multilayer Perceptron (MLP) - This is where the magic happens!",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 653.9995727539062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Gewichtung",
+      "fontFamily": 5,
+      "fontSize": 18.0800048828125,
+      "width": 99.56649780273438,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Input-Token",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 121.659912109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ein Perceptron",
+      "fontFamily": 5,
+      "fontSize": 34.82252579714696,
+      "width": 249.41554260253906,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "VALUES (555, \"Schraubroboter 071X\", NULL, DATE(23.07.2021), 4);",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 769.3638386425062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "FROM Maschine",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 151.85987854003906,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "WHERE YEAR(Anschaffungsdatum) = 2020",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 417.8797607421875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "ORDER BY Anschaffungsdatum",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 305.259765625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "SELECT COUNT(M.MaschinenNr)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 315.5198059082031,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "FROM Maschine AS M",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 209.1398468017578,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "LEFT JOIN Standort AS S, Hersteller AS H",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 423.1997375488281,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "WHERE S.Bezeichnung = \"Zuschnitt\" AND H.name = \"XXXX\"",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 577.28511352209,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "DELETE FROM AktienKurs WHERE AK_AktieID=4",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 489.13970947265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Herzlich willkommen im Lernfeld 4",
+      "fontFamily": 5,
+      "fontSize": 34.933325195312506,
+      "width": 542.008544921875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Datenschutz",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 125.17990112304688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "IT-Sicherheit",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 130.79989624023438,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Auftragsverarbeitung",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 205.19981384277344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Auskunftsrecht der betroffenen Person",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 384.9197082519531,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Bußgelder / Strafen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 195.93983459472656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Datenschutzbeauftragter",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 250.59979248046875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Datenschutz-Folgenabschätzung",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 315.69970703125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Drittland",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 89.87992858886719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Einwilligung",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 105.83990478515625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "E-Mail-Werbung",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 144.57986450195312,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Informationspflichten",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 209.4998321533203,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Personenbezogene Daten",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 242.7998046875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Privacy by Design",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 170.97984313964844,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Recht auf Vergessenwerden",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 266.79974365234375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Verschlüsselung",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 146.69985961914062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Verzeichnis von Verarbeitungstätigkeiten",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 391.919677734375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Authentifizierung ",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 174.77984619140625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Autorisierung",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 128.35987854003906,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Malware",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 74.69993591308594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Phishing",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 78.87992858886719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Social Engineering",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 171.19984436035156,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "DoS/DDoS-Angriffe",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 191.7798309326172,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Firewall",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 70.45993041992188,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Backup",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 69.179931640625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Patch Management",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 181.45986938476562,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "CIA-Triad",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 97.89990234375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Schwachstelle (Vulnerability)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 270.8597717285156,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Risikomanagement",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 172.23985290527344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "🌐https://bibox2.westermann.de/v2/book/5409/page/389",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 571.1934814453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 78.87992858886719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "1",
+      "fontFamily": 5,
+      "fontSize": 28,
+      "width": 11.9560546875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "2",
+      "fontFamily": 5,
+      "fontSize": 28,
+      "width": 19.600082397460938,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "3",
+      "fontFamily": 5,
+      "fontSize": 28,
+      "width": 17.024078369140625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "4",
+      "fontFamily": 5,
+      "fontSize": 28,
+      "width": 16.38006591796875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Gesetze und Richtlinien zur Informationssicherheit",
+      "fontFamily": 5,
+      "fontSize": 29.59999999999999,
+      "width": 733.162109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Urheberrecht usw.",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 175.21986389160156,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "...",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 16.439987182617188,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "1.",
+      "fontFamily": 5,
+      "fontSize": 25.572302140432605,
+      "width": 17.924560546875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "2.",
+      "fontFamily": 5,
+      "fontSize": 25.572302140432605,
+      "width": 24.905166625976562,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "IT-Sicherheit",
+      "fontFamily": 5,
+      "fontSize": 7.649745184786484,
+      "width": 50.02929382171523,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Datenschutz",
+      "fontFamily": 5,
+      "fontSize": 7.649745184786484,
+      "width": 47.8797172924038,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Urheberrecht usw.",
+      "fontFamily": 5,
+      "fontSize": 7.649745184786482,
+      "width": 67.0193655041861,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ziel",
+      "fontFamily": 5,
+      "fontSize": 7.649745184786484,
+      "width": 14.04229736328125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Lese vorab die Seiten 402f. und mach Dir Notizen.",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 489.51947021484375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "3.",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 17.639984130859375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Inhalte finden sich in Kapitel 4.1.4",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 329.439697265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgaben:",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 94.67991638183594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Inhalte finden sich in in Kapitel 4.1.5",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 353.4997253417969,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Technisch-organisatorische Maßnahmen (im Rahmen eines Schutzkonzeptes nach BSI)",
+      "fontFamily": 5,
+      "fontSize": 35.53038046802271,
+      "width": 1471.26123046875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe",
+      "fontFamily": 5,
+      "fontSize": 32.70661617442202,
+      "width": 128.96875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Passende TOM für verschiedene Arbeitsbereiche",
+      "fontFamily": 5,
+      "fontSize": 37.08065509056888,
+      "width": 867.6346435546875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "📍Francesco, Leonard und Julian Drucker und Kopierer.pptx",
+      "fontFamily": 5,
+      "fontSize": 26.642476979665844,
+      "width": 764.249267578125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Häuslicher Arbeitsplatz",
+      "fontFamily": 5,
+      "fontSize": 22.81193808881178,
+      "width": 252.68899536132812,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Leon & Denis",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 127.07989501953125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "📍Cloud Schutz_Norje_Elias.excalidraw",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 381.74072265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "📍Besprechungsräume.pdf",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 250.7607421875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "📍Sicherheitskonzept für Mobilen Arbeitsplatz Johann, Sascha.docx",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 659.9404296875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Direktwerbung folgt durch datenverwaldung und verarbeitung von Drittanbietern",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 779.9594116210938,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Email-Werbung:",
+      "fontFamily": 5,
+      "fontSize": 28,
+      "width": 195.4119110107422,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "auskunftrecht der betroffenen Person",
+      "fontFamily": 5,
+      "fontSize": 18.08044563039236,
+      "width": 336.34197998046875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Von der Sicherheitsrichtlinie zur Schutzbedarfsanalyse",
+      "fontFamily": 5,
+      "fontSize": 27.361674670979664,
+      "width": 722.4129638671875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Schutzbedarfsfeststellung und Schutzmaßnahmen",
+      "fontFamily": 5,
+      "fontSize": 27.65335408242658,
+      "width": 663.7379150390625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Symmetrische Verfahren",
+      "fontFamily": 5,
+      "fontSize": 26.3364501953125,
+      "width": 300.71478271484375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Asymmetrische Verfahren",
+      "fontFamily": 5,
+      "fontSize": 26.3364501953125,
+      "width": 316.43377685546875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Office.com",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 99.919921875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Mein Verdacht",
+      "fontFamily": 5,
+      "fontSize": 29.815185546874996,
+      "width": 202.3800048828125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Algorithmen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 111.55989074707031,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Seien Sie kreativ!",
+      "fontFamily": 5,
+      "fontSize": 16.931760325240585,
+      "width": 142.9308319091797,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Beispiel:",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 78.55992126464844,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Was wird hier dargestellt?",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 250.9998016357422,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Planung eines Wochenendtrips",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 287.29974365234375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Spülmaschine - Basisversion",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 266.81976318359375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Start",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 55.85997009277344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Tür öffnen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 104.679931640625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Geschirr einräumen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 179.15985107421875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Programm wählen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 161.05990600585938,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Start drücken",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 135.89990234375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Spülen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 59.5799560546875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Programm beendet",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 176.71987915039062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ende",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 47.759979248046875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Spülmaschine - Mit Prüfungen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 281.1397705078125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Tür schließen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 128.7399139404297,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Spülvorgang starten",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 195.09986877441406,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Nein",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 38.57997131347656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ja",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 24.379989624023438,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Waschmaschine - Mit Schleife",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 280.1197509765625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Zeit = 0",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 83.5999755859375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Trommel drehen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 149.2999267578125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Zeit + 1",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 78.85997009277344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Fehlerhafter PAP",
+      "fontFamily": 5,
+      "fontSize": 21.24475149489211,
+      "width": 178.44168090820312,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Start",
+      "fontFamily": 5,
+      "fontSize": 21.24475149489211,
+      "width": 58.57929992675781,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Temperatur prüfen",
+      "fontFamily": 5,
+      "fontSize": 21.24475149489211,
+      "width": 190.4795684814453,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kühlung an",
+      "fontFamily": 5,
+      "fontSize": 21.24475149489211,
+      "width": 107.13447570800781,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Heizung an",
+      "fontFamily": 5,
+      "fontSize": 21.24475149489211,
+      "width": 107.41059875488281,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ende",
+      "fontFamily": 5,
+      "fontSize": 21.24475149489211,
+      "width": 51.039093017578125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Nein",
+      "fontFamily": 5,
+      "fontSize": 21.24475149489211,
+      "width": 40.971923828125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ja",
+      "fontFamily": 5,
+      "fontSize": 21.24475149489211,
+      "width": 25.085556030273438,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Beispiel 1",
+      "fontFamily": 5,
+      "fontSize": 25.40323478574819,
+      "width": 113.15689086914062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Beispiel 2",
+      "fontFamily": 5,
+      "fontSize": 25.40323478574819,
+      "width": 120.09109497070312,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Beispiel 3",
+      "fontFamily": 5,
+      "fontSize": 25.40323478574819,
+      "width": 117.75428771972656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Beispiel 4",
+      "fontFamily": 5,
+      "fontSize": 25.40323478574819,
+      "width": 117.17008972167969,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "bekannt ...",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 100.55992126464844,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "... neu!",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 64.65995788574219,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ein Text-Adventure mit Python entwickeln",
+      "fontFamily": 5,
+      "fontSize": 36.82602539062502,
+      "width": 759.7503662109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Unsere IDE: Thonny",
+      "fontFamily": 5,
+      "fontSize": 24.588770074080365,
+      "width": 245.56792216514847,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Vorinstallierte Funktionen in Python",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 349.93975830078125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Befehl print : Text auf den Bildschirm drucken",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 453.6796569824219,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Befehl input : Frage? Antwort!",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 300.11981201171875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Python: Variablen",
+      "fontFamily": 5,
+      "fontSize": 27.703699182581037,
+      "width": 231.75241088867188,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Was ist eine Variable?",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 199.1197509765625,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Variablen verwenden: Wie alt bist du?",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 344.87957763671875,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe 1",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 94.57991027832031,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Schauen Sie sich die drei Zwischenschritte genauer an:",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 491.1793212890625,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Was hat sich alles zwischen den Schritten geändert? Was kam hinzu?",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 626.319091796875,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Welche Bausteine sind wichtig?",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 286.85968017578125,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Welche Fehlerquellen könnte es geben?",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 361.2595520019531,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Was bedeutet vermutlich „int“?",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 282.2396545410156,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufgabe 2",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 94.57991027832031,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Schreiben Sie ein Programm, das zwei Zahlen addiert. Dafür brauchen Sie drei Variablen:",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 798.558837890625,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Die Ausgabe soll wie in diesem Beispiel aussehen:",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 455.85943603515625,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    },
+    {
+      "text": "Was darf / kann ich mit KI machen in Bezug auf meine Hausarbeit?",
+      "fontFamily": 5,
+      "fontSize": 60.81971130985876,
+      "width": 1960.939697265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "aus: Richtlinien für schriftliche Ausarbeitungen an der Fachschule für Sozialpädagogik in Rendsburg (Stand: 21.11.2025)",
+      "fontFamily": 5,
+      "fontSize": 38.695380276974554,
+      "width": 2243.825927734375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Medien? Was heißt hier Medien?!",
+      "fontFamily": 5,
+      "fontSize": 56.314945411929266,
+      "width": 865.2030029296875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Medienpädagogisch Handeln: Unangemessener Medienkonsum",
+      "fontFamily": 5,
+      "fontSize": 23.39588623046875,
+      "width": 665.468505859375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ihre Wandbilder/Poster",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 227.47982788085938,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "📍[[Radiobeitrag.mp4]]",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 230.46075439453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Gewalt ist ...",
+      "fontFamily": 5,
+      "fontSize": 45.6,
+      "width": 288.2829968261719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "🌐https://forms.office.com/e/T92D5zr6jB",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 757.29736328125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "„Gedanken ohne Inhalt sind leer, Anschauungen ohne Begriffe sind blind.“",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 729.7855224609374,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "-- Immanuel Kant",
+      "fontFamily": 5,
+      "fontSize": 17.07651367187499,
+      "width": 138.65943908691406,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Mängelwesen",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 215.5319366455078,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kompensationsmechanismen",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 464.65185546875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Folgen/Resultate",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 303.9478759765625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Unspezialisiertheiten",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 360.61187744140625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Technik",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 132.7679443359375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kultur",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 103.28395080566406,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Organersatz",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 215.60391235351562,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Organentlastung",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 285.76788330078125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Organüberbietung",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 299.73590087890625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Fortbewegungsmittel",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 361.79986572265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Tragtiere",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 163.5479278564453,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Flugzeuge",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 170.56796264648438,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Umweltenthebung",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 298.97991943359375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Gibt es einen gerechten Krieg?",
+      "fontFamily": 5,
+      "fontSize": 41.33333740234372,
+      "width": 611.3609040974451,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Der rappende Papst und die Erkenntnistheorie",
+      "fontFamily": 5,
+      "fontSize": 28.32000732421876,
+      "width": 636.2085777085981,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Das digitale Höhlengleichnis",
+      "fontFamily": 5,
+      "fontSize": 38.56000366210936,
+      "width": 507.9121398925781,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Wie funktioniert eigentlich KI?",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 293.71978759765625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Warum ist der „Aufstieg“ aus der digitalen Höhle heute so schwer?",
+      "fontFamily": 5,
+      "fontSize": 26.51123909597827,
+      "width": 853.0780011471053,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "John Searle: Das chinesische Zimmer",
+      "fontFamily": 5,
+      "fontSize": 27.680004882812497,
+      "width": 487.1954040527344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kants Erkenntnistheorie revisited: Kann KI eigentlich Erkenntnisse produzieren?",
+      "fontFamily": 5,
+      "fontSize": 21.92000732421875,
+      "width": 845.8047015573829,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Was ist der Ursprung der Sprache?",
+      "fontFamily": 5,
+      "fontSize": 40.44829101562499,
+      "width": 677.2059326171875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Vorbereitung auf ein Studium (egal, welches)",
+      "fontFamily": 5,
+      "fontSize": 15.128399192236433,
+      "width": 322.29595947265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Das können Sie hier im Philosophieunterricht lernen",
+      "fontFamily": 5,
+      "fontSize": 39.69776571521362,
+      "width": 975.4764404296875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Im Laufe ihrer \"Philosoph:innen-Karriere\" wird der Aspekt",
+      "fontFamily": 5,
+      "fontSize": 16,
+      "width": 438.3687744140625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Vorbereitung auf ein Studium (egal, welches)",
+      "fontFamily": 5,
+      "fontSize": 16.102719353789144,
+      "width": 343.29510498046875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "zunehmend stärker in den Fokus rücken.",
+      "fontFamily": 5,
+      "fontSize": 16,
+      "width": 307.2005615234375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ein paar Prinzipien, die besonders wichtig sind",
+      "fontFamily": 5,
+      "fontSize": 41.43679718292706,
+      "width": 924.4126586914062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Gruppe 1",
+      "fontFamily": 5,
+      "fontSize": 31.358320642402727,
+      "width": 131.0150598160386,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Das BBZ Intranet - wie könnte es aussehen?",
+      "fontFamily": 5,
+      "fontSize": 55.199999999999996,
+      "width": 1230.1318359375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Komponenten",
+      "fontFamily": 5,
+      "fontSize": 23.88475482249544,
+      "width": 147.53050231933594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "BBZ Wiki",
+      "fontFamily": 5,
+      "fontSize": 21.873387081123102,
+      "width": 99.7490234375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Vorab ...",
+      "fontFamily": 5,
+      "fontSize": 23.88475482249544,
+      "width": 92.82144165039062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "* Betrachtung aus Nutzersicht - möglichst eindeutige Abläufe, die ...",
+      "fontFamily": 5,
+      "fontSize": 22.0775083032966,
+      "width": 734.1799926757812,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Bildungsgangspezifische Channel + Info-Hub",
+      "fontFamily": 5,
+      "fontSize": 5.408367718532802,
+      "width": 114.12872314453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "* ... an üblichen Aufgaben orientiert sind.",
+      "fontFamily": 5,
+      "fontSize": 22.0775083032966,
+      "width": 437.97869873046875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "BBZ Wiki",
+      "fontFamily": 5,
+      "fontSize": 8.057162568756919,
+      "width": 36.71595764160156,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Bildungsgangspezifische Channel + Info-Hub",
+      "fontFamily": 5,
+      "fontSize": 16.514925012403022,
+      "width": 348.9384460449219,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Monitore",
+      "fontFamily": 5,
+      "fontSize": 7.338972528064268,
+      "width": 30.917892456054688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Blackboard",
+      "fontFamily": 5,
+      "fontSize": 13.165880679735176,
+      "width": 70.36643981933594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Integration",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 111.73991394042969,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Bildungsgangspezifische Channel + Info-Hub",
+      "fontFamily": 5,
+      "fontSize": 11.366891958446681,
+      "width": 240.09332275390625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "BBZ Wiki",
+      "fontFamily": 5,
+      "fontSize": 14.31686870696219,
+      "width": 65.26788330078125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "2. Thema: Formularbasierter Workflow für Anmeldung für duales System",
+      "fontFamily": 5,
+      "fontSize": 32.9271314742205,
+      "width": 1138.932861328125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Monitore",
+      "fontFamily": 5,
+      "fontSize": 25.164178396838444,
+      "width": 106.01257307385475,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Wecker klingelt",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 141.5399932861328,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aufstehen?",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 108.99999237060547,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Zähne putzen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 133.5399932861328,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Weiterschlafen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 140.28001403808594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Direkt zur Arbeit gehen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 229.40003967285156,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ohne Energie sein",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 170.50001525878906,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kaffee kochen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 135.6599884033203,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Frühstück essen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 157.5,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Haare kämmen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 130.36000061035156,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Outfit wechseln",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 153.88002014160156,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Haus verlassen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 141.28001403808594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Bus verpassen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 139.760009765625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "frisch gewaschen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 163.90000915527344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Schreiben mit der Tastatur",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 265.07977294921875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Test",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 48.19993591308594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Dies ist ein Schreibtest",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 231.15980529785156,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Nextcloud & EuroOffice (vormals OnlyOffice)",
+      "fontFamily": 5,
+      "fontSize": 33.922418212890626,
+      "width": 736.5724487304688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Nextcloud Hub",
+      "fontFamily": 5,
+      "fontSize": 27.392498291521157,
+      "width": 187.92269897460938,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Nextcloud-App",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 138.11990356445312,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "EuroOffice / OnlyOffice",
+      "fontFamily": 5,
+      "fontSize": 22.492021349910196,
+      "width": 260.56890869140625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "BBZ goes",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 87.57991027832031,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Nextcloud",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 92.53990173339844,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Fragen, die bisher aufgetreten sind",
+      "fontFamily": 5,
+      "fontSize": 43.53983330634346,
+      "width": 742.4908447265625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Rückmeldungen & Ideen für Fortbildungsmanagement",
+      "fontFamily": 5,
+      "fontSize": 43.53983330634346,
+      "width": 1098.1309814453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ideensammlung & Abstimmung Fortbildungsmanagement",
+      "fontFamily": 5,
+      "fontSize": 81.07526278467198,
+      "width": 2126.6279296875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "# Zusammenfassung: Satzung Beirat Sozialpädagogik",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 518.0799560546875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "### 1. Aufgaben (§ 1)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 218.92306518554688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "### 2. Zusammensetzung (§ 2)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 314.8830871582031,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "*   **Vergütung:** Die Mitarbeit ist ehrenamtlich (unvergütet).",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 607.3598022460938,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "### 3. Organisation & Sitzungen (§ 3 & § 4)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 443.6061096191406,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "*   **Frequenz:** Mindestens eine Sitzung pro Schulhalbjahr.",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 584.7999267578125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "### 4. Inkrafttreten (§ 5)",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 270.5030517578125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "DR",
+      "fontFamily": 5,
+      "fontSize": 48.000000000000014,
+      "width": 72.76797485351562,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Praxis",
+      "fontFamily": 5,
+      "fontSize": 47.20000000000001,
+      "width": 142.73277282714844,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Räume",
+      "fontFamily": 5,
+      "fontSize": 40.8,
+      "width": 123.46076965332031,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Komm. & Atmosp.",
+      "fontFamily": 5,
+      "fontSize": 42.400000000000006,
+      "width": 345.0086975097656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Sonstiges",
+      "fontFamily": 5,
+      "fontSize": 33.59999999999999,
+      "width": 158.6455078125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Aschenbecher?",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 138.619873046875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Nochmal im Kollegium thematisieren",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 330.3197937011719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Lernen mit digitalen Medien",
+      "fontFamily": 5,
+      "fontSize": 32.248357165862345,
+      "width": 419.796875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Frührungskräftequalifikation",
+      "fontFamily": 5,
+      "fontSize": 32.248357165862345,
+      "width": 442.0424499511719,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Unterrichtsentwicklung",
+      "fontFamily": 5,
+      "fontSize": 32.248357165862345,
+      "width": 356.0906982421875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Lehrplanentwicklung",
+      "fontFamily": 5,
+      "fontSize": 32.248357165862345,
+      "width": 301.99200439453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Angebot kommt zustande durch:",
+      "fontFamily": 5,
+      "fontSize": 21.32439227680381,
+      "width": 331.92047119140625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "oder: gezielte Mail an Interessierte",
+      "fontFamily": 5,
+      "fontSize": 21.32439227680381,
+      "width": 366.14837646484375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Konkrete Angaben absprechen Zeit, Ort, Raum, Catering",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 542.99951171875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Umfrage in Forms erstellen gemäß Vorlage",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 399.6196594238281,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Anmeldungen auswerten und Veranstalter informieren",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 506.1595458984375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "TN-Liste für Veranstalter vorbereiten und versenden",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 510.2794189453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "TN-Liste vom Veranstalter erhalten",
+      "fontFamily": 5,
+      "fontSize": 19.112339503315972,
+      "width": 328.1672058105469,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Zertifikate für Teilnehmer erstellen",
+      "fontFamily": 5,
+      "fontSize": 19.112339503315972,
+      "width": 330.30755615234375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Evaluationsfragebogen an TN versenden",
+      "fontFamily": 5,
+      "fontSize": 19.112339503315972,
+      "width": 370.7622375488281,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Auswertung durch Fortbildungskoordinatoren",
+      "fontFamily": 5,
+      "fontSize": 19.112339503315972,
+      "width": 416.3575439453125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "An TaskCards-Karte anhängen: TN-Liste und Evaluationsergebnisse",
+      "fontFamily": 5,
+      "fontSize": 19.112339503315972,
+      "width": 622.548828125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Nein, abwarten",
+      "fontFamily": 5,
+      "fontSize": 21.32439227680381,
+      "width": 149.48562622070312,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "ja",
+      "fontFamily": 5,
+      "fontSize": 28,
+      "width": 25.312103271484375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Umsetzung",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 188.1720733642578,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Planung",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 131.54405212402344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Nachbereitung",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 241.41607666015625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Zeitablauf",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 185.1480712890625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Veranstaltung",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 239.47207641601562,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "In 1. Spalte - 'Aktuelle Fortbildungsangebote' - ziehen",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 520.6595458984375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Forms-Vorlagen",
+      "fontFamily": 5,
+      "fontSize": 47.08272035475795,
+      "width": 341.45758056640625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "🌐[[Anmeldungen]]",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 798.2277221679688,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "🌐[[Evaluation nach FoBi]]",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 798.01171875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Listen (Excel)",
+      "fontFamily": 5,
+      "fontSize": 49.38055704292995,
+      "width": 333.4297790527344,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Zertifikate für Teilnehmer erstellen",
+      "fontFamily": 5,
+      "fontSize": 36,
+      "width": 622.2601928710938,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": " Serienbriefvorlage",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 179.85980224609375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Zertifikate",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 110.95986938476562,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Zertifikate gedruckt",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 203.8997802734375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Zertifikate unterschrieben",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 259.37969970703125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kopien der Zertifikate",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 218.37977600097656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Verwaltung erhält Kopien",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 236.1997833251953,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Verteilung an Teilnehmende",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 258.2397766113281,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "TN-Listen",
+      "fontFamily": 5,
+      "fontSize": 24.212473451521852,
+      "width": 116.31962585449219,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "erstellen",
+      "fontFamily": 5,
+      "fontSize": 16,
+      "width": 65.52011108398438,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Anschreiben wäre toll mit Infos",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 302.89996337890625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "30 min.",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 67.57994079589844,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "15 min.",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 63.039947509765625,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Durch Organisatoren",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 199.55979919433594,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Gesamtverfahren: ca. 60 min",
+      "fontFamily": 5,
+      "fontSize": 20,
+      "width": 276.3997802734375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "SuS",
+      "fontFamily": 6,
+      "fontSize": 30.391432826305838,
+      "width": 54.734971215781506,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ich",
+      "fontFamily": 6,
+      "fontSize": 84.84521181835483,
+      "width": 110.21392821009016,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Unterricht planen",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 158.24002075195312,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Unterricht geben",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 152.60000610351562,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Korrekturen",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 106.42000579833984,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "IT-Systeme weiterentwickeln",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 262.8000183105469,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Abteilung koordinieren",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 206.66000366210938,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Kolleg:innen unterstützen (IT)",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 268.239990234375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Vertretungen org.",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 160.04002380371094,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "An Stundenplan mitarbeiten",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 255.88003540039062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Unterrichtsentwicklung",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 211.76004028320312,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Personalführung",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 150.36001586914062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Fortbildungen organisieren",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 244.38003540039062,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Fortbildungen ausrichten",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 226.60003662109375,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "An Meetings (FoBi, Digitales...) teilnehmen",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 383.8800048828125,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Noten / Zeugnisse erstellen",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 247.32000732421875,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Beratung mit IT über Ausrichtung (Strategie)",
+      "fontFamily": 6,
+      "fontSize": 20.51118176978018,
+      "width": 412.9515950291143,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "SuS beraten",
+      "fontFamily": 6,
+      "fontSize": 20.51118176978018,
+      "width": 113.52939579037023,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Rechtliche Rahmenbedingungen \"verhandeln\"",
+      "fontFamily": 6,
+      "fontSize": 20.51118176978018,
+      "width": 426.6531120236484,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "* Führung",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 89.60000610351562,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "* Unterricht / Lehrer",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 179.64002990722656,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "* Digitales",
+      "fontFamily": 6,
+      "fontSize": 20,
+      "width": 94.53999328613281,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Visitenkarte:",
+      "fontFamily": 5,
+      "fontSize": 28,
+      "width": 172.0319061279297,
+      "lineHeight": 1.25,
+      "zeilen": 1
+    },
+    {
+      "text": "Ablauf",
+      "fontFamily": 6,
+      "fontSize": 74.56122531461723,
+      "width": 231.73615586250867,
+      "lineHeight": 1.35,
+      "zeilen": 1
+    }
+  ]
+}
