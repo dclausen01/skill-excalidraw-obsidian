@@ -1,0 +1,33 @@
+# Abhängigkeiten
+node_modules/
+package-lock.json.bak
+
+# Puppeteer / Chromium (wird lokal via doctor.mjs installiert, nicht versioniert)
+.cache/
+.puppeteer/
+
+# Build- und Zwischenartefakte
+dist/
+out/
+scratchpad/
+*.tmp
+
+# Render-Ausgaben (Ausnahme: eingecheckte Golden-Referenzen)
+renders/
+!tests/golden/**/*.png
+
+# Werkzeuge
+.code-review-graph/
+.claude/settings.local.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Umgebung
+.env
+.env.local
+
+# Betriebssystem
+.DS_Store
+Thumbs.db
