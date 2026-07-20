@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "vitest run",
-    "doctor": "node bin/doctor.mjs"
+    "doctor": "node bin/doctor.mjs",
+    "sync-fonts": "node scripts/sync-fonts.mjs"
   },
   "repository": {
     "type": "git",
