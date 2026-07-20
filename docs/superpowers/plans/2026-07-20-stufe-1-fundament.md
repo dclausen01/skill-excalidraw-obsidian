@@ -23,8 +23,9 @@
 - **Der Vault wird zuletzt angefasst.** Alle Zwischenergebnisse landen im Scratchpad. Kein stilles Überschreiben bestehender Dateien.
 - **Die Plugin-Version für `source`** wird zur Laufzeit aus `.obsidian/plugins/obsidian-excalidraw-plugin/manifest.json` gelesen.
 - **Sprache im Code:**
-  - **Exportierte Namen englisch, wo der Code an Fremd-APIs grenzt** — Messung, Schriftladen, Dateiformat, Serialisierung (`measureLine`, `loadFontRegistry`, `szeneZuMarkdown`). Dort steht der Code neben fontkit, Node und Excalidraw und bleibt einsprachig.
-  - **Ausnahme: das Gestaltungsvokabular in `lib/style.js` ist deutsch** (`FARBROLLEN`, `TYPO`, `ABSTAND`, `STRICH`, `zoomL0`, `titelGroesse`, `istLesbar`). Diese Datei ist keine technische Schnittstelle, sondern die Sprache, in der über das Tafelbild gesprochen wird — und ihre Werte (`kern`, `kontra`, `frametitel`) sind ohnehin deutsch. Eine Hälfte davon einzudeutschen und die andere nicht wäre die schlechtere Wahl. Nach Task 7 vom Nutzer so entschieden.
+  - **Die Regel ist Einheitlichkeit je Modul, nicht eine bestimmte Sprache.** Innerhalb einer Datei sind die exportierten Namen entweder durchgehend deutsch oder durchgehend englisch. Gemischt ist ein Fehler — `elementId` neben `seedFor` liest sich in keiner Sprache gut.
+  - **Technische Module englisch:** `lib/text.js`, `lib/fonts.js`, `lib/ids.js`, `lib/compress.js`, `lib/document.js`, `lib/scene.js`, `lib/elements.js`. Dort steht der Code neben fontkit, Node und Excalidraw.
+  - **Gestaltungsvokabular deutsch:** `lib/style.js` (`FARBROLLEN`, `TYPO`, `ABSTAND`, `STRICH`, `zoomL0`, `titelGroesse`, `istLesbar`). Diese Datei ist keine technische Schnittstelle, sondern die Sprache, in der über das Tafelbild gesprochen wird — ihre Werte (`kern`, `kontra`, `frametitel`) sind ohnehin deutsch. Nach Task 7 vom Nutzer so entschieden.
   - **Lokale Variablen und Parameter dürfen deutsch sein** (`pfad`, `zeilen`, `roh`, `fehler`). Ausdrücklich erlaubt, nicht nur geduldet.
   - **Semantische Werte und Optionsschlüssel deutsch** (`{ rolle: "kern", typo: "kernbegriff" }`).
   - **Kommentare deutsch.**
@@ -1127,16 +1128,16 @@ git commit -m "feat: Hausstil-Tokens mit adaptiven Titelgrößen"
 - Consumes: nichts
 - Produces:
   - `elementId(inhalt: string, ordnung: number): string` — 8 Zeichen, `[A-Za-z0-9]`
-  - `seedAus(inhalt: string): number` — 0 … 2³¹−1
-  - `versionNonceAus(inhalt: string): number` — 0 … 2³¹−1
-  - `indexFolge(anzahl: number): string[]` — fraktionale Indizes `["a0", "a1", …]`
+  - `seedFor(inhalt: string): number` — 0 … 2³¹−1
+  - `versionNonceFor(inhalt: string): number` — 0 … 2³¹−1
+  - `indexSequence(anzahl: number): string[]` — fraktionale Indizes `["a0", "a1", …]`
 
 - [ ] **Step 1: Test schreiben**
 
 ```js
 // tests/ids.test.js
 import { describe, it, expect } from "vitest";
-import { elementId, seedAus, versionNonceAus, indexFolge } from "../lib/ids.js";
+import { elementId, seedFor, versionNonceFor, indexSequence } from "../lib/ids.js";
 
 describe("elementId", () => {
   it("ist für gleiche Eingabe stabil", () => {
@@ -1152,28 +1153,28 @@ describe("elementId", () => {
   });
 });
 
-describe("seedAus", () => {
+describe("seedFor", () => {
   it("ist stabil und liegt im gültigen Bereich", () => {
-    const seed = seedAus("Mängelwesen");
-    expect(seed).toBe(seedAus("Mängelwesen"));
+    const seed = seedFor("Mängelwesen");
+    expect(seed).toBe(seedFor("Mängelwesen"));
     expect(seed).toBeGreaterThanOrEqual(0);
     expect(seed).toBeLessThan(2 ** 31);
   });
 
   it("unterscheidet sich vom versionNonce derselben Eingabe", () => {
-    expect(seedAus("A")).not.toBe(versionNonceAus("A"));
+    expect(seedFor("A")).not.toBe(versionNonceFor("A"));
   });
 });
 
-describe("indexFolge", () => {
+describe("indexSequence", () => {
   it("erzeugt aufsteigende Indizes", () => {
-    const folge = indexFolge(5);
+    const folge = indexSequence(5);
     expect(folge).toHaveLength(5);
     expect([...folge].sort()).toEqual(folge);
   });
 
   it("beginnt bei a0", () => {
-    expect(indexFolge(1)[0]).toBe("a0");
+    expect(indexSequence(1)[0]).toBe("a0");
   });
 });
 ```
@@ -1213,13 +1214,13 @@ function zahlAus(inhalt, salz) {
 }
 
 /** Steuert den handgezeichneten Zufall — aus dem Inhalt abgeleitet, nie gewürfelt. */
-export const seedAus = (inhalt) => zahlAus(inhalt, "seed");
+export const seedFor = (inhalt) => zahlAus(inhalt, "seed");
 
 /** Excalidraws Konfliktauflösung; für uns nur ein stabiler Wert. */
-export const versionNonceAus = (inhalt) => zahlAus(inhalt, "nonce");
+export const versionNonceFor = (inhalt) => zahlAus(inhalt, "nonce");
 
 /** Fraktionale Indizes für die z-Reihenfolge. */
-export function indexFolge(anzahl) {
+export function indexSequence(anzahl) {
   return generateNKeysBetween(null, null, anzahl);
 }
 ```
@@ -1247,7 +1248,7 @@ git commit -m "feat: deterministische IDs, Seeds und z-Reihenfolge"
 - Test: `tests/elements.test.js`
 
 **Interfaces:**
-- Consumes: `FARBROLLEN`, `TYPO`, `STRICH` aus `lib/style.js`; `measureText`, `BOUND_TEXT_PADDING` aus `lib/text.js`; `LINE_HEIGHT` aus `lib/fonts.js`; `elementId`, `seedAus`, `versionNonceAus` aus `lib/ids.js`
+- Consumes: `FARBROLLEN`, `TYPO`, `STRICH` aus `lib/style.js`; `measureText`, `BOUND_TEXT_PADDING` aus `lib/text.js`; `LINE_HEIGHT` aus `lib/fonts.js`; `elementId`, `seedFor`, `versionNonceFor` aus `lib/ids.js`
 - Produces:
   - `textElement({ inhalt, typo, x, y, maxBreite?, containerId?, ordnung }, registry): object`
   - `boxElement({ inhalt, rolle, typo, x, y, breite?, hoehe?, ordnung }, registry): { container: object, text: object }`
@@ -1342,7 +1343,7 @@ Expected: FAIL, `Cannot find module '../lib/elements.js'`
 import { FARBROLLEN, TYPO, STRICH, FRAME_BREITE, FRAME_HOEHE } from "./style.js";
 import { measureText, BOUND_TEXT_PADDING } from "./text.js";
 import { LINE_HEIGHT } from "./fonts.js";
-import { elementId, seedAus, versionNonceAus } from "./ids.js";
+import { elementId, seedFor, versionNonceFor } from "./ids.js";
 
 /** Felder, die jedes Excalidraw-Element führt. */
 function basisFelder({ id, seed, versionNonce, x, y, width, height }) {
@@ -1382,7 +1383,7 @@ export function textElement({ inhalt, typo, x, y, maxBreite, containerId = null,
   const text = zeilen.join("\n");
 
   return {
-    ...basisFelder({ id, seed: seedAus(id), versionNonce: versionNonceAus(id), x, y, width: breite, height: hoehe }),
+    ...basisFelder({ id, seed: seedFor(id), versionNonce: versionNonceFor(id), x, y, width: breite, height: hoehe }),
     type: "text",
     text,
     rawText: inhalt,
@@ -1421,8 +1422,8 @@ function formElement(type, { inhalt, rolle, typo, x, y, breite, hoehe, ordnung }
   const container = {
     ...basisFelder({
       id: containerId,
-      seed: seedAus(containerId),
-      versionNonce: versionNonceAus(containerId),
+      seed: seedFor(containerId),
+      versionNonce: versionNonceFor(containerId),
       x, y, width: w, height: h,
     }),
     type,
@@ -1442,7 +1443,7 @@ export const diamondElement = (opt, registry) => formElement("diamond", opt, reg
 export function frameElement({ name, x, y, breite = FRAME_BREITE, hoehe = FRAME_HOEHE, ordnung }) {
   const id = elementId(`frame:${name}`, ordnung);
   return {
-    ...basisFelder({ id, seed: seedAus(id), versionNonce: versionNonceAus(id), x, y, width: breite, height: hoehe }),
+    ...basisFelder({ id, seed: seedFor(id), versionNonce: versionNonceFor(id), x, y, width: breite, height: hoehe }),
     type: "frame",
     name,
     strokeColor: "#bbb",
@@ -1472,7 +1473,7 @@ git commit -m "feat: Primitive für Text, Formen und Frames"
 - Test: `tests/scene.test.js`
 
 **Interfaces:**
-- Consumes: alle Primitive aus `lib/elements.js`; `indexFolge` aus `lib/ids.js`; `ABSTAND`, `FRAME_BREITE`, `FRAME_HOEHE`, `zoomL0` aus `lib/style.js`
+- Consumes: alle Primitive aus `lib/elements.js`; `indexSequence` aus `lib/ids.js`; `ABSTAND`, `FRAME_BREITE`, `FRAME_HOEHE`, `zoomL0` aus `lib/style.js`
 - Produces:
   - `scene({ titel? }): Szene`
   - `Szene.frame(name, opts?): Frame` — reiht Frames automatisch mit Abstand 240 nebeneinander
@@ -1554,7 +1555,7 @@ Expected: FAIL, `Cannot find module '../lib/scene.js'`
 ```js
 // lib/scene.js
 import { boxElement, ellipseElement, diamondElement, textElement, frameElement } from "./elements.js";
-import { indexFolge } from "./ids.js";
+import { indexSequence } from "./ids.js";
 import { ABSTAND, FRAME_BREITE, FRAME_HOEHE, zoomL0 } from "./style.js";
 import { loadFontRegistry } from "./fonts.js";
 
@@ -1595,7 +1596,7 @@ export function scene({ titel = null, registry = loadFontRegistry() } = {}) {
   function elemente() {
     // Frames zuerst, damit ihre Kinder darüber liegen.
     const alle = [...frames, ...kinder];
-    const indizes = indexFolge(alle.length);
+    const indizes = indexSequence(alle.length);
     return alle.map((el, i) => ({ ...el, index: indizes[i] }));
   }
 
