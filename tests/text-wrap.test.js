@@ -28,6 +28,37 @@ describe("wrapText", () => {
   it("gibt bei ausreichender Breite eine einzige Zeile zurück", () => {
     expect(wrapText("Kurz", EXCALIFONT, 20, 1000, register)).toEqual(["Kurz"]);
   });
+
+  // Fix-Durchgang 1 (Review-Finding 1): wrapText war nicht content-preserving —
+  // ein führendes Leerzeichen wurde verschluckt, weil der Zeilen-Akkumulator
+  // per Falsy-Check ("zeile ? ... : wort") statt per expliziter
+  // Start-Markierung geprüft wurde. Eine leere Zeichenkette ist in JS falsy,
+  // obwohl sie hier ein bereits konsumiertes führendes Leerzeichen bedeuten
+  // kann — das lässt sich nicht am Wahrheitswert von `zeile`, sondern nur an
+  // "wurde der Absatz schon begonnen?" unterscheiden.
+  it("erhält ein führendes Leerzeichen, wenn kein Umbruch nötig ist", () => {
+    expect(wrapText(" Hello World", NUNITO, 24, 1000, register)).toEqual([" Hello World"]);
+  });
+
+  it("erhält ein führendes Leerzeichen auf einem späteren Absatz", () => {
+    expect(wrapText("A\n B", NUNITO, 24, 1000, register)).toEqual(["A", " B"]);
+  });
+
+  it("erhält eine Zeile, die nur aus Leerzeichen besteht", () => {
+    expect(wrapText("   ", NUNITO, 24, 1000, register)).toEqual(["   "]);
+  });
+
+  it("liefert bei leerem Text eine einzelne leere Zeile", () => {
+    expect(wrapText("", NUNITO, 24, 1000, register)).toEqual([""]);
+  });
+
+  it("erhält nachgestellte Leerzeichen", () => {
+    expect(wrapText("hello ", NUNITO, 24, 1000, register)).toEqual(["hello "]);
+  });
+
+  it("erhält mehrere aufeinanderfolgende Leerzeichen zwischen Wörtern", () => {
+    expect(wrapText("a  b", NUNITO, 24, 1000, register)).toEqual(["a  b"]);
+  });
 });
 
 describe("measureText", () => {
@@ -45,5 +76,11 @@ describe("measureText", () => {
   it("verwendet für Excalifont die Zeilenhöhe 1.25", () => {
     const { hoehe } = measureText("A", { fontFamily: EXCALIFONT, fontSize: 20 }, register);
     expect(hoehe).toBeCloseTo(25, 5);
+  });
+
+  it("berücksichtigt ein führendes Leerzeichen in der Breite, wenn maxBreite gesetzt ist", () => {
+    const { breite, zeilen } = measureText(" Hi", { fontFamily: NUNITO, fontSize: 24, maxBreite: 1000 }, register);
+    expect(zeilen).toEqual([" Hi"]);
+    expect(breite).toBeCloseTo(measureLine(" Hi", NUNITO, 24, register), 5);
   });
 });
