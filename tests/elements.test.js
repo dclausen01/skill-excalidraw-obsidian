@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { textElement, boxElement, ellipseElement, frameElement } from "../lib/elements.js";
+import { textElement, boxElement, ellipseElement, diamondElement, frameElement } from "../lib/elements.js";
 import { loadFontRegistry } from "../lib/fonts.js";
 import { FARBROLLEN, FRAME_BREITE, FRAME_HOEHE, FRAME_STRICH } from "../lib/style.js";
 
@@ -7,12 +7,58 @@ import { FARBROLLEN, FRAME_BREITE, FRAME_HOEHE, FRAME_STRICH } from "../lib/styl
 const LANGER_SATZ =
   "Dies ist ein Beispielsatz mit ungefaehr hundert Zeichen, der in einem schmalen Kasten mehrfach umbricht.";
 
+/** Ein langes, leerzeichenfreies Wort — kann nicht durch Zeilenumbruch schmaler werden. */
+const LANGES_WORT = "Photosynthesegleichgewicht";
+
 function umschliesst(container, text) {
   return (
     text.x >= container.x &&
     text.x + text.width <= container.x + container.width &&
     text.y >= container.y &&
     text.y + text.height <= container.y + container.height
+  );
+}
+
+/**
+ * Unabhängig von lib/elements.js nachgebaute Excalidraw-Geometrie (Quelle:
+ * @excalidraw/excalidraw, element/textElement.ts — getContainerCoords,
+ * getBoundTextMaxWidth, getBoundTextMaxHeight) für rectangle/ellipse/diamond.
+ * Absichtlich eine zweite, eigenständige Implementierung derselben Formeln —
+ * ein Test, der dieselbe Helper-Funktion wie die Implementierung importiert,
+ * würde nur prüfen, dass beide Stellen sich einig sind, nicht, dass sie mit
+ * Excalidraws tatsächlicher einbeschriebener Fläche übereinstimmen.
+ */
+const SQRT2 = Math.sqrt(2);
+const PADDING = 5; // BOUND_TEXT_PADDING
+
+function einbeschriebeneBox(container) {
+  let offsetX = PADDING;
+  let offsetY = PADDING;
+  let maxWidth = container.width - 2 * PADDING;
+  let maxHeight = container.height - 2 * PADDING;
+  if (container.type === "ellipse") {
+    offsetX += (container.width / 2) * (1 - SQRT2 / 2);
+    offsetY += (container.height / 2) * (1 - SQRT2 / 2);
+    maxWidth = Math.round((container.width / 2) * SQRT2) - 2 * PADDING;
+    maxHeight = Math.round((container.height / 2) * SQRT2) - 2 * PADDING;
+  }
+  if (container.type === "diamond") {
+    offsetX += container.width / 4;
+    offsetY += container.height / 4;
+    maxWidth = Math.round(container.width / 2) - 2 * PADDING;
+    maxHeight = Math.round(container.height / 2) - 2 * PADDING;
+  }
+  return { x: container.x + offsetX, y: container.y + offsetY, width: maxWidth, height: maxHeight };
+}
+
+/** Wie umschliesst, aber gegen die einbeschriebene Fläche statt der Bounding-Box. */
+function umschliesstEinbeschrieben(container, text) {
+  const box = einbeschriebeneBox(container);
+  return (
+    text.x >= box.x &&
+    text.x + text.width <= box.x + box.width &&
+    text.y >= box.y &&
+    text.y + text.height <= box.y + box.height
   );
 }
 
@@ -118,6 +164,54 @@ describe("boxElement", () => {
       expect(container.height).toBe(400);
       expect(umschliesst(container, text)).toBe(true);
     });
+  });
+});
+
+describe("ellipseElement / diamondElement — einbeschriebene Fläche (Schlussprüfung Finding 1)", () => {
+  // Die bisherige Container-Bemessung wandte für jede Form dieselbe Rechteck-Formel
+  // an; Ellipse und Raute haben aber eine kleinere einbeschriebene Fläche als ihre
+  // Bounding-Box, also überstand der Text die Kontur. `umschliesst` (Bounding-Box)
+  // hätte das nicht erkannt — deshalb prüfen diese Tests gegen die tatsächliche
+  // einbeschriebene Fläche (`umschliesstEinbeschrieben`).
+
+  it("Ellipse umschließt automatisch bemessenen Text innerhalb der einbeschriebenen Fläche", () => {
+    const { container, text } = ellipseElement(
+      { inhalt: LANGES_WORT, rolle: "kern", typo: "standard", x: 0, y: 0, ordnung: 0 }, register,
+    );
+    expect(umschliesstEinbeschrieben(container, text)).toBe(true);
+  });
+
+  it("Raute umschließt automatisch bemessenen Text innerhalb der einbeschriebenen Fläche", () => {
+    const { container, text } = diamondElement(
+      { inhalt: LANGES_WORT, rolle: "kern", typo: "standard", x: 0, y: 0, ordnung: 0 }, register,
+    );
+    expect(umschliesstEinbeschrieben(container, text)).toBe(true);
+  });
+
+  it("Ellipse umbricht gebundenen Text an der tatsächlichen Innenbreite, wenn eine Breite vorgegeben ist", () => {
+    const { container, text } = ellipseElement(
+      { inhalt: LANGER_SATZ, rolle: "kern", typo: "standard", x: 0, y: 0, breite: 400, ordnung: 0 }, register,
+    );
+    expect(text.text.split("\n").length).toBeGreaterThan(1);
+    expect(umschliesstEinbeschrieben(container, text)).toBe(true);
+  });
+
+  it("Raute umbricht gebundenen Text an der tatsächlichen Innenbreite, wenn eine Breite vorgegeben ist", () => {
+    const { container, text } = diamondElement(
+      { inhalt: LANGER_SATZ, rolle: "kern", typo: "standard", x: 0, y: 0, breite: 400, ordnung: 0 }, register,
+    );
+    expect(text.text.split("\n").length).toBeGreaterThan(1);
+    expect(umschliesstEinbeschrieben(container, text)).toBe(true);
+  });
+
+  it("Rechteck behält exakt die bisherigen Maße — Beweis, dass der Fix den bereits korrekten Fall nicht verändert", () => {
+    const { container, text } = boxElement(
+      { inhalt: "Kern", rolle: "kern", typo: "kernbegriff", x: 0, y: 0, ordnung: 0 }, register,
+    );
+    expect(container.width).toBe(100);
+    expect(container.height).toBe(80);
+    expect(text.x).toBe(5);
+    expect(text.y).toBe(17.5);
   });
 });
 

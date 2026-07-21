@@ -2,7 +2,10 @@
   "name": "skill-excalidraw-obsidian",
   "version": "0.1.0",
   "description": "Ein [Claude-Code-Skill](https://docs.claude.com/en/docs/claude-code/skills) zum Erstellen und Bearbeiten von Excalidraw-Tafelbildern in einem Obsidian-Vault — gedacht für Unterrichtsmaterial, das als „Wandzeitung\" mit mehreren Zoom-Ebenen funktioniert.",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "engines": {
+    "node": ">=20"
+  },
   "directories": {
     "doc": "docs"
   },
