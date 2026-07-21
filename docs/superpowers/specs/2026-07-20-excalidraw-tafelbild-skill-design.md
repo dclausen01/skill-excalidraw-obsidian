@@ -74,6 +74,23 @@ excalidraw-onload-script: "\"if (app.isMobile) ea.getExcalidrawAPI().setActiveTo
 - `%%` beginnt **vor** `## Drawing`; alles darunter ist für Obsidian ein Kommentar.
 - Die Sektion `## Text Elements` ist Obsidians Suchindex. Jedes Textelement muss dort
   mit seiner Block-Referenz `^<elementId>` gespiegelt werden.
+
+  **Diese Sektion ist grundsätzlich mehrdeutig** (erhoben am 2026-07-21). Sie enthält
+  beliebigen Nutzertext, und ein Eintrag ist syntaktisch nicht von Textinhalt zu
+  unterscheiden. Zwei belegte Fälle, beide für diesen Vault realistisch:
+  - Ein Text mit Absatz, dessen erster Teil auf `^abc12345` endet, sieht aus wie ein
+    eigener Eintrag. Obsidians Blockreferenz-Syntax ist genau das — und im Vault liegt
+    ein Tafelbild über Obsidian.
+  - Ein Text, dessen Zeile mit `## ` beginnt, sieht aus wie eine Sektionsüberschrift und
+    schneidet die Sektion ab.
+
+  Folge für den Validator: Die **Vorwärtsrichtung** („steht jedes Textelement im Index?")
+  wird geprüft, indem für jedes Element gezielt nach seiner erwarteten Zeile gesucht wird
+  — das ist durch fremden Textinhalt nicht täuschbar und bleibt ein **harter Fehler**.
+  Die **Rückrichtung** („nennt der Index ein Element, das es nicht gibt?") ist nicht
+  zuverlässig entscheidbar und ist deshalb nur eine **Warnung**, deren Meldung auf die
+  mögliche Fehlmeldung hinweist. Ein blockierter gültiger Tafelbild-Entwurf wäre der
+  schlimmere Fehler als ein übersehener verwaister Eintrag.
 - Beim Schreiben wird der JSON-Block als ` ```json ` ausgegeben (unkomprimiert). Das Plugin
   liest das und komprimiert beim nächsten eigenen Speichern selbstständig nach
   ` ```compressed-json ` (Einstellung `compress: true`).

@@ -499,6 +499,11 @@ git commit -m "feat: Prüfung der Referenzintegrität"
 
 Die Sektion `## Text Elements` ist Obsidians Suchindex. Fehlt dort ein Textelement, ist es in Obsidian unauffindbar; steht dort eines zu viel, zeigt die Suche auf ein Element, das es nicht gibt.
 
+**Nach Task 4 korrigiert — die Sektion ist grundsätzlich mehrdeutig.** Sie enthält beliebigen Nutzertext, der syntaktisch nicht von einem Indexeintrag zu unterscheiden ist (belegt: ein Text mit Absatz, dessen erster Teil auf `^abc12345` endet; ein Text, dessen Zeile mit `## ` beginnt). Deshalb:
+
+- **Vorwärts** („steht jedes Textelement im Index?") wird geprüft, indem je Element gezielt nach seiner erwarteten Zeile gesucht wird, statt die Sektion in eine Liste zu zerlegen. Nicht täuschbar, bleibt **harter Fehler**.
+- **Rückwärts** („nennt der Index ein unbekanntes Element?") ist nicht zuverlässig entscheidbar und ist nur eine **Warnung**, deren Meldung die mögliche Fehlmeldung benennt. Ein blockierter gültiger Entwurf wäre schlimmer als ein übersehener verwaister Eintrag.
+
 - [ ] **Step 1: Test schreiben**
 
 ```js
