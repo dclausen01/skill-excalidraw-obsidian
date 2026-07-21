@@ -4,7 +4,7 @@
 
 **Goal:** Aus einem Szenen-Skript entsteht eine gültige `.excalidraw.md`, die sich in Obsidian öffnet und Kästen, Texte und Frames im Hausstil korrekt darstellt.
 
-**Architecture:** Reine ESM-Node-Library ohne Framework. Die Textmessung (`lib/text.js`) steht am Anfang, weil sie das ganze Vorhaben trägt: Sie wird gegen 1624 echte Referenzwerte aus dem Vault geprüft, bevor irgendetwas darauf aufbaut. Darüber liegen Szenen-Objekt und Primitive, ganz oben die Serialisierung nach Markdown. Jedes Modul hat eine Aufgabe und kennt die Schichten über sich nicht.
+**Architecture:** Reine ESM-Node-Library ohne Framework. Die Textmessung (`lib/text.js`) steht am Anfang, weil sie das ganze Vorhaben trägt: Sie wird gegen echte Referenzwerte aus dem Vault geprüft, bevor irgendetwas darauf aufbaut (nach Filterung auf Einzeiler und Entdopplung: 454 Proben für Excalifont, 37 für Nunito). Darüber liegen Szenen-Objekt und Primitive, ganz oben die Serialisierung nach Markdown. Jedes Modul hat eine Aufgabe und kennt die Schichten über sich nicht.
 
 **Tech Stack:** Node ≥ 20 (ESM), vitest, fontkit (Schriftmetrik), lz-string (Lesen bestehender Boards), fractional-indexing (z-Reihenfolge), `@excalidraw/excalidraw@0.18.1` (nur als Schriftquelle in dieser Stufe).
 
@@ -22,7 +22,15 @@
 - **Determinismus:** `id`, `seed` und `versionNonce` werden aus dem Elementinhalt abgeleitet, nie gewürfelt. Zweimal Bauen muss byte-identische Dateien ergeben.
 - **Der Vault wird zuletzt angefasst.** Alle Zwischenergebnisse landen im Scratchpad. Kein stilles Überschreiben bestehender Dateien.
 - **Die Plugin-Version für `source`** wird zur Laufzeit aus `.obsidian/plugins/obsidian-excalidraw-plugin/manifest.json` gelesen.
-- **Sprache im Code:** Bezeichner englisch, semantische Werte und Optionsschlüssel deutsch (`{ rolle: "kern", typo: "kernbegriff" }`), Kommentare deutsch.
+- **Sprache im Code:**
+  - **Die Regel ist Einheitlichkeit je Modul, nicht eine bestimmte Sprache.** Innerhalb einer Datei sind die exportierten Namen entweder durchgehend deutsch oder durchgehend englisch. Gemischt ist ein Fehler — `elementId` neben `seedFor` liest sich in keiner Sprache gut.
+  - **Technische Module englisch:** `lib/text.js`, `lib/fonts.js`, `lib/ids.js`, `lib/compress.js`, `lib/document.js`, `lib/scene.js`, `lib/elements.js`. Dort steht der Code neben fontkit, Node und Excalidraw.
+  - **Gestaltungsvokabular deutsch:** `lib/style.js` (`FARBROLLEN`, `TYPO`, `ABSTAND`, `STRICH`, `zoomL0`, `titelGroesse`, `istLesbar`). Diese Datei ist keine technische Schnittstelle, sondern die Sprache, in der über das Tafelbild gesprochen wird — ihre Werte (`kern`, `kontra`, `frametitel`) sind ohnehin deutsch. Nach Task 7 vom Nutzer so entschieden.
+  - **Lokale Variablen und Parameter dürfen deutsch sein** (`pfad`, `zeilen`, `roh`, `fehler`). Ausdrücklich erlaubt, nicht nur geduldet.
+  - **Semantische Werte und Optionsschlüssel deutsch** (`{ rolle: "kern", typo: "kernbegriff" }`).
+  - **Kommentare deutsch.**
+
+  Diese Regel wurde nach Task 1 präzisiert: Die ursprüngliche Fassung verlangte pauschal englische Bezeichner, während der Beispielcode des Plans durchgehend deutsche lokale Variablen verwendete. Aufgelöst zugunsten des Beispielcodes.
 
 ## Dateistruktur dieser Stufe
 
@@ -765,7 +773,7 @@ Schlägt der Referenztest fehl, gibt die Fehlermeldung die fünf schlimmsten Fä
 
 ```bash
 git add lib/text.js tests/text-measure.test.js
-git commit -m "feat: Textbreitenmessung, gegen 1600+ Vault-Referenzwerte geprüft"
+git commit -m "feat: Textbreitenmessung, gegen Vault-Referenzwerte geprüft"
 ```
 
 ---
@@ -1120,16 +1128,16 @@ git commit -m "feat: Hausstil-Tokens mit adaptiven Titelgrößen"
 - Consumes: nichts
 - Produces:
   - `elementId(inhalt: string, ordnung: number): string` — 8 Zeichen, `[A-Za-z0-9]`
-  - `seedAus(inhalt: string): number` — 0 … 2³¹−1
-  - `versionNonceAus(inhalt: string): number` — 0 … 2³¹−1
-  - `indexFolge(anzahl: number): string[]` — fraktionale Indizes `["a0", "a1", …]`
+  - `seedFor(inhalt: string): number` — 0 … 2³¹−1
+  - `versionNonceFor(inhalt: string): number` — 0 … 2³¹−1
+  - `indexSequence(anzahl: number): string[]` — fraktionale Indizes `["a0", "a1", …]`
 
 - [ ] **Step 1: Test schreiben**
 
 ```js
 // tests/ids.test.js
 import { describe, it, expect } from "vitest";
-import { elementId, seedAus, versionNonceAus, indexFolge } from "../lib/ids.js";
+import { elementId, seedFor, versionNonceFor, indexSequence } from "../lib/ids.js";
 
 describe("elementId", () => {
   it("ist für gleiche Eingabe stabil", () => {
@@ -1145,28 +1153,28 @@ describe("elementId", () => {
   });
 });
 
-describe("seedAus", () => {
+describe("seedFor", () => {
   it("ist stabil und liegt im gültigen Bereich", () => {
-    const seed = seedAus("Mängelwesen");
-    expect(seed).toBe(seedAus("Mängelwesen"));
+    const seed = seedFor("Mängelwesen");
+    expect(seed).toBe(seedFor("Mängelwesen"));
     expect(seed).toBeGreaterThanOrEqual(0);
     expect(seed).toBeLessThan(2 ** 31);
   });
 
   it("unterscheidet sich vom versionNonce derselben Eingabe", () => {
-    expect(seedAus("A")).not.toBe(versionNonceAus("A"));
+    expect(seedFor("A")).not.toBe(versionNonceFor("A"));
   });
 });
 
-describe("indexFolge", () => {
+describe("indexSequence", () => {
   it("erzeugt aufsteigende Indizes", () => {
-    const folge = indexFolge(5);
+    const folge = indexSequence(5);
     expect(folge).toHaveLength(5);
     expect([...folge].sort()).toEqual(folge);
   });
 
   it("beginnt bei a0", () => {
-    expect(indexFolge(1)[0]).toBe("a0");
+    expect(indexSequence(1)[0]).toBe("a0");
   });
 });
 ```
@@ -1206,13 +1214,13 @@ function zahlAus(inhalt, salz) {
 }
 
 /** Steuert den handgezeichneten Zufall — aus dem Inhalt abgeleitet, nie gewürfelt. */
-export const seedAus = (inhalt) => zahlAus(inhalt, "seed");
+export const seedFor = (inhalt) => zahlAus(inhalt, "seed");
 
 /** Excalidraws Konfliktauflösung; für uns nur ein stabiler Wert. */
-export const versionNonceAus = (inhalt) => zahlAus(inhalt, "nonce");
+export const versionNonceFor = (inhalt) => zahlAus(inhalt, "nonce");
 
 /** Fraktionale Indizes für die z-Reihenfolge. */
-export function indexFolge(anzahl) {
+export function indexSequence(anzahl) {
   return generateNKeysBetween(null, null, anzahl);
 }
 ```
@@ -1240,7 +1248,7 @@ git commit -m "feat: deterministische IDs, Seeds und z-Reihenfolge"
 - Test: `tests/elements.test.js`
 
 **Interfaces:**
-- Consumes: `FARBROLLEN`, `TYPO`, `STRICH` aus `lib/style.js`; `measureText`, `BOUND_TEXT_PADDING` aus `lib/text.js`; `LINE_HEIGHT` aus `lib/fonts.js`; `elementId`, `seedAus`, `versionNonceAus` aus `lib/ids.js`
+- Consumes: `FARBROLLEN`, `TYPO`, `STRICH` aus `lib/style.js`; `measureText`, `BOUND_TEXT_PADDING` aus `lib/text.js`; `LINE_HEIGHT` aus `lib/fonts.js`; `elementId`, `seedFor`, `versionNonceFor` aus `lib/ids.js`
 - Produces:
   - `textElement({ inhalt, typo, x, y, maxBreite?, containerId?, ordnung }, registry): object`
   - `boxElement({ inhalt, rolle, typo, x, y, breite?, hoehe?, ordnung }, registry): { container: object, text: object }`
@@ -1335,7 +1343,7 @@ Expected: FAIL, `Cannot find module '../lib/elements.js'`
 import { FARBROLLEN, TYPO, STRICH, FRAME_BREITE, FRAME_HOEHE } from "./style.js";
 import { measureText, BOUND_TEXT_PADDING } from "./text.js";
 import { LINE_HEIGHT } from "./fonts.js";
-import { elementId, seedAus, versionNonceAus } from "./ids.js";
+import { elementId, seedFor, versionNonceFor } from "./ids.js";
 
 /** Felder, die jedes Excalidraw-Element führt. */
 function basisFelder({ id, seed, versionNonce, x, y, width, height }) {
@@ -1375,7 +1383,7 @@ export function textElement({ inhalt, typo, x, y, maxBreite, containerId = null,
   const text = zeilen.join("\n");
 
   return {
-    ...basisFelder({ id, seed: seedAus(id), versionNonce: versionNonceAus(id), x, y, width: breite, height: hoehe }),
+    ...basisFelder({ id, seed: seedFor(id), versionNonce: versionNonceFor(id), x, y, width: breite, height: hoehe }),
     type: "text",
     text,
     rawText: inhalt,
@@ -1414,8 +1422,8 @@ function formElement(type, { inhalt, rolle, typo, x, y, breite, hoehe, ordnung }
   const container = {
     ...basisFelder({
       id: containerId,
-      seed: seedAus(containerId),
-      versionNonce: versionNonceAus(containerId),
+      seed: seedFor(containerId),
+      versionNonce: versionNonceFor(containerId),
       x, y, width: w, height: h,
     }),
     type,
@@ -1435,7 +1443,7 @@ export const diamondElement = (opt, registry) => formElement("diamond", opt, reg
 export function frameElement({ name, x, y, breite = FRAME_BREITE, hoehe = FRAME_HOEHE, ordnung }) {
   const id = elementId(`frame:${name}`, ordnung);
   return {
-    ...basisFelder({ id, seed: seedAus(id), versionNonce: versionNonceAus(id), x, y, width: breite, height: hoehe }),
+    ...basisFelder({ id, seed: seedFor(id), versionNonce: versionNonceFor(id), x, y, width: breite, height: hoehe }),
     type: "frame",
     name,
     strokeColor: "#bbb",
@@ -1465,7 +1473,7 @@ git commit -m "feat: Primitive für Text, Formen und Frames"
 - Test: `tests/scene.test.js`
 
 **Interfaces:**
-- Consumes: alle Primitive aus `lib/elements.js`; `indexFolge` aus `lib/ids.js`; `ABSTAND`, `FRAME_BREITE`, `FRAME_HOEHE`, `zoomL0` aus `lib/style.js`
+- Consumes: alle Primitive aus `lib/elements.js`; `indexSequence` aus `lib/ids.js`; `ABSTAND`, `FRAME_BREITE`, `FRAME_HOEHE`, `zoomL0` aus `lib/style.js`
 - Produces:
   - `scene({ titel? }): Szene`
   - `Szene.frame(name, opts?): Frame` — reiht Frames automatisch mit Abstand 240 nebeneinander
@@ -1547,7 +1555,7 @@ Expected: FAIL, `Cannot find module '../lib/scene.js'`
 ```js
 // lib/scene.js
 import { boxElement, ellipseElement, diamondElement, textElement, frameElement } from "./elements.js";
-import { indexFolge } from "./ids.js";
+import { indexSequence } from "./ids.js";
 import { ABSTAND, FRAME_BREITE, FRAME_HOEHE, zoomL0 } from "./style.js";
 import { loadFontRegistry } from "./fonts.js";
 
@@ -1588,7 +1596,7 @@ export function scene({ titel = null, registry = loadFontRegistry() } = {}) {
   function elemente() {
     // Frames zuerst, damit ihre Kinder darüber liegen.
     const alle = [...frames, ...kinder];
-    const indizes = indexFolge(alle.length);
+    const indizes = indexSequence(alle.length);
     return alle.map((el, i) => ({ ...el, index: indizes[i] }));
   }
 
@@ -1614,10 +1622,11 @@ export function scene({ titel = null, registry = loadFontRegistry() } = {}) {
 // lib/index.js
 export { scene } from "./scene.js";
 export { FARBROLLEN, TYPO, ABSTAND, FRAME_BREITE, FRAME_HOEHE } from "./style.js";
-export { szeneZuMarkdown } from "./document.js";
 ```
 
-`lib/index.js` verweist auf `szeneZuMarkdown`, das erst in Task 11 entsteht. Diesen Export erst dort ergänzen — sonst schlägt der Import fehl.
+`lib/document.js` entsteht erst in Task 11. Der Export von `szeneZuMarkdown` wird deshalb
+dort ergänzt, nicht hier — ein Export auf ein noch nicht existierendes Modul würde jeden
+Import von `lib/index.js` zum Scheitern bringen.
 
 - [ ] **Step 4: Test laufen lassen — muss bestehen**
 
@@ -1961,7 +1970,9 @@ git commit -m "feat: Serialisierung nach .excalidraw.md und build-Kommando"
 Nach Task 11 gilt:
 
 - Ein Szenen-Skript erzeugt eine gültige `.excalidraw.md`, die sich in Obsidian öffnet.
-- Die Textmessung ist gegen über 1600 echte Referenzwerte abgesichert.
+- Die Textmessung ist gegen 491 echte Referenzwerte aus dem Vault abgesichert
+  (454 Excalifont, 37 Nunito). Der Zeilenumbruch selbst ist damit **nicht** abgedeckt —
+  das leistet erst der Renderer in Stufe 2.
 - Die Ausgabe ist deterministisch — Voraussetzung für die Golden-Render-Tests der Stufe 2.
 - `bin/doctor.mjs` meldet eine unvollständige Umgebung verständlich.
 
@@ -1975,3 +1986,146 @@ Nach Task 11 gilt:
 **Weiterhin offen für spätere Stufen:**
 - Pfeilbindung an Frames (Stufe 3)
 - Deckkraft bei Mengenkreisen (Stufe 4)
+
+---
+
+### Task 12: Ersatzbreite für nicht abgedeckte Zeichen
+
+**Ausführungsreihenfolge:** nach Task 8, **vor** Task 9. Die Primitive rufen `measureText`
+auf; solange ein unbekanntes Zeichen dort eine Ausnahme wirft, bricht jedes Board mit
+einem `§` oder einem Emoji ab.
+
+**Files:**
+- Modify: `lib/fonts.js`, `lib/text.js`
+- Test: `tests/text-fallback.test.js`
+
+**Interfaces:**
+- Consumes: `loadFontRegistry`, `EXCALIFONT`, `NUNITO` aus `lib/fonts.js`; `measureLine` aus `lib/text.js`
+- Produces:
+  - `Registry.fontFor(codepoint, fontFamily)` bleibt unverändert und wirft weiterhin — der Fallback gehört nicht in die Schriftauflösung.
+  - `Registry.deckt(codepoint, fontFamily): boolean` — prüfungsfrei abfragbar, ob ein Zeichen abgedeckt ist.
+  - `measureLine(...)` wirft nicht mehr, sondern rechnet nicht abgedeckte Zeichen mit einer Ersatzbreite.
+  - `ERSATZBREITE: { emoji: number, standard: number }` — Faktoren relativ zu `fontSize`.
+  - `unbekannteZeichen(text, fontFamily, registry): string[]` — welche Zeichen geschätzt wurden; der Validator meldet das später als weiche Warnung.
+
+**Hintergrund.** Excalidraw rendert Zeichen, die Excalifont nicht führt, über eine
+System-Fallback-Schrift. Welche das ist, wissen wir nicht — die Breite ist grundsätzlich
+nicht vorhersagbar. Eine Schätzung ist deshalb keine Notlösung, sondern das Beste, was
+ohne Browser möglich ist. Der Renderer in Stufe 2 deckt die Abweichung dann auf.
+
+Vom Nutzer am 2026-07-21 so entschieden: Der Build soll durchlaufen, nicht abbrechen.
+
+- [ ] **Step 1: Betroffene Zeichen im Vault erheben**
+
+Vor dem Festlegen der Faktoren nachsehen, worum es tatsächlich geht:
+
+```bash
+node -e "
+import('./lib/compress.js').then(async ({ extractDrawing }) => {
+  const fs = await import('node:fs'); const path = await import('node:path');
+  const { VAULT_PATH } = await import('./lib/config.js');
+  const { loadFontRegistry } = await import('./lib/fonts.js');
+  const reg = loadFontRegistry();
+  function* d(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true}).sort((a,b)=>a.name<b.name?-1:a.name>b.name?1:0)){
+    if(e.name.startsWith('.'))continue; const p=path.join(dir,e.name);
+    if(e.isDirectory())yield* d(p); else if(e.name.endsWith('.excalidraw.md'))yield p;}}
+  const fehlend = new Map();
+  for(const f of d(VAULT_PATH)){
+    let s; try{ s=JSON.parse(extractDrawing(fs.readFileSync(f,'utf8')).json);}catch{continue}
+    for(const el of s.elements??[]) if(el.type==='text'&&!el.isDeleted&&(el.fontFamily===5||el.fontFamily===6))
+      for(const z of el.text){ const cp=z.codePointAt(0);
+        try{ reg.fontFor(cp, el.fontFamily); }catch{ fehlend.set(z,(fehlend.get(z)??0)+1); } }
+  }
+  console.log([...fehlend].sort((a,b)=>b[1]-a[1]).slice(0,40).map(([z,n])=>\`\${z} U+\${z.codePointAt(0).toString(16)} \${n}\`).join('\n'));
+  console.log('verschiedene Zeichen:', fehlend.size);
+});
+"
+```
+
+Das Ergebnis in den Bericht übernehmen. Es entscheidet, ob zwei Klassen (Emoji /
+sonstiges) ausreichen oder ob eine dritte nötig ist.
+
+- [ ] **Step 2: Test schreiben**
+
+```js
+// tests/text-fallback.test.js
+import { describe, it, expect } from "vitest";
+import { measureLine, unbekannteZeichen, ERSATZBREITE } from "../lib/text.js";
+import { loadFontRegistry, EXCALIFONT } from "../lib/fonts.js";
+
+const register = loadFontRegistry();
+
+describe("Ersatzbreite", () => {
+  it("wirft nicht mehr bei einem Paragraphenzeichen", () => {
+    expect(() => measureLine("§ 3 Abs. 2", EXCALIFONT, 20, register)).not.toThrow();
+  });
+
+  it("wirft nicht mehr bei einem Emoji", () => {
+    expect(() => measureLine("Ziel 🌐 erreicht", EXCALIFONT, 20, register)).not.toThrow();
+  });
+
+  it("rechnet abgedeckte Zeichen unverändert", () => {
+    // Referenzwert aus dem Vault, muss exakt gleich bleiben
+    expect(measureLine("Feline", EXCALIFONT, 20, register)).toBeCloseTo(53.8, 1);
+  });
+
+  it("schätzt Emoji breiter als ein schmales Satzzeichen", () => {
+    const emoji = measureLine("🌐", EXCALIFONT, 20, register);
+    const paragraf = measureLine("§", EXCALIFONT, 20, register);
+    expect(emoji).toBeGreaterThan(paragraf);
+  });
+
+  it("skaliert die Ersatzbreite mit der Schriftgröße", () => {
+    const klein = measureLine("🌐", EXCALIFONT, 20, register);
+    const gross = measureLine("🌐", EXCALIFONT, 40, register);
+    expect(gross).toBeCloseTo(klein * 2, 5);
+  });
+
+  it("benennt die geschätzten Zeichen", () => {
+    expect(unbekannteZeichen("§ 3 🌐", EXCALIFONT, register)).toEqual(["§", "🌐"]);
+  });
+
+  it("meldet nichts, wenn alles abgedeckt ist", () => {
+    expect(unbekannteZeichen("Mängelwesen", EXCALIFONT, register)).toEqual([]);
+  });
+
+  it("bleibt deterministisch", () => {
+    const a = measureLine("§ 3 🌐", EXCALIFONT, 20, register);
+    const b = measureLine("§ 3 🌐", EXCALIFONT, 20, register);
+    expect(a).toBe(b);
+  });
+});
+```
+
+- [ ] **Step 3: Test laufen lassen — muss fehlschlagen**
+
+Run: `npx vitest run tests/text-fallback.test.js`
+Expected: FAIL — `unbekannteZeichen is not a function`, und die ersten beiden Tests
+scheitern an der geworfenen Ausnahme.
+
+- [ ] **Step 4: Implementieren**
+
+`Registry.deckt(codepoint, fontFamily)` in `lib/fonts.js` ergänzen — eine reine
+Abfrage ohne Ausnahme, damit `lib/text.js` nicht über `try/catch` steuern muss.
+
+In `lib/text.js`: `ERSATZBREITE` als Faktoren relativ zur Schriftgröße definieren
+(Emoji annähernd quadratisch, also Faktor um 1,0; sonstige Zeichen etwa so breit wie
+eine Ziffer, also um 0,5 — die genauen Werte aus Step 1 herleiten und im Kommentar
+begründen). `laufweiten` so erweitern, dass nicht abgedeckte Zeichen als eigene Läufe
+mit Ersatzbreite behandelt werden, statt `fontFor` werfen zu lassen. `unbekannteZeichen`
+exportieren.
+
+**Wichtig:** Die Messung abgedeckter Zeichen darf sich um keinen Millipixel ändern.
+`tests/text-measure.test.js` muss unverändert grün bleiben — das ist die Probe darauf.
+
+- [ ] **Step 5: Tests laufen lassen**
+
+Run: `npx vitest run tests/text-fallback.test.js tests/text-measure.test.js tests/text-wrap.test.js`
+Expected: PASS. Die Verteilungswerte in `text-measure.test.js` müssen unverändert sein.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add lib/fonts.js lib/text.js tests/text-fallback.test.js
+git commit -m "feat: Ersatzbreite für Zeichen ohne Schriftabdeckung"
+```
