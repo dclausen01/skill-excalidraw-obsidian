@@ -12,7 +12,12 @@
 
 - **Node ≥ 20**, ausschließlich ESM (`"type": "module"`). Keine CommonJS-Dateien.
 - **Vault-Pfad** nie fest verdrahtet — immer aus `lib/config.js`.
-- **Sprache im Code:** Einheitlichkeit je Modul. `lib/validate/*` ist technisch → **exportierte Namen englisch**. Lokale Variablen und Parameter dürfen deutsch sein. Kommentare deutsch. **Befundtexte deutsch** — sie werden gelesen, nicht ausgewertet.
+- **Sprache im Code:** Einheitlichkeit je Modul.
+  - **Funktionsnamen englisch**, weil sie neben `measureText`, `loadFontRegistry` und `sceneToMarkdown` stehen: `validateScene`, `checkSchema`, `createFindings`, `hasErrors`.
+  - **Die Befundstruktur ist deutsch** — `SCHWERE`, `schwere`, `regel`, `meldung` und die Werte `"fehler"`/`"warnung"`. Ein Befund ist fachliche Ausgabe, die Dennis liest, kein technisches Zwischenformat. Einzige Ausnahme: **`elementId`** bleibt englisch, weil es ein Excalidraw-Fachbegriff ist und im Dateiformat so heißt.
+  - Lokale Variablen und Parameter dürfen deutsch sein. Kommentare deutsch. Befundtexte deutsch.
+
+  Nach Task 1 präzisiert: Die erste Fassung verlangte pauschal englische Exporte, während der Beispielcode des Plans die deutsche Befundstruktur vorgab. Aufgelöst zugunsten des Beispielcodes — die Befunde sind Ausgabe für den Nutzer, nicht Maschinenschnittstelle.
 - **Zwei Härtegrade.** `"fehler"` bricht ab, es wird nichts in den Vault geschrieben. `"warnung"` wird gemeldet, das Modell entscheidet.
 - **Determinismus:** Dieselbe Szene ergibt dieselbe Befundliste in derselben Reihenfolge. Keine Iteration über unsortierte Mengen, kein `Date.now()`.
 - **Umfang ist Stufe 1.** Es existieren nur die Elementtypen `text`, `rectangle`, `ellipse`, `diamond`, `frame`. Prüfungen für Pfeile (`startBinding`/`endBinding`), Bilder (`fileId`), Notiz-Links und Transklusionen gehören **nicht** in diese Stufe — die Features gibt es noch nicht.
@@ -47,7 +52,7 @@
   - `createFindings(): Collector`
   - `Collector.error(regel: string, meldung: string, elementId?: string): void`
   - `Collector.warn(regel: string, meldung: string, elementId?: string): void`
-  - `Collector.all(): Finding[]` — in Aufnahmereihenfolge
+  - `Collector.all(): Finding[]` — in Aufnahmereihenfolge, als **Kopie**. Nie die interne Liste selbst: Sonst könnte ein Aufrufer Befunde nachträglich ändern oder ergänzen und damit das Urteil von `hasErrors()` aushebeln.
   - `Collector.hasErrors(): boolean`
   - Typ `Finding = { schwere: "fehler"|"warnung", regel: string, meldung: string, elementId: string|null }`
 
@@ -493,6 +498,11 @@ git commit -m "feat: Prüfung der Referenzintegrität"
 - Produces: `checkTextIndex(elements: object[], markdown: string, befunde: Collector): void`
 
 Die Sektion `## Text Elements` ist Obsidians Suchindex. Fehlt dort ein Textelement, ist es in Obsidian unauffindbar; steht dort eines zu viel, zeigt die Suche auf ein Element, das es nicht gibt.
+
+**Nach Task 4 korrigiert — die Sektion ist grundsätzlich mehrdeutig.** Sie enthält beliebigen Nutzertext, der syntaktisch nicht von einem Indexeintrag zu unterscheiden ist (belegt: ein Text mit Absatz, dessen erster Teil auf `^abc12345` endet; ein Text, dessen Zeile mit `## ` beginnt). Deshalb:
+
+- **Vorwärts** („steht jedes Textelement im Index?") wird geprüft, indem je Element gezielt nach seiner erwarteten Zeile gesucht wird, statt die Sektion in eine Liste zu zerlegen. Nicht täuschbar, bleibt **harter Fehler**.
+- **Rückwärts** („nennt der Index ein unbekanntes Element?") ist nicht zuverlässig entscheidbar und ist nur eine **Warnung**, deren Meldung die mögliche Fehlmeldung benennt. Ein blockierter gültiger Entwurf wäre schlimmer als ein übersehener verwaister Eintrag.
 
 - [ ] **Step 1: Test schreiben**
 
@@ -1178,7 +1188,11 @@ Nach Task 7 gilt:
 - Eine Szene lässt sich vor dem Schreiben auf harte Fehler und weiche Warnungen prüfen.
 - Harte Fehler blockieren, Warnungen informieren.
 - Der Validator benutzt dieselbe Geometrie wie die Element-Fabriken, nicht eine zweite Formel.
-- `node bin/validate.mjs <datei>` prüft auch bestehende Boards aus dem Vault.
+- `node bin/validate.mjs <datei>` prüft Dateien, die dieser Skill erzeugt hat.
+
+**Nach Task 7 korrigiert.** Die erste Fassung behauptete, die Kommandozeile prüfe „auch bestehende Boards aus dem Vault". Das ist falsch. Der Validator beurteilt ausschließlich, was dieser Skill erzeugt. Gegen alle 632 Boards des Vaults gelaufen, meldete er zunächst bei 454 harte Fehler — nicht weil die Boards kaputt wären, sondern weil sie `freedraw` (12181 Vorkommen), `arrow`, `image`, `line` und die Virgil-Schrift benutzen, also Dinge aus späteren Stufen oder aus der Zeit vor Excalifont.
+
+Deshalb erkennt die Kommandozeile jetzt Dateien außerhalb ihres Umfangs, sagt das **vor** den Befunden und beendet sich mit einem eigenen Exit-Code (2), der „kann ich nicht beurteilen" von „ist defekt" (1) unterscheidet. Nach dieser Änderung: 611 Boards als außerhalb des Umfangs erkannt, 5 mit echten Befunden.
 
 **Noch nicht möglich:** Sehen, wie das Board aussieht. Das leistet Plan 2b (Renderer). Erst danach wird der Validator in `bin/build.mjs` als Gate vor dem Schreiben eingehängt — das gehört in 2b, weil beide Gates zusammen eingebaut werden sollen.
 

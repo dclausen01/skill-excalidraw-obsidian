@@ -93,3 +93,75 @@ describe("sceneToMarkdown", () => {
     }
   });
 });
+
+describe("markdownToScene — Sektionen bleiben auf ihre Überschrift beschränkt", () => {
+  // Obsidians Blockreferenz-Syntax ist "^" + 8 alphanumerische Zeichen — exakt das
+  // Muster, das der Textindex-Parser sucht. Ein Textelement, das selbst über
+  // Blockreferenzen spricht (naheliegend, wenn der Nutzer Obsidian unterrichtet),
+  // darf keinen Phantom-Indexeintrag erzeugen, nur weil sein Inhalt zufällig auf
+  // derselben Zeilenform endet wie ein echter Indexeintrag.
+  it("liest keinen Phantom-Indexeintrag aus einer Blockreferenz im Textinhalt", () => {
+    const s = scene({ registry });
+    const f = s.frame("Kapitel 1");
+    f.text("See issue ^abc12345\nSecond line here", { typo: "standard", x: 10, y: 10 });
+
+    const markdown = sceneToMarkdown(s, { pluginVersion: "2.23.12" });
+    const gelesen = markdownToScene(markdown);
+
+    const echteId = s.elements().find((e) => e.type === "text").id;
+    expect(gelesen.sektionen.textElemente).toEqual([echteId]);
+    expect(gelesen.sektionen.textElemente).not.toContain("abc12345");
+  });
+
+  it("liest keinen Phantom-Element-Link aus Textinhalt, der wie ein Link-Eintrag aussieht", () => {
+    // Die "^id"-Markierung hängt sich beim Schreiben an die LETZTE Zeile des
+    // Blocks — deshalb braucht es eine dritte Zeile danach, damit die
+    // verdächtige Zeile "AbCd1234: [[...]]" unverändert (mit Zeilenende)
+    // erhalten bleibt, wie es echter mehrzeiliger Inhalt tut.
+    const s = scene({ registry });
+    const f = s.frame("Kapitel 1");
+    f.text("Siehe Referenz:\nAbCd1234: [[Andere Notiz]]\nEnde", { typo: "standard", x: 10, y: 10 });
+
+    const markdown = sceneToMarkdown(s, { pluginVersion: "2.23.12" });
+    // Ohne echte "## Element Links"-Sektion darf gar kein Eintrag entstehen —
+    // auch nicht aus einer Zeile im Textinhalt, die zufällig wie ein
+    // Link-Eintrag ("XXXXXXXX: [[...]]") aussieht.
+    expect(markdown).not.toContain("## Element Links");
+    const gelesen = markdownToScene(markdown);
+    expect(gelesen.sektionen.elementLinks).toEqual({});
+  });
+
+  it("liest keinen Phantom-Embedded-File-Eintrag aus Textinhalt, der wie ein Datei-Eintrag aussieht", () => {
+    const s = scene({ registry });
+    const f = s.frame("Kapitel 1");
+    const hash = "0123456789012345678901234567890123456789"; // 40 Hex-Ziffern
+    f.text(`Hash-Beispiel:\n${hash}: [[bild.png]]\nEnde`, { typo: "standard", x: 10, y: 10 });
+
+    const markdown = sceneToMarkdown(s, { pluginVersion: "2.23.12" });
+    expect(markdown).not.toContain("## Embedded Files");
+    const gelesen = markdownToScene(markdown);
+    expect(gelesen.sektionen.embeddedFiles).toEqual({});
+  });
+
+  it("findet den echten Indexeintrag auch wenn eine Leerzeile mitten im Textelement steht", () => {
+    // Reproduktion Fall 1: letzteZeilenProBlock() splittet die Sektion auf
+    // /\n{2,}/ — genau das Trennmuster, das sceneToMarkdown selbst zwischen
+    // Blöcken einsetzt. Ein rawText mit eingebautem Absatzumbruch ("...^abc12345\n\nSo
+    // verweist man...") erzeugt zufällig dieselbe Doppel-Leerzeile *innerhalb*
+    // eines einzigen Blocks und wird dadurch fälschlich in zwei Blöcke zerlegt.
+    // Die eigentliche letzte Zeile (mit der echten "^id") geht dabei verloren.
+    const s = scene({ registry });
+    const f = s.frame("Kapitel 1");
+    f.text("Referenz-Beispiel ^abc12345\n\nSo verweist man auf einen Block.", {
+      typo: "standard",
+      x: 10,
+      y: 10,
+    });
+
+    const markdown = sceneToMarkdown(s, { pluginVersion: "2.23.12" });
+    const gelesen = markdownToScene(markdown);
+
+    const echteId = s.elements().find((e) => e.type === "text").id;
+    expect(gelesen.sektionen.textElemente).toContain(echteId);
+  });
+});
