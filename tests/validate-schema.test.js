@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { createFindings } from "../lib/validate/findings.js";
-import { checkSchema } from "../lib/validate/structure.js";
+import { checkSchema, detectOutOfScope } from "../lib/validate/structure.js";
 
 /** Ein minimal vollständiges Element, das alle Basisfelder trägt. */
 function basis(ueberschreiben = {}) {
@@ -92,5 +92,50 @@ describe("checkSchema", () => {
     delete text.hasTextLink;
     const befunde = pruefe([text]);
     expect(befunde.some((b) => b.meldung.includes("hasTextLink"))).toBe(true);
+  });
+});
+
+describe("detectOutOfScope", () => {
+  it("meldet nichts für Elementtypen und Schriften, die dieser Skill erzeugt", () => {
+    const text = basis({
+      type: "text", id: "eeeeeeee", text: "x", rawText: "x", originalText: "x",
+      fontSize: 20, fontFamily: 6, lineHeight: 1.25, textAlign: "left",
+      verticalAlign: "top", containerId: null, autoResize: true, hasTextLink: false,
+    });
+    expect(detectOutOfScope([basis(), text])).toEqual({ fremdeTypen: [], fremdeSchriften: [] });
+  });
+
+  it("nennt einen fremden Elementtyp einmal, unabhängig von der Anzahl der Vorkommen", () => {
+    const pfeile = [basis({ type: "arrow", id: "1" }), basis({ type: "arrow", id: "2" })];
+    expect(detectOutOfScope(pfeile)).toEqual({ fremdeTypen: ["arrow"], fremdeSchriften: [] });
+  });
+
+  it("sammelt mehrere fremde Typen in Erstauftrittsreihenfolge", () => {
+    const gemischt = [
+      basis({ type: "freedraw", id: "1" }),
+      basis({ type: "rectangle", id: "2" }),
+      basis({ type: "line", id: "3" }),
+      basis({ type: "freedraw", id: "4" }),
+    ];
+    expect(detectOutOfScope(gemischt).fremdeTypen).toEqual(["freedraw", "line"]);
+  });
+
+  it("nennt eine fremde fontFamily wie Virgil (1)", () => {
+    const virgil = basis({
+      type: "text", id: "ffffffff", text: "x", rawText: "x", originalText: "x",
+      fontSize: 20, fontFamily: 1, lineHeight: 1.25, textAlign: "left",
+      verticalAlign: "top", containerId: null, autoResize: true, hasTextLink: false,
+    });
+    expect(detectOutOfScope([virgil])).toEqual({ fremdeTypen: [], fremdeSchriften: [1] });
+  });
+
+  it("meldet Typen und Schriften gleichzeitig, wenn beides vorkommt", () => {
+    const virgil = basis({
+      type: "text", id: "ffffffff", text: "x", rawText: "x", originalText: "x",
+      fontSize: 20, fontFamily: 1, lineHeight: 1.25, textAlign: "left",
+      verticalAlign: "top", containerId: null, autoResize: true, hasTextLink: false,
+    });
+    const pfeil = basis({ type: "arrow", id: "1" });
+    expect(detectOutOfScope([pfeil, virgil])).toEqual({ fremdeTypen: ["arrow"], fremdeSchriften: [1] });
   });
 });

@@ -60,6 +60,18 @@ describe("checkReferences", () => {
     expect(befunde.some((b) => b.regel === "reihenfolge")).toBe(true);
   });
 
+  it("meldet die absteigende z-Reihenfolge als Warnung, nicht als Fehler", () => {
+    // Excalidraw sortiert selbst nach index — Array-Reihenfolge ist ihm
+    // gleichgültig. 90 von 618 echten, im Alltag funktionierenden Boards im
+    // Vault verletzen genau diese "Regel"; ein error hier würde also reihenweise
+    // unkaputte Boards blockieren (Fix-Durchgang 1, Task-7-Report, Finding 3).
+    const alle = echteSzene();
+    alle[0].index = "zz";
+    const befund = pruefe(alle).find((b) => b.regel === "reihenfolge");
+    expect(befund.schwere).toBe("warnung");
+  });
+
+
   it("meldet ein fehlendes index-Feld", () => {
     const alle = echteSzene();
     delete alle[1].index;
