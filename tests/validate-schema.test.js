@@ -68,4 +68,29 @@ describe("checkSchema", () => {
     const befunde = pruefe([text]);
     expect(befunde.some((b) => b.meldung.includes("fontFamily"))).toBe(true);
   });
+
+  it("verlangt roundness als Pflichtfeld", () => {
+    const kaputt = basis();
+    delete kaputt.roundness;
+    const befunde = pruefe([kaputt]);
+    expect(befunde.some((b) => b.meldung.includes("roundness"))).toBe(true);
+  });
+
+  it("verlangt link als Pflichtfeld", () => {
+    const kaputt = basis();
+    delete kaputt.link;
+    const befunde = pruefe([kaputt]);
+    expect(befunde.some((b) => b.meldung.includes("link"))).toBe(true);
+  });
+
+  it("verlangt hasTextLink als Pflichtfeld bei Text", () => {
+    const text = basis({
+      type: "text", id: "eeeeeeee", text: "x", rawText: "x", originalText: "x",
+      fontSize: 20, fontFamily: 5, lineHeight: 1.25, textAlign: "left",
+      verticalAlign: "top", containerId: null, autoResize: true,
+    });
+    delete text.hasTextLink;
+    const befunde = pruefe([text]);
+    expect(befunde.some((b) => b.meldung.includes("hasTextLink"))).toBe(true);
+  });
 });
