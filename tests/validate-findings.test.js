@@ -36,4 +36,33 @@ describe("createFindings", () => {
     f.warn("c", "dritte");
     expect(f.all().map((b) => b.regel)).toEqual(["a", "b", "c"]);
   });
+
+  it("gibt eine Kopie zurück: Pushing auf all() ändert die interne Liste nicht", () => {
+    const f = createFindings();
+    f.warn("original", "erste");
+
+    const befundeVonAll = f.all();
+    expect(befundeVonAll).toHaveLength(1);
+
+    // Versuche, die zurückgegebene Liste zu mutieren
+    befundeVonAll.push({ schwere: SCHWERE.fehler, regel: "injiziert", meldung: "sollte nicht sichtbar sein", elementId: null });
+
+    // Ein frischer Aufruf von all() sollte nur den ursprünglichen Eintrag enthalten
+    expect(f.all()).toHaveLength(1);
+    expect(f.all()[0].regel).toBe("original");
+  });
+
+  it("gibt eine Kopie zurück: Mutieren von Objekten in all() ändert hasErrors() nicht", () => {
+    const f = createFindings();
+    f.error("regel1", "meldung1");
+
+    expect(f.hasErrors()).toBe(true);
+
+    // Versuche, den Fehler zu "Warnung" zu mutieren
+    const befunde = f.all();
+    befunde[0].schwere = SCHWERE.warnung;
+
+    // hasErrors() sollte immer noch true zurückgeben, weil die interne Liste nicht mutiert wurde
+    expect(f.hasErrors()).toBe(true);
+  });
 });
