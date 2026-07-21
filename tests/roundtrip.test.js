@@ -32,3 +32,24 @@ describe("markdownToScene", () => {
     expect(schriften.size).toBeGreaterThan(0);
   });
 });
+
+describe("markdownToScene — ## Element Links", () => {
+  // Die Referenzdatei oben hat keine Element-Links-Sektion. Diese Datei hat
+  // eine echte, vom Plugin geschriebene "## Element Links"-Sektion mit genau
+  // einem Eintrag — Grundlage, um den elementLinks-Regex gegen echte Daten
+  // zu verifizieren, nicht nur gegen den leeren Fall.
+  const REFERENZ_LINKS = path.join(
+    VAULT_PATH,
+    "03 - FSP26b-DVMPäd-ClauD",
+    "00 - Einstieg",
+    "00 - Übersicht.excalidraw.md",
+  );
+  const md = fs.readFileSync(REFERENZ_LINKS, "utf8");
+  const gelesen = markdownToScene(md);
+
+  it("findet den Element-Link aus der '## Element Links'-Sektion wieder", () => {
+    expect(gelesen.sektionen.elementLinks).toEqual({
+      nj3oPrXl: "[[01 - Werkzeuge und Themen]]",
+    });
+  });
+});

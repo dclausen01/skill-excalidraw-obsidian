@@ -1,7 +1,10 @@
 import { describe, it, expect } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
 import { scene } from "../lib/scene.js";
 import { loadFontRegistry } from "../lib/fonts.js";
-import { sceneToMarkdown } from "../lib/document.js";
+import { sceneToMarkdown, markdownToScene } from "../lib/document.js";
+import { VAULT_PATH } from "../lib/config.js";
 
 // Einmal laden und an alle scene()-Aufrufe reichen — Schriftregistrierung ist
 // teuer und soll in Tests nicht pro scene() neu aufgebaut werden.
@@ -54,5 +57,39 @@ describe("sceneToMarkdown", () => {
   it("ist deterministisch", () => {
     expect(sceneToMarkdown(beispiel(), { pluginVersion: "2.23.12" }))
       .toBe(sceneToMarkdown(beispiel(), { pluginVersion: "2.23.12" }));
+  });
+
+  it("hat denselben Header wie eine echte Vault-Datei — kein Leerzeilen-Drift", () => {
+    // Frontmatter, Warnhinweis und die Zeilen bis '## Text Elements' sind
+    // fixer, szenenunabhängiger Text. Ein Byte-für-Byte-Vergleich der ersten
+    // 12 Zeilen gegen eine reale, vom Plugin selbst geschriebene Datei deckt
+    // jeden Leerzeilen-Drift auf — nicht nur den zwischen '---' und dem
+    // Warnhinweis.
+    const referenz = fs.readFileSync(
+      path.join(VAULT_PATH, "FoBi Nextcloud + EuroOffice.excalidraw.md"),
+      "utf8",
+    );
+    const erwartet = referenz.split("\n").slice(0, 12).join("\n");
+    const tatsaechlich = md.split("\n").slice(0, 12).join("\n");
+    expect(tatsaechlich).toBe(erwartet);
+  });
+
+  it("übersteht den eigenen Rundlauf: sceneToMarkdown → markdownToScene liefert dieselben Elemente", () => {
+    const s = scene({ registry });
+    const f = s.frame("Kapitel 1");
+    f.box("Mängelwesen", { rolle: "kern", typo: "kernbegriff", x: 100, y: 100 });
+    f.text("Freistehender Text", { typo: "standard", x: 10, y: 10 });
+
+    const markdown = sceneToMarkdown(s, { pluginVersion: "2.23.12" });
+    const original = s.elements();
+    const gelesen = markdownToScene(markdown);
+
+    expect(gelesen.elements).toEqual(original);
+
+    const textIds = original.filter((e) => e.type === "text").map((e) => e.id);
+    expect(textIds.length).toBeGreaterThan(0);
+    for (const id of textIds) {
+      expect(gelesen.sektionen.textElemente).toContain(id);
+    }
   });
 });
