@@ -142,4 +142,26 @@ describe("markdownToScene — Sektionen bleiben auf ihre Überschrift beschränk
     const gelesen = markdownToScene(markdown);
     expect(gelesen.sektionen.embeddedFiles).toEqual({});
   });
+
+  it("findet den echten Indexeintrag auch wenn eine Leerzeile mitten im Textelement steht", () => {
+    // Reproduktion Fall 1: letzteZeilenProBlock() splittet die Sektion auf
+    // /\n{2,}/ — genau das Trennmuster, das sceneToMarkdown selbst zwischen
+    // Blöcken einsetzt. Ein rawText mit eingebautem Absatzumbruch ("...^abc12345\n\nSo
+    // verweist man...") erzeugt zufällig dieselbe Doppel-Leerzeile *innerhalb*
+    // eines einzigen Blocks und wird dadurch fälschlich in zwei Blöcke zerlegt.
+    // Die eigentliche letzte Zeile (mit der echten "^id") geht dabei verloren.
+    const s = scene({ registry });
+    const f = s.frame("Kapitel 1");
+    f.text("Referenz-Beispiel ^abc12345\n\nSo verweist man auf einen Block.", {
+      typo: "standard",
+      x: 10,
+      y: 10,
+    });
+
+    const markdown = sceneToMarkdown(s, { pluginVersion: "2.23.12" });
+    const gelesen = markdownToScene(markdown);
+
+    const echteId = s.elements().find((e) => e.type === "text").id;
+    expect(gelesen.sektionen.textElemente).toContain(echteId);
+  });
 });
