@@ -34,3 +34,6 @@ Thumbs.db
 
 # SDD-Arbeitsstand (nicht versioniert)
 .superpowers/
+
+# Renderer-Bündel (reproduzierbar aus node_modules)
+renderer/dist/
