@@ -69,4 +69,47 @@ describe("checkGeometry", () => {
     s.frame("Zweites");
     expect(pruefe(s.elements()).filter((b) => b.regel === "frameabstand")).toEqual([]);
   });
+
+  it("zählt zwei berührende Kästen nicht als Überlappung", () => {
+    // Zwei Boxen mit gemeinsamer Kante (Abstand = 0) sollten nicht als
+    // Überlappung erkannt werden. Berührung != Überlappung.
+    const s = scene();
+    const f = s.frame("Kapitel");
+    f.box("Eins", { rolle: "kern", typo: "kernbegriff", x: 100, y: 100, breite: 100 });
+    f.box("Zwei", { rolle: "kern", typo: "kernbegriff", x: 200, y: 100, breite: 100 });
+    const befunde = pruefe(s.elements());
+    expect(befunde.filter((b) => b.regel === "ueberlappung")).toEqual([]);
+  });
+
+  it("akzeptiert ein Kind, das bündig mit der Frame-Kante abschließt", () => {
+    // Ein Kind genau an der Frame-Grenze (Abstand = 0) sollte nicht als
+    // „ragt hinaus" erkannt werden. Bündig ist erlaubt.
+    const s = scene();
+    const f = s.frame("Kapitel", { x: 0, y: 0 });
+    f.box("Bündig", { rolle: "kern", typo: "kernbegriff", x: 0, y: 0, breite: 100 });
+    const befunde = pruefe(s.elements());
+    expect(befunde.filter((b) => b.regel === "framegrenze")).toEqual([]);
+  });
+
+  it("akzeptiert zwei Frames genau mit ABSTAND.frames Abstand", () => {
+    // Zwei Frames genau ABSTAND.frames (240) Einheiten auseinander sollten nicht
+    // vor Unterschreitung warnen. Das ist die akzeptierte Minimaldistanz.
+    const s = scene();
+    s.frame("Erstes", { x: 0, y: 0 });
+    s.frame("Zweites", { x: 1920 + ABSTAND.frames, y: 0 });
+    const befunde = pruefe(s.elements());
+    expect(befunde.filter((b) => b.regel === "frameabstand")).toEqual([]);
+  });
+
+  it("warnt nicht vor Frames im diagonalen Abstand über Euclideanische Grenzwert", () => {
+    // Zwei Frames, je 200 Einheiten in x und y versetzt: Die echte
+    // Distanz ist √(200² + 200²) ≈ 282,84, weit über den 240er Grenzwert.
+    // max(200, 200) ist aber 200, was die falsche Formel fälschlicherweise
+    // als Unterschreitung flaggt. Das sollte nicht passieren.
+    const s = scene();
+    s.frame("Erstes", { x: 0, y: 0 });
+    s.frame("Zweites", { x: 1920 + 200, y: 1080 + 200 });
+    const befunde = pruefe(s.elements());
+    expect(befunde.filter((b) => b.regel === "frameabstand")).toEqual([]);
+  });
 });
