@@ -1188,7 +1188,11 @@ Nach Task 7 gilt:
 - Eine Szene lässt sich vor dem Schreiben auf harte Fehler und weiche Warnungen prüfen.
 - Harte Fehler blockieren, Warnungen informieren.
 - Der Validator benutzt dieselbe Geometrie wie die Element-Fabriken, nicht eine zweite Formel.
-- `node bin/validate.mjs <datei>` prüft auch bestehende Boards aus dem Vault.
+- `node bin/validate.mjs <datei>` prüft Dateien, die dieser Skill erzeugt hat.
+
+**Nach Task 7 korrigiert.** Die erste Fassung behauptete, die Kommandozeile prüfe „auch bestehende Boards aus dem Vault". Das ist falsch. Der Validator beurteilt ausschließlich, was dieser Skill erzeugt. Gegen alle 632 Boards des Vaults gelaufen, meldete er zunächst bei 454 harte Fehler — nicht weil die Boards kaputt wären, sondern weil sie `freedraw` (12181 Vorkommen), `arrow`, `image`, `line` und die Virgil-Schrift benutzen, also Dinge aus späteren Stufen oder aus der Zeit vor Excalifont.
+
+Deshalb erkennt die Kommandozeile jetzt Dateien außerhalb ihres Umfangs, sagt das **vor** den Befunden und beendet sich mit einem eigenen Exit-Code (2), der „kann ich nicht beurteilen" von „ist defekt" (1) unterscheidet. Nach dieser Änderung: 611 Boards als außerhalb des Umfangs erkannt, 5 mit echten Befunden.
 
 **Noch nicht möglich:** Sehen, wie das Board aussieht. Das leistet Plan 2b (Renderer). Erst danach wird der Validator in `bin/build.mjs` als Gate vor dem Schreiben eingehängt — das gehört in 2b, weil beide Gates zusammen eingebaut werden sollen.
 
