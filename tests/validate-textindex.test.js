@@ -38,4 +38,18 @@ describe("checkTextIndex", () => {
     const befunde = pruefe(s.elements(), zuviel);
     expect(befunde.some((b) => b.meldung.includes("zzzzzzzz"))).toBe(true);
   });
+
+  it("akzeptiert ein Textelement, dessen Inhalt selbst eine Obsidian-Blockreferenz nennt", () => {
+    // Reproduktion des Review-Findings: ein Textelement mit Inhalt
+    // "See issue ^abc12345\nSecond line here" sieht in der ersten Zeile wie ein
+    // Indexeintrag zu einer nicht existierenden ID "abc12345" aus. Da diese Zeile
+    // Teil des Elementinhalts ist (nicht die letzte Zeile des Blocks), darf sie
+    // keinen Befund auslösen — die Datei ist gültig.
+    const s2 = scene();
+    const f2 = s2.frame("Kapitel");
+    f2.text("See issue ^abc12345\nSecond line here", { typo: "standard", x: 40, y: 400 });
+    const md2 = sceneToMarkdown(s2, { pluginVersion: "2.23.12" });
+
+    expect(pruefe(s2.elements(), md2)).toEqual([]);
+  });
 });
