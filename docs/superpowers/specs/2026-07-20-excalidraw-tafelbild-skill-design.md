@@ -427,6 +427,59 @@ würde also bestätigen, was gedacht war, statt aufzudecken, was Excalidraw tats
 tut — und wäre damit genau bei den zwei Fehlerklassen blind, für die er gebaut würde.
 Die echte Engine ist ein unabhängiger Zeuge.
 
+### 9.1 Verifizierte Fakten zum Renderer
+
+Am 2026-07-21 durch einen technischen Spike belegt, nicht aus Dokumentation übernommen.
+Excalidraw 0.18.1, Puppeteer 25.3.0.
+
+**Bündelung.** `esbuild --bundle --format=iife --platform=browser` fasst das Paket samt
+seiner dynamischen Chunk-Importe zu einer Datei (13,6 MB, ~0,5 s Bauzeit). `--splitting`
+ist weder nötig noch mit `iife` verträglich. `react` und `react-dom` müssen installiert
+sein, obwohl kein React-Baum gemountet wird — das Paket importiert sie auf Modulebene.
+
+**Der Weg ist `exportToBlob`, nicht `exportToSvg`.** `exportToBlob` ruft intern
+`Fonts.loadElementsFonts()` auf, registriert also echte `FontFace`-Objekte, bevor ein
+Pixel gezeichnet wird. `exportToSvg` holt die Schriftbytes nur zum Einbetten und fasst
+`document.fonts` nie an — eine Prüfung direkt danach misst stillschweigend mit einer
+Ersatzschrift und bestätigt gar nichts.
+
+**`restoreElements` und `restoreAppState` sind Pflicht**, nicht Zierde: Sie füllen Felder
+nach, die der Renderpfad voraussetzt.
+
+**Schriftauflösung — der gefährlichste Punkt.** Excalidraw baut die Schrift-URIs zur
+Laufzeit und löst sie gegen `window.EXCALIDRAW_ASSET_PATH` auf. **Ist die Variable nicht
+gesetzt, lädt es die Schriften von `https://esm.sh/` — aus dem Netz, ohne jede Warnung.**
+Der Renderer würde dann funktionieren, aber netzabhängig sein und nie die lokalen
+Schriften prüfen. Die Variable muss gesetzt und die Schriften müssen von derselben
+Herkunft ausgeliefert werden. Ein Test muss belegen, dass keine Anfrage an `esm.sh` geht.
+
+Die im npm-Paket enthaltenen Schriftdateien sind **byte-identisch** mit den bereits unter
+`assets/fonts/` abgelegten (nur die Trennzeichen im Dateinamen unterscheiden sich).
+
+**Beweis der Schrifttreue.** An allen 8 Textelementen eines echten Boards gemessen:
+
+| Zustand | Abweichung gemessene zu gespeicherter Breite |
+|---|---|
+| vor der Schriftregistrierung | −7 % bis −19 %, durchgehend zu schmal |
+| nach einem `exportToBlob`-Aufruf | **0,0000 bei allen 8** |
+
+Der Test kann also fehlschlagen und tut es auch, wenn die Schriften fehlen — er ist
+aussagekräftig, kein Selbstbestätiger. Damit ist der Renderer als unabhängiger Zeuge
+belegt.
+
+**Frame-Ausschnitt.** `exportingFrame: <frameElement>` schneidet exakt auf die
+Frame-Grenzen; `getDimensions(w, h) => ({ width, height, scale })` steuert die Auflösung.
+`exportPadding` wird bei gesetztem `exportingFrame` ignoriert.
+
+**Kosten.** Chromium-Start ~2 s einmalig, Seitenaufbau ~0,6 s, danach **7–10 ms je
+Rendering**. Browser und Seite müssen über mehrere Renderings am Leben bleiben — sonst
+kostet jedes Bild ~2,5 s statt 10 ms.
+
+**Harmlose Nebenwirkung.** Beim Export erscheint die Konsolenwarnung
+`Failed to use workers for subsetting, falling back to the main thread` — das Auslagern
+der Schrift-Teilmengenbildung in einen Web Worker geht im gebündelten Zustand nicht. Der
+Rückfall auf den Hauptthread erfolgt automatisch und liefert korrekte Ausgabe.
+
 ---
 
 ## 10. Stabilität
