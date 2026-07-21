@@ -12,7 +12,12 @@
 
 - **Node ≥ 20**, ausschließlich ESM (`"type": "module"`). Keine CommonJS-Dateien.
 - **Vault-Pfad** nie fest verdrahtet — immer aus `lib/config.js`.
-- **Sprache im Code:** Einheitlichkeit je Modul. `lib/validate/*` ist technisch → **exportierte Namen englisch**. Lokale Variablen und Parameter dürfen deutsch sein. Kommentare deutsch. **Befundtexte deutsch** — sie werden gelesen, nicht ausgewertet.
+- **Sprache im Code:** Einheitlichkeit je Modul.
+  - **Funktionsnamen englisch**, weil sie neben `measureText`, `loadFontRegistry` und `sceneToMarkdown` stehen: `validateScene`, `checkSchema`, `createFindings`, `hasErrors`.
+  - **Die Befundstruktur ist deutsch** — `SCHWERE`, `schwere`, `regel`, `meldung` und die Werte `"fehler"`/`"warnung"`. Ein Befund ist fachliche Ausgabe, die Dennis liest, kein technisches Zwischenformat. Einzige Ausnahme: **`elementId`** bleibt englisch, weil es ein Excalidraw-Fachbegriff ist und im Dateiformat so heißt.
+  - Lokale Variablen und Parameter dürfen deutsch sein. Kommentare deutsch. Befundtexte deutsch.
+
+  Nach Task 1 präzisiert: Die erste Fassung verlangte pauschal englische Exporte, während der Beispielcode des Plans die deutsche Befundstruktur vorgab. Aufgelöst zugunsten des Beispielcodes — die Befunde sind Ausgabe für den Nutzer, nicht Maschinenschnittstelle.
 - **Zwei Härtegrade.** `"fehler"` bricht ab, es wird nichts in den Vault geschrieben. `"warnung"` wird gemeldet, das Modell entscheidet.
 - **Determinismus:** Dieselbe Szene ergibt dieselbe Befundliste in derselben Reihenfolge. Keine Iteration über unsortierte Mengen, kein `Date.now()`.
 - **Umfang ist Stufe 1.** Es existieren nur die Elementtypen `text`, `rectangle`, `ellipse`, `diamond`, `frame`. Prüfungen für Pfeile (`startBinding`/`endBinding`), Bilder (`fileId`), Notiz-Links und Transklusionen gehören **nicht** in diese Stufe — die Features gibt es noch nicht.
@@ -47,7 +52,7 @@
   - `createFindings(): Collector`
   - `Collector.error(regel: string, meldung: string, elementId?: string): void`
   - `Collector.warn(regel: string, meldung: string, elementId?: string): void`
-  - `Collector.all(): Finding[]` — in Aufnahmereihenfolge
+  - `Collector.all(): Finding[]` — in Aufnahmereihenfolge, als **Kopie**. Nie die interne Liste selbst: Sonst könnte ein Aufrufer Befunde nachträglich ändern oder ergänzen und damit das Urteil von `hasErrors()` aushebeln.
   - `Collector.hasErrors(): boolean`
   - Typ `Finding = { schwere: "fehler"|"warnung", regel: string, meldung: string, elementId: string|null }`
 
