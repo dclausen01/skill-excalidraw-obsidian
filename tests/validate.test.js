@@ -73,13 +73,40 @@ describe("validateScene", () => {
     const alle = s.elements();
     alle.push({ ...alle[0], id: "fremdes-element", type: "arrow" });
     const ergebnis = validateScene(alle, { registry: s.registry, zoomL0: 1 });
-    expect(ergebnis.ausserhalbDesSkills).toEqual({ fremdeTypen: ["arrow"], fremdeSchriften: [] });
+    expect(ergebnis.ausserhalbDesSkills).toEqual({
+      fremdeTypen: ["arrow"], fremdeSchriften: [], fehlendeKonventionsfelder: [],
+    });
   });
 
   it("lässt ausserhalbDesSkills null für eine Szene, die dieser Skill selbst erzeugt", () => {
     const s = gueltigeSzene();
     const ergebnis = validateScene(s.elements(), { registry: s.registry, zoomL0: 1 });
     expect(ergebnis.ausserhalbDesSkills).toBeNull();
+  });
+
+  it("erkennt eine handgemachte Szene mit ausschließlich erlaubten Typen/Schriften trotzdem als außerhalb des Skill-Umfangs, wenn Konventionsfelder fehlen", () => {
+    // Finding D: 5 von 632 echten Vault-Boards nutzten nur erlaubte Typen/Schriften,
+    // waren aber von Hand gebaut — Typ/Schrift allein reichte als Fremdsignal nicht,
+    // die Dateien liefen fälschlich in harte Fehler statt in den Scope-Hinweis.
+    const s = gueltigeSzene();
+    const alle = s.elements();
+    for (const el of alle) delete el.link; // wie ein älteres, nicht von diesem Skill gebautes Board
+    const ergebnis = validateScene(alle, { registry: s.registry, zoomL0: 1 });
+    expect(ergebnis.ausserhalbDesSkills).toEqual({
+      fremdeTypen: [], fremdeSchriften: [], fehlendeKonventionsfelder: ["link"],
+    });
+  });
+
+  it("hält ok wahr für eine sonst korrekte, nur an Konventionsfeldern erkennbar fremde Szene (Finding C+D zusammen)", () => {
+    // Der ganze Punkt der Format-Pflicht/Konvention-Trennung: ein fehlendes
+    // Konventionsfeld ist nur eine Warnung (Finding C) — auch wenn es gleichzeitig
+    // als Fremdsignal dient (Finding D), bleibt ok wahr, solange sonst nichts
+    // Hartes vorliegt. Vorher blockierten genau solche Dateien mit Exit 1.
+    const s = gueltigeSzene();
+    const alle = s.elements();
+    for (const el of alle) delete el.link;
+    const ergebnis = validateScene(alle, { registry: s.registry, zoomL0: 1 });
+    expect(ergebnis.ok).toBe(true);
   });
 
   it("überspringt Geometrie/Textpassung/Lesbarkeit für Szenen außerhalb des Skill-Umfangs, statt abzustürzen", () => {
@@ -96,6 +123,43 @@ describe("validateScene", () => {
     const ergebnis = validateScene(alle, { registry: s.registry, zoomL0: 1 });
     expect(ergebnis.findings.some((b) => b.regel === "textpassung")).toBe(false);
     expect(ergebnis.findings.some((b) => b.regel === "lesbarkeit-l0" || b.regel === "lesbarkeit-l1")).toBe(false);
+  });
+
+  it("stürzt nicht ab, wenn ein gebundener Text originalText fehlt, sondern meldet den Schema-Fehler", () => {
+    // Schlusspruefung Finding A: checkTextFit (lib/validate/layout.js) ruft
+    // wrapText(text.originalText, ...) auf, das intern text.split("\n") aufruft.
+    // Fehlt originalText (undefined), wirft das eine TypeError, die checkSchemas
+    // bereits aufgenommenen Befund verwirft. validateScene darf dafür weder werfen
+    // noch den Schema-Befund verlieren.
+    const s = gueltigeSzene();
+    const alle = s.elements();
+    const text = alle.find((e) => e.type === "text" && e.containerId);
+    delete text.originalText;
+
+    expect(() => validateScene(alle, { registry: s.registry, zoomL0: 1 })).not.toThrow();
+
+    const ergebnis = validateScene(alle, { registry: s.registry, zoomL0: 1 });
+    expect(ergebnis.ok).toBe(false);
+    expect(
+      ergebnis.findings.some((b) => b.regel === "schema" && b.meldung.includes("originalText")),
+    ).toBe(true);
+  });
+
+  it("überspringt die weiche Prüfschicht komplett, sobald harte Fehler vorliegen", () => {
+    // Nicht nur der Crash-Fall: jeder harte Fehler soll die Geometrie-/Textpassungs-/
+    // Lesbarkeitsprüfung überspringen, weil ihre Warnungen für eine strukturell
+    // kaputte Szene ohnehin nicht handlungsleitend sind.
+    const s = gueltigeSzene();
+    const alle = s.elements();
+    alle[1].id = alle[0].id; // doppelte ID: ein harter Fehler ("ids"), keine fremden Typen/Schriften
+    const ergebnis = validateScene(alle, { registry: s.registry, zoomL0: 1 });
+    expect(ergebnis.ok).toBe(false);
+    expect(ergebnis.ausserhalbDesSkills).toBeNull();
+    expect(
+      ergebnis.findings.some((b) =>
+        ["ueberlappung", "framegrenze", "frameabstand", "textpassung", "lesbarkeit-l0", "lesbarkeit-l1"].includes(b.regel),
+      ),
+    ).toBe(false);
   });
 });
 

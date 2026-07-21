@@ -72,11 +72,41 @@ describe("checkReferences", () => {
   });
 
 
-  it("meldet ein fehlendes index-Feld", () => {
+  it("meldet ein komplett fehlendes index-Feld NICHT mehr selbst — das übernimmt allein checkSchema", () => {
+    // Schlusspruefung Finding E: vorher meldeten sowohl checkSchema
+    // ("[schema] Pflichtfeld \"index\" fehlt") als auch checkReferences
+    // ("[reihenfolge] index fehlt oder ist leer") denselben Defekt doppelt.
+    // Seit Finding C ist index ein Konventionsfeld — checkSchema warnt bereits
+    // bei komplettem Fehlen; checkReferences feuert die Guard-Klausel deshalb
+    // nur noch für Fälle, die checkSchema NICHT abdeckt (vorhanden, aber leer
+    // oder kein String).
     const alle = echteSzene();
     delete alle[1].index;
     const befunde = pruefe(alle);
+    expect(befunde.some((b) => b.regel === "reihenfolge")).toBe(false);
+  });
+
+  it("meldet ein vorhandenes, aber leeres index-Feld weiterhin (Guard deckt den Fall ab, den checkSchema nicht sieht)", () => {
+    const alle = echteSzene();
+    alle[1].index = "";
+    const befunde = pruefe(alle);
     expect(befunde.some((b) => b.regel === "reihenfolge")).toBe(true);
+  });
+
+  it("meldet ein vorhandenes index-Feld vom falschen Typ (kein String) weiterhin", () => {
+    const alle = echteSzene();
+    alle[1].index = 42;
+    const befunde = pruefe(alle);
+    expect(befunde.some((b) => b.regel === "reihenfolge")).toBe(true);
+  });
+
+  it("die reihenfolge-Regel ist jetzt durchgehend eine Warnung — kohärent seit index ein Konventionsfeld ist (Finding C)", () => {
+    const alle = echteSzene();
+    alle[1].index = ""; // Guard-Fall: vorhanden, aber leer
+    alle[0].index = "zz"; // Order-Fall: bricht die aufsteigende Reihenfolge
+    const reihenfolgeBefunde = pruefe(alle).filter((b) => b.regel === "reihenfolge");
+    expect(reihenfolgeBefunde.length).toBeGreaterThan(0);
+    expect(reihenfolgeBefunde.every((b) => b.schwere === "warnung")).toBe(true);
   });
 
   it("meldet ein Nicht-Text-Element, das sich in boundElements als Text ausgibt", () => {

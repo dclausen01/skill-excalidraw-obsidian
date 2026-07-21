@@ -10,13 +10,13 @@ import { sceneToMarkdown } from "../lib/document.js";
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const BIN = path.join(HIER, "..", "bin", "validate.mjs");
 
-/** Führt die CLI aus und gibt stdout + Exit-Code zurück, ohne bei Exit≠0 zu werfen. */
+/** Führt die CLI aus und gibt stdout/stderr + Exit-Code zurück, ohne bei Exit≠0 zu werfen. */
 function fuehreAus(dateiPfad) {
   try {
     const stdout = execFileSync("node", [BIN, dateiPfad], { encoding: "utf8" });
-    return { stdout, exitCode: 0 };
+    return { stdout, stderr: "", exitCode: 0 };
   } catch (e) {
-    return { stdout: e.stdout, exitCode: e.status };
+    return { stdout: e.stdout, stderr: e.stderr, exitCode: e.status };
   }
 }
 
@@ -84,5 +84,67 @@ describe("bin/validate.mjs", () => {
     const { stdout, exitCode } = fuehreAus(pfad);
     expect(exitCode).toBe(1);
     expect(stdout).not.toContain("Hinweis:");
+  });
+
+  // Schlusspruefung Finding B: Lese-/Parsefehler dürfen nicht als Stacktrace auf
+  // Exit-Code 1 landen — das ist der Code für "echter harter Befund", und
+  // Automatisierung muss "Datei kaputt/nicht lesbar" davon unterscheiden können.
+
+  it("meldet eine nicht existierende Datei ohne Stacktrace mit Exit-Code 3", () => {
+    const pfad = path.join(tmpDir, "gibt-es-nicht.excalidraw.md");
+    const { stdout, stderr, exitCode } = fuehreAus(pfad);
+    expect(exitCode).toBe(3);
+    expect(stdout).not.toContain("Hinweis:");
+    expect(stderr).not.toContain("at "); // kein Node-Stacktrace ("at ... (...)")
+    expect(stderr).not.toContain("TypeError");
+    expect(stderr.length).toBeGreaterThan(0);
+  });
+
+  it("meldet eine Nicht-Excalidraw-Datei (kein Drawing-Block) ohne Stacktrace mit Exit-Code 3", () => {
+    const pfad = path.join(tmpDir, "notiz.excalidraw.md");
+    fs.writeFileSync(pfad, "# Nur eine gewöhnliche Notiz, kein Excalidraw-Inhalt.\n", "utf8");
+    const { stdout, stderr, exitCode } = fuehreAus(pfad);
+    expect(exitCode).toBe(3);
+    expect(stdout).not.toContain("Hinweis:");
+    expect(stderr).not.toContain("at ");
+    expect(stderr.length).toBeGreaterThan(0);
+  });
+
+  it("meldet einen nicht dekomprimierbaren compressed-json-Block ohne Stacktrace mit Exit-Code 3", () => {
+    const pfad = path.join(tmpDir, "kaputt-komprimiert.excalidraw.md");
+    const inhalt = [
+      "---",
+      "excalidraw-plugin: parsed",
+      "---",
+      "",
+      "# Excalidraw Data",
+      "",
+      "## Text Elements",
+      "%%",
+      "## Drawing",
+      "```compressed-json",
+      "das-ist-kein-gueltiges-lz-string-base64!!!",
+      "```",
+      "%%",
+      "",
+    ].join("\n");
+    fs.writeFileSync(pfad, inhalt, "utf8");
+    const { stdout, stderr, exitCode } = fuehreAus(pfad);
+    expect(exitCode).toBe(3);
+    expect(stdout).not.toContain("Hinweis:");
+    expect(stderr).not.toContain("at ");
+  });
+
+  it("dokumentiert alle vier Exit-Codes im Usage-Text", () => {
+    // Aufruf ohne Dateiargument löst den Usage-Text aus.
+    let ausgabe;
+    try {
+      execFileSync("node", [BIN], { encoding: "utf8" });
+    } catch (e) {
+      ausgabe = e.stderr;
+    }
+    for (const code of ["0", "1", "2", "3"]) {
+      expect(ausgabe).toContain(code);
+    }
   });
 });
