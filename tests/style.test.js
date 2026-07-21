@@ -7,6 +7,7 @@ import {
   istLesbar,
   FRAME_BREITE,
   FRAME_HOEHE,
+  FRAME_STRICH,
   LESBARKEIT_MIN,
   BASIS,
   ABSTAND,
@@ -73,6 +74,11 @@ describe("Basis und Frame", () => {
 
   it("definiert Lesbarkeits-Minimum", () => {
     expect(LESBARKEIT_MIN).toBe(18);
+  });
+
+  it("führt eine eigene Strichfarbe für Frames — Chrome, keine der sieben Farbrollen (Review-Finding 3)", () => {
+    expect(FRAME_STRICH).toBe("#bbb");
+    expect(Object.values(FARBROLLEN).map((f) => f.strich)).not.toContain(FRAME_STRICH);
   });
 });
 
