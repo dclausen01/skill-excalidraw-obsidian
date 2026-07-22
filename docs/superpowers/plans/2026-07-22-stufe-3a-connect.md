@@ -430,10 +430,12 @@ function connect(a, b, { label = null, seite = null } = {}) {
 return { titel, frame, connect, elements, dimensions, registry };
 ```
 
-In `lib/index.js` ergänzen:
+In `lib/index.js` ergänzen — **nur** `arrowElement` und `fixedPointFor`; ein `connect`
+existiert in `lib/connect.js` nicht (die bequeme Methode ist `scene().connect`, ein
+`connect`-Export hier würde einen `SyntaxError` beim Import auslösen):
 
 ```js
-export { connect, arrowElement, fixedPointFor } from "./connect.js";
+export { arrowElement, fixedPointFor } from "./connect.js";
 ```
 
 - [ ] **Step 4: Test laufen lassen — muss bestehen**
