@@ -375,10 +375,25 @@ und Pixelgrößen. Fehlt eine Größenangabe, wird sie aus dem gemessenen Text b
 
 `row()`, `column()`, `grid()`, `radial()`, `timeline()`, `stack()`, `sequence()`
 
-Bekommen Kinder und einen Abstands-Token (`"eng" | "normal" | "weit"`), positionieren
-relativ und geben ihre Bounding-Box zurück, damit sie schachtelbar sind.
-`sequence()` arbeitet auf Frame-Ebene und reiht Kapitel mit nummerierten
-Übergangspfeilen auf.
+**Platzierungsmodell — vom Nutzer am 2026-07-22 entschieden: „Helfer platziert selbst".**
+Ein Layout-Helfer bekommt den Frame, die Inhalte (als Strings) und einen Abstands-Token,
+berechnet die Positionen und ruft intern `frame.box()` (bzw. die gewählte
+Form-Fabrik) an diesen Positionen auf. Er gibt die platzierten Formen zurück, damit sie
+weiterverwendet (z. B. verbunden) werden können.
+
+```js
+const zentrum = radial(kap, "Mängelwesen", ["Instinktarmut", "Weltoffenheit", "Kultur"],
+  { rolle: "neutral", radius: 420 });
+```
+
+Verworfen wurde das zweistufige „erst beschreiben, dann platzieren"-Muster aus dem
+Brainstorm-Sketch (`radial(kap, box("…"), [box("…")])`): Es hätte ein neues Spec-Objekt
+neben `frame.box()` gebraucht. Das gewählte Modell baut direkt auf der bestehenden
+sofort-platzierenden `frame.box()`-API auf.
+
+`sequence()` arbeitet auf Frame-Ebene und reiht Kapitel mit nummerierten Übergangspfeilen
+auf. Die Pfeilbindung an Frames ist durch den Spike belegt (2.4.1), ein unsichtbarer Anker
+ist nicht nötig.
 
 ### Ebene 3 — Verbindungen
 
