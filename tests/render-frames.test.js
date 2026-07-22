@@ -43,4 +43,30 @@ describe("Frame-Rendering", () => {
   it("meldet einen unbekannten Frame-Namen verständlich", async () => {
     await expect(renderer.renderFrame(szene, "Gibt es nicht", {})).rejects.toThrow(/Gibt es nicht/);
   }, 30_000);
+
+  it("wirft einen Fehler, wenn mehrere Frames den gleichen Namen haben", async () => {
+    const szeneKopie = JSON.parse(JSON.stringify(szene));
+    // Duplikat erzeugen: beide Frame-Namen auf den ersten Namen setzen
+    const ersteName = renderer.frameNames(szeneKopie)[0];
+    const frames = szeneKopie.elements.filter((e) => e.type === "frame");
+    if (frames.length >= 2) {
+      frames[1].name = ersteName;
+      await expect(renderer.renderFrame(szeneKopie, ersteName, {})).rejects.toThrow(
+        /mehrere Frames|doppelte Frames|gleiche Namen/i
+      );
+    }
+  }, 30_000);
+
+  it("rendert den gleichen Frame zweimal mit bitidentischem Ergebnis", async () => {
+    const [erster] = renderer.frameNames(szene);
+    const png1 = await renderer.renderFrame(szene, erster, { breite: 1920, hoehe: 1080 });
+    const png2 = await renderer.renderFrame(szene, erster, { breite: 1920, hoehe: 1080 });
+    expect(png1.equals(png2)).toBe(true);
+  }, 30_000);
+
+  it("gibt leere Liste zurück wenn die Szene keine Frames hat", () => {
+    const szeneOhneFrames = { elements: [{ type: "rectangle", name: "foo" }] };
+    const namen = renderer.frameNames(szeneOhneFrames);
+    expect(namen).toEqual([]);
+  });
 });
