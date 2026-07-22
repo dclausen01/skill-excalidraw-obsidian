@@ -37,8 +37,10 @@ describe("checkSchema", () => {
   });
 
   it("meldet einen unbekannten Elementtyp", () => {
-    const befunde = pruefe([basis({ type: "arrow" })]);
-    expect(befunde.some((b) => b.meldung.includes("arrow"))).toBe(true);
+    // arrow ist seit Stufe 3a ein bekannter Typ (siehe ZUSATZFELDER) — line bleibt
+    // unbekannt und eignet sich weiterhin als Beispiel.
+    const befunde = pruefe([basis({ type: "line" })]);
+    expect(befunde.some((b) => b.meldung.includes("line"))).toBe(true);
   });
 
   it("verlangt bei Text die Textfelder", () => {
@@ -175,9 +177,9 @@ describe("detectOutOfScope", () => {
   });
 
   it("nennt einen fremden Elementtyp einmal, unabhängig von der Anzahl der Vorkommen", () => {
-    const pfeile = [basis({ type: "arrow", id: "1" }), basis({ type: "arrow", id: "2" })];
-    expect(detectOutOfScope(pfeile)).toEqual({
-      fremdeTypen: ["arrow"], fremdeSchriften: [], fehlendeKonventionsfelder: [],
+    const linien = [basis({ type: "line", id: "1" }), basis({ type: "line", id: "2" })];
+    expect(detectOutOfScope(linien)).toEqual({
+      fremdeTypen: ["line"], fremdeSchriften: [], fehlendeKonventionsfelder: [],
     });
   });
 
@@ -208,9 +210,9 @@ describe("detectOutOfScope", () => {
       fontSize: 20, fontFamily: 1, lineHeight: 1.25, textAlign: "left",
       verticalAlign: "top", containerId: null, autoResize: true, hasTextLink: false,
     });
-    const pfeil = basis({ type: "arrow", id: "1" });
-    expect(detectOutOfScope([pfeil, virgil])).toEqual({
-      fremdeTypen: ["arrow"], fremdeSchriften: [1], fehlendeKonventionsfelder: [],
+    const linie = basis({ type: "line", id: "1" });
+    expect(detectOutOfScope([linie, virgil])).toEqual({
+      fremdeTypen: ["line"], fremdeSchriften: [1], fehlendeKonventionsfelder: [],
     });
   });
 
@@ -247,10 +249,10 @@ describe("detectOutOfScope", () => {
   });
 
   it("prüft Konventionsfelder nicht bei fremden Elementtypen (dort sind sie ohnehin nicht definiert)", () => {
-    const pfeil = basis({ type: "arrow", id: "1" });
-    delete pfeil.link; // irrelevant: arrow ist schon über den Typ fremd
-    expect(detectOutOfScope([pfeil])).toEqual({
-      fremdeTypen: ["arrow"], fremdeSchriften: [], fehlendeKonventionsfelder: [],
+    const linie = basis({ type: "line", id: "1" });
+    delete linie.link; // irrelevant: line ist schon über den Typ fremd
+    expect(detectOutOfScope([linie])).toEqual({
+      fremdeTypen: ["line"], fremdeSchriften: [], fehlendeKonventionsfelder: [],
     });
   });
 });

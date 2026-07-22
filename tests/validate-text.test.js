@@ -37,6 +37,20 @@ describe("checkTextFit", () => {
     const befunde = pruefeFit(s.elements());
     expect(befunde.some((b) => b.regel === "textpassung" && b.schwere === "warnung")).toBe(true);
   });
+
+  it("meldet keine Textpassung für das Label eines horizontalen Pfeils", () => {
+    // Ein Pfeil-Label sitzt auf dem Pfeil, nicht in einer einbeschriebenen
+    // Fläche — für einen horizontalen Pfeil ist die Bounding-Box-Höhe ≈ 0,
+    // was ohne die Typ-Gate in checkTextFit eine negative "einbeschriebene"
+    // Höhe und damit einen falschen Befund erzeugte (Schlussprüfung, Finding 1).
+    const s = scene();
+    const f = s.frame("Kapitel");
+    const a = f.box("Instinktarmut", { rolle: "kern", typo: "kernbegriff", x: 120, y: 300 });
+    const b = f.box("Weltoffenheit", { rolle: "ergebnis", typo: "kernbegriff", x: 760, y: 300 });
+    s.connect(a, b, { label: "führt zu" });
+    const befunde = pruefeFit(s.elements());
+    expect(befunde.filter((be) => be.regel === "textpassung")).toEqual([]);
+  });
 });
 
 describe("checkLegibility", () => {
