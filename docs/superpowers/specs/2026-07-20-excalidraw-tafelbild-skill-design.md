@@ -151,6 +151,51 @@ setzbar. Die Gegenseite muss in `boundElements` des Zielelements eingetragen sei
 "boundElements": [ { "id": "mWJWs21V", "type": "arrow" } ]
 ```
 
+#### 2.4.1 Durch Spike verifiziert (2026-07-22)
+
+Vor der Planung von Stufe 3 an gebauten Pfeilen gerendert und mit dem Auge geprüft.
+Referenzdatei im Vault: das Gewaltdreieck nach Galtung, das `fixedPoint`-Bindungen führt.
+
+**Der Renderpfad rechnet die Bindung NICHT nach — `points` müssen exakt stimmen.**
+Der wichtigste Fund. `exportToBlob` (und damit die geschriebene Datei) zeichnet den
+`points`-Pfad des Pfeils, wie er dasteht. Ein Pfeil mit korrekten `fixedPoint`-Bindungen,
+aber absichtlich falschen `points` (`[[0,0],[10,10]]`) rendert als winziger Stummel in der
+Ecke — die Bindung reroutet ihn **nicht**. Zwei Pfeile mit korrekt berechneten Punkten
+(`A→B` horizontal, `C→D` vertikal) verbinden dagegen sauber Kante an Kante.
+
+Folge für `connect()`: Der Builder muss die Pfeilpunkte selbst aus der Geometrie beider
+Formen berechnen. Die Bindungs-Metadaten (`fixedPoint`, `boundElements`) sorgen nur dafür,
+dass der Pfeil **später in Obsidian** verbunden bleibt, wenn der Nutzer eine Form verschiebt.
+Das ist genau die Stelle, die diese Spezifikation als „hier geht Handarbeit am
+zuverlässigsten schief" benannt hat — deshalb ist `connect()` die eine zentrale Funktion.
+
+**`fixedPoint`-Werte für Kantenmitten** (bestätigt am Bild):
+
+| Kante | fixedPoint |
+|---|---|
+| rechts, mittig | `[1.0, 0.5001]` |
+| links, mittig | `[0.0, 0.5001]` |
+| unten, mittig | `[0.5001, 1.0]` |
+| oben, mittig | `[0.5001, 0.0]` |
+
+Die `0.5001` statt `0.5` ist eine bewusste Verschiebung aus der echten Vault-Datei — sie
+vermeidet die Mehrdeutigkeit des exakten Mittelpunkts.
+
+**Pfeile lassen sich an Frames binden** — beantwortet den offenen Punkt 14.1. Ein Pfeil,
+dessen `startBinding`/`endBinding` auf Frame-IDs zeigen und den beide Frames in
+`boundElements` führen, rendert sauber von Frame zu Frame und ergibt gültiges JSON. `sequence()`
+bindet also direkt an Frames, ein unsichtbarer Anker-Fallback ist nicht nötig.
+(Nicht geprüft: ob Obsidian den Pfeil beim *interaktiven* Verschieben eines Frames neu
+routet — für die erzeugte Datei ohne Belang, weil der gezeichnete Pfeil bereits korrekt ist.)
+
+**Pfeil-Labels funktionieren.** Ein Text, dessen `containerId` auf die Pfeil-ID zeigt und
+den der Pfeil in `boundElements` führt, erscheint mittig auf dem Pfeil („führt zu" war
+lesbar). `connect(a, b, { label })` kann so umgesetzt werden.
+
+**Weitere Pfeilfelder** (aus der Vault-Referenz und dem Spike): `points` (Offsets von der
+eigenen `x`/`y`), `lastCommittedPoint: null`, `startArrowhead`, `endArrowhead: "arrow"`,
+`elbowed: false`, `roundness: { type: 2 }`, `moveMidPointsWithElement: false`.
+
 ### 2.5 Bild-Referenzen
 
 `fileId` ist der **SHA-1 der Bilddatei-Bytes**. Nachgerechnet und bestätigt an
@@ -623,9 +668,11 @@ Die Reihenfolge folgt dem Risiko, nicht dem Nutzen: Was scheitern kann, kommt zu
 Diese Punkte sind im Design berücksichtigt, aber noch nicht empirisch geprüft. Sie gehören
 als explizite Schritte in den Implementierungsplan:
 
-1. **Pfeilbindung an Frames.** Ob Excalidraw Pfeile direkt an Frame-Elemente binden kann,
-   ist ungeklärt. Falls nicht, wird an unsichtbare Ankerpunkte am Frame-Rand gebunden.
-   Betrifft das Muster „Präsentationsablauf".
+1. **Pfeilbindung an Frames — ERLEDIGT (2026-07-22, Spike, siehe 2.4.1).** Pfeile lassen
+   sich direkt an Frames binden und rendern sauber; ein unsichtbarer Anker-Fallback ist
+   nicht nötig. Dabei zeigte sich der weitreichendere Fund: Der Renderpfad zeichnet die
+   `points` wie angegeben und reroutet nicht aus der Bindung — `connect()` muss die
+   Pfeilpunkte selbst exakt berechnen.
 2. **Wrapping-Algorithmus.** Excalidraws exakte Zeilenumbruchregeln (Umbruch an Leerzeichen,
    Behandlung überlanger Wörter, `lineHeight: 1.25`) müssen gegen die Golden-Werte aus dem
    Vault abgeglichen werden.
