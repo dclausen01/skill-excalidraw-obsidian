@@ -32,6 +32,11 @@ describe("Golden-Renderings", () => {
 
     it(`rendert "${name}" byte-identisch zum Referenzbild`, async () => {
       const szene = (await import(path.join(GOLDEN, datei))).default;
+      // Fester Literal statt readPluginVersion(): Der Renderpfad liest source/version
+      // nie mit, das Pixel-Ergebnis ändert sich dadurch nicht. Ohne diesen Literal
+      // würde readPluginVersion() aber das Manifest im (maschinenlokalen) Vault-Pfad
+      // lesen — das pinnen wir hier weg, damit der Test auf jeder Maschine portabel
+      // läuft und nicht abstürzt, wenn der Vault fehlt.
       const szenenObjekt = sceneToObject(szene, { pluginVersion: "golden" });
 
       const jetzt = await renderer.renderBoard(szenenObjekt, { breite: 1200 });

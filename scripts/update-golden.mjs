@@ -11,6 +11,11 @@ const renderer = await createRenderer();
 try {
   for (const datei of szenen) {
     const szene = (await import(path.join(GOLDEN, datei))).default;
+    // Fester Literal statt readPluginVersion(): Der Renderpfad liest source/version
+    // nie mit, das Pixel-Ergebnis ändert sich dadurch nicht. Ohne diesen Literal
+    // würde readPluginVersion() aber das Manifest im (maschinenlokalen) Vault-Pfad
+    // lesen — das pinnen wir hier weg, damit die Golden-Erzeugung auf jeder
+    // Maschine portabel läuft und nicht abstürzt, wenn der Vault fehlt.
     const szenenObjekt = sceneToObject(szene, { pluginVersion: "golden" });
 
     const name = path.basename(datei, ".mjs");

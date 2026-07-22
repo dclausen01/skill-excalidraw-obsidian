@@ -1,6 +1,8 @@
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { describe, it, expect, beforeAll, afterAll, vi } from "vitest";
 import fs from "node:fs";
+import http from "node:http";
 import path from "node:path";
+import puppeteer from "puppeteer";
 import { createRenderer } from "../lib/render.js";
 import { extractDrawing } from "../lib/compress.js";
 import { VAULT_PATH } from "../lib/config.js";
@@ -44,4 +46,48 @@ describe("Renderer", () => {
     const b = await renderer.renderBoard(szene, { breite: 800 });
     expect(a.equals(b)).toBe(true);
   }, 30_000);
+});
+
+describe("createRenderer — Aufräumen bei Startfehler", () => {
+  it("schließt Browser und Server, wenn der Bereitschafts-Check der Seite scheitert", async () => {
+    // Wir hängen uns mit echten Implementierungen an puppeteer.launch und
+    // http.createServer, um die tatsächlich erzeugten Handles (Browser-Prozess,
+    // lauschender Server) nach dem Fehlschlag zu inspizieren — es wird nichts
+    // vorgetäuscht, nur mitgeschnitten.
+    const echtesLaunch = puppeteer.launch.bind(puppeteer);
+    const echtesCreateServer = http.createServer.bind(http);
+    let erfassterBrowser;
+    let erfassterServer;
+
+    const launchSpy = vi.spyOn(puppeteer, "launch").mockImplementation(async (...args) => {
+      erfassterBrowser = await echtesLaunch(...args);
+      return erfassterBrowser;
+    });
+    const serverSpy = vi.spyOn(http, "createServer").mockImplementation((handler) => {
+      erfassterServer = echtesCreateServer(handler);
+      return erfassterServer;
+    });
+
+    // Zwingt waitForFunction, schnell und deterministisch zu scheitern: Die
+    // geprüfte Eigenschaft wird nie gesetzt, das Timeout ist kurz. Das simuliert
+    // realistisch einen hängenden/kaputten Bereitschafts-Check (z. B. nach einem
+    // Chromium-Update oder einem defekten Bündel), ohne echte Dateien oder das
+    // Netz anzufassen.
+    process.env.RENDERER_TEST_READY_PROP = "__wird_nie_gesetzt__";
+    process.env.RENDERER_TEST_READY_TIMEOUT_MS = "1000";
+
+    try {
+      await expect(createRenderer()).rejects.toThrow();
+    } finally {
+      delete process.env.RENDERER_TEST_READY_PROP;
+      delete process.env.RENDERER_TEST_READY_TIMEOUT_MS;
+      launchSpy.mockRestore();
+      serverSpy.mockRestore();
+    }
+
+    expect(erfassterBrowser, "Browser wurde nie gestartet").toBeDefined();
+    expect(erfassterBrowser.connected, "Browser blieb nach dem Fehlschlag offen (Leck)").toBe(false);
+    expect(erfassterServer, "Server wurde nie gestartet").toBeDefined();
+    expect(erfassterServer.listening, "Statischer Server blieb nach dem Fehlschlag offen (Leck)").toBe(false);
+  }, 15_000);
 });
