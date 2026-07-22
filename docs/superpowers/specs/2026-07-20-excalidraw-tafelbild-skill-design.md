@@ -240,16 +240,14 @@ gratis, und keine Beschreibungssprache muss erfunden werden, die irgendwann an i
 Grenzen stößt. Das Skript ist ein Wegwerf-Artefakt und landet **nicht** im Vault.
 
 ```js
-import { scene, radial, box } from "../lib/index.js";
+import { scene, radial } from "../lib/index.js";
 
 const s = scene({ titel: "Der Mensch als Mängelwesen" });
 const kap = s.frame("Instinktarmut");
-const zentrum = kap.box("Mängelwesen", { rolle: "kern", text: "kernbegriff" });
-radial(kap, zentrum, [
-  box("Keine spezialisierten Organe"),
-  box("Kein Instinktkorsett"),
-  box("Physiologische Frühgeburt"),
-], { radius: 420 });
+const { zentrum, satelliten } = radial(kap, "Mängelwesen",
+  ["Instinktarmut", "Weltoffenheit", "Kultur als 2. Natur"],
+  { rolle: "kern", typo: "kernbegriff", radius: 420 });
+for (const sat of satelliten) s.connect(zentrum, sat);
 export default s;
 ```
 

@@ -33,6 +33,16 @@ describe("row", () => {
     const formen = row(f, ["A", "B"], { typ: "ellipse", typo: "kernbegriff" });
     expect(formen[0].container.type).toBe("ellipse");
   });
+
+  it("wirft bei typ: 'text' mit klarer Fehlermeldung statt später abzustürzen", () => {
+    // frame.text existiert (Truthiness-Check bestand früher), liefert aber ein
+    // bloßes Element ohne .container — der Absturz kam dann verzögert und
+    // unklar beim Lesen von .container.width (Schlussprüfung, Finding 3).
+    const s = scene();
+    const f = s.frame("Kapitel");
+    expect(() => row(f, ["A"], { typ: "text", typo: "kernbegriff" }))
+      .toThrow(/Unbekannter Formtyp "text" — erlaubt: box, ellipse, diamond/);
+  });
 });
 
 describe("column", () => {

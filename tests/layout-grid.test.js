@@ -21,4 +21,25 @@ describe("grid", () => {
     const formen = grid(f, ["A", "B", "C"], { spalten: 2, typo: "kernbegriff" });
     expect(formen.map((x) => x.text.rawText)).toEqual(["A", "B", "C"]);
   });
+
+  it("wirft bei spalten: 0 statt zu hängen", () => {
+    // Ohne Wache läuft die interne Schleife (i += spalten) mit spalten = 0 nie
+    // über inhalte.length hinaus — eine Endlosschleife, die den Prozess für
+    // immer blockiert (Schlussprüfung, Finding 1).
+    const s = scene();
+    const f = s.frame("Kapitel");
+    expect(() => grid(f, ["A"], { spalten: 0, typo: "kernbegriff" })).toThrow(/spalten >= 1/);
+  });
+
+  it("wirft bei negativer spalten-Zahl", () => {
+    const s = scene();
+    const f = s.frame("Kapitel");
+    expect(() => grid(f, ["A"], { spalten: -1, typo: "kernbegriff" })).toThrow(/spalten >= 1/);
+  });
+
+  it("wirft bei nicht-ganzzahliger spalten-Zahl", () => {
+    const s = scene();
+    const f = s.frame("Kapitel");
+    expect(() => grid(f, ["A"], { spalten: 1.5, typo: "kernbegriff" })).toThrow(/spalten >= 1/);
+  });
 });
