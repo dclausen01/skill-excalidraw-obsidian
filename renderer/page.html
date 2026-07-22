@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Excalidraw-Renderer</title>
+    <script>
+      // MUSS vor dem Bündel stehen. Ohne diese Zeile löst Excalidraw seine
+      // Schrift-URIs gegen https://esm.sh/ auf — der Renderer wäre netzabhängig
+      // und würde die lokalen Schriften nie prüfen.
+      window.EXCALIDRAW_ASSET_PATH = "/";
+    </script>
+    <script src="./bundle.js"></script>
+  </head>
+  <body></body>
+</html>
