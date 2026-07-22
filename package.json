@@ -13,7 +13,8 @@
     "test": "vitest run",
     "doctor": "node bin/doctor.mjs",
     "sync-fonts": "node scripts/sync-fonts.mjs",
-    "build-renderer": "node scripts/build-renderer.mjs"
+    "build-renderer": "node scripts/build-renderer.mjs",
+    "update-golden": "node scripts/update-golden.mjs"
   },
   "repository": {
     "type": "git",
