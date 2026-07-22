@@ -13,16 +13,18 @@ describe("fixedPointFor", () => {
 describe("edgeMidpoint", () => {
   const box = { x: 100, y: 200, width: 80, height: 40 };
   it("rechts ist die Mitte der rechten Kante", () => {
-    // toBeCloseTo wegen der 0.5001-Verschiebung (aus echter Vault-Datei, Spec 2.4.1)
+    // Die 0.5001-Verschiebung ist load-bearing: sie deckt den Zeichenpunkt mit dem Anker
+    // (0.5001 * 40 = 20.004, daher y = 220.004)
     const [x, y] = edgeMidpoint(box, "rechts");
-    expect(x).toBeCloseTo(180, 1);
-    expect(y).toBeCloseTo(220, 1);
+    expect(x).toBe(180);
+    expect(y).toBeCloseTo(220.004, 5);
   });
   it("oben ist die Mitte der oberen Kante", () => {
-    // toBeCloseTo wegen der 0.5001-Verschiebung (aus echter Vault-Datei, Spec 2.4.1)
+    // Die 0.5001-Verschiebung ist load-bearing: sie deckt den Zeichenpunkt mit dem Anker
+    // (0.5001 * 80 = 40.008, daher x = 140.008)
     const [x, y] = edgeMidpoint(box, "oben");
-    expect(x).toBeCloseTo(140, 1);
-    expect(y).toBeCloseTo(200, 1);
+    expect(x).toBeCloseTo(140.008, 5);
+    expect(y).toBe(200);
   });
 });
 
@@ -41,6 +43,12 @@ describe("chooseSides", () => {
     // Größerer horizontaler als vertikaler Abstand → horizontale Kanten
     const a = { x: 0, y: 0, width: 100, height: 100 };
     const b = { x: 400, y: 120, width: 100, height: 100 };
+    expect(chooseSides(a, b)).toEqual({ start: "rechts", end: "links" });
+  });
+  it("wählt horizontale Kanten bei exakt diagonaler Lage (dx === dy)", () => {
+    // Zentren: A bei (50, 50), B bei (350, 350) → dx = dy = 300
+    const a = { x: 0, y: 0, width: 100, height: 100 };
+    const b = { x: 300, y: 300, width: 100, height: 100 };
     expect(chooseSides(a, b)).toEqual({ start: "rechts", end: "links" });
   });
 });
