@@ -43,4 +43,15 @@ describe("checkArrowBindings", () => {
     box.boundElements = [...(box.boundElements ?? []), { id: "yyyyyyyy", type: "arrow" }];
     expect(pruefe(alle).some((b) => b.regel === "pfeilbindung")).toBe(true);
   });
+
+  it("meldet einen entarteten Pfeil, dessen Kanten exakt zusammenfallen", () => {
+    const s = scene();
+    const f = s.frame("Kapitel");
+    // Zugewandte Kanten liegen exakt aufeinander: A endet bei x=300, B beginnt dort.
+    const a = f.box("A", { rolle: "kern", typo: "kernbegriff", x: 100, y: 100, breite: 200, hoehe: 100 });
+    const b = f.box("B", { rolle: "kern", typo: "kernbegriff", x: 300, y: 100, breite: 200, hoehe: 100 });
+    s.connect(a, b);
+    const befunde = pruefe(s.elements());
+    expect(befunde.some((be) => be.regel === "pfeilentartet" && be.schwere === "warnung")).toBe(true);
+  });
 });
