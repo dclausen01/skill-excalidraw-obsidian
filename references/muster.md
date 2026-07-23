@@ -15,7 +15,7 @@ Welcher Diagrammtyp mit welchem Werkzeug. Muster lassen sich in einem Frame komb
 | **Prozesskette** | `timeline(frame, schritte, { szene })` | Ablauf, Schritt für Schritt mit Pfeilen |
 | **Zeitstrahl** | `row(frame, stationen, { abstand: "weit" })`, optional mit `connect` | zeitliche Abfolge |
 | **Vierfelder-Matrix** | `grid(frame, felder, { spalten: 2 })` | Gegenüberstellung entlang zweier Achsen |
-| **Tabelle zum Ausfüllen** | pro Spalte ein Kopf-Kasten (`rolle: "frage"`) + `column(frame, stichworte, { abstand: "weit" })` darunter | Stichworte vorgeben, Leerraum zum Handschriftlichen (Schüler füllen selbst) |
+| **Tabelle zum Ausfüllen** | `tabelle(frame, kopf, { zeilen })` — Spaltenköpfe + leere Zeilen mit Spalten-Trennlinien | Stichworte vorgeben, Leerraum zum Handschriftlichen |
 | **These – Antithese – Synthese** | drei Kästen (`kern` / `kontra` / `ergebnis`), mit `connect` verbunden | dialektische Figur |
 | **Schichtenmodell** | `column(frame, schichten, { abstand: "eng" })` | aufeinander aufbauende Ebenen |
 | **Zwei Stämme auf ein Zentrum** | drei Kästen von Hand platziert (links / Mitte / rechts), zwei `connect` aufs Zentrum mit Label | „X und Y ergeben Z" (z. B. Sinnlichkeit + Verstand → Erkenntnis) |
@@ -37,4 +37,4 @@ Ein Board kann an den Vault binden (Details und Signaturen in `references/builde
 
 ## Noch nicht baubar
 
-Mengenkreise (Venn), Dreiecke (z. B. Gewaltdreieck), Programmablaufpläne, sichtbare Trennlinien und Tabellenrahmen. Wenn ein Board das braucht, ehrlich sagen — nicht behelfsmäßig mit falschen Primitiven nachbauen.
+Mengenkreise (Venn), Dreiecke (z. B. Gewaltdreieck), Programmablaufpläne. Wenn ein Board das braucht, ehrlich sagen — nicht behelfsmäßig mit falschen Primitiven nachbauen.
