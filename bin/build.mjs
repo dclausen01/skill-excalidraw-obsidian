@@ -48,7 +48,7 @@ if (!kennzeichen.has("--skip-render")) {
   try {
     const renderer = await createRenderer();
     try {
-      const szenenObjekt = sceneToObject(szene);
+      const szenenObjekt = sceneToObject(szene, { mitBilddaten: true });
       fs.writeFileSync(path.join(ziel, "uebersicht.png"), await renderer.renderBoard(szenenObjekt, { breite: 1920 }));
       console.log(`\nL0 Übersicht: ${path.join(ziel, "uebersicht.png")}`);
 
