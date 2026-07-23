@@ -71,10 +71,10 @@ describe("validateScene", () => {
     // Wand von [schema]-Fehlern liefern, die wie ein Defekt aussieht.
     const s = gueltigeSzene();
     const alle = s.elements();
-    alle.push({ ...alle[0], id: "fremdes-element", type: "line" });
+    alle.push({ ...alle[0], id: "fremdes-element", type: "freedraw" });
     const ergebnis = validateScene(alle, { registry: s.registry, zoomL0: 1 });
     expect(ergebnis.ausserhalbDesSkills).toEqual({
-      fremdeTypen: ["line"], fremdeSchriften: [], fehlendeKonventionsfelder: [],
+      fremdeTypen: ["freedraw"], fremdeSchriften: [], fehlendeKonventionsfelder: [],
     });
   });
 

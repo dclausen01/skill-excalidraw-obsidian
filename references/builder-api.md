@@ -64,6 +64,21 @@ f.transclusion("[[Mängelwesen#Definition]]", { x: 700, y: 300, breite: 600 });
 - **`f.image(pfad, { x?, y?, breite? })`**: `pfad` relativ zum Vault (`/Users/dennis/Tafelbilder`) oder absolut. **Das Bild muss bereits im Vault liegen** — der Validator prüft hart (Datei existiert, Inhalt per SHA-1). Höhe folgt dem echten Seitenverhältnis; ohne `breite` eine Standardbreite. Formate: png, jpg, jpeg, gif, webp (sonst Fehler).
 - **`f.transclusion(verweis, { x?, y?, breite? })`**: bettet einen Notiz-Abschnitt ein. **Bekannte Grenze:** die Höhe ist beim Bauen nur ein Platzhalter (der echte Inhalt ist unbekannt) und kann beim ersten Öffnen in Obsidian nachrutschen — der Transklusion **eigenen Raum** geben, nicht in dichte Komposition setzen.
 
+## Linien und Tabellen
+
+```js
+// Freie Linie (offen). Punkte frame-relativ. Standard: dünnes kontext-Grau.
+f.line([[600, 200], [600, 800]]);                 // senkrechte Trennlinie
+f.line([[0, 260], [300, 260], [150, 0]], { geschlossen: true });  // geschlossener Umriss
+
+// Ausfüll-/Vergleichstabelle
+tabelle(f, ["Kategorie", "Erklärung"], { zeilen: 4, x: 100, y: 200, breite: 900 });
+tabelle(f, ["Pro", "Contra"], { inhalt: [["…", "…"], ["", ""]], x: 100, y: 200, breite: 900 });
+```
+
+- `f.line(punkte, { rolle?, geschlossen?, strichbreite? })` — punktbasiert (≥ 2 Punkte), keine Füllung, kein Text. `geschlossen: true` schließt den Umriss.
+- `tabelle(frame, kopf, { zeilen? | inhalt?, x, y, breite, zeilenhoehe?, rahmen? })` — Kopf Pflicht; genau `zeilen: N` (leer) **oder** `inhalt` (2D-Array, `""` = Ausfüllfeld). `rahmen`: `"spalten"` (Standard, nur Spalten-Trennlinien + Kopflinie) oder `"gitter"`. Rückgabe `{ kopf, zellen, linien }`.
+
 ## Layout-Helfer — platzieren selbst
 
 Jeder Helfer bekommt den Frame, die Inhalte als **Strings** und Optionen, berechnet die Positionen, ruft intern `frame.box()` auf und gibt die platzierten Formen zurück. Gemeinsame Optionen: `{ typ = "box", rolle, typo, abstand = "normal", x = 0, y = 0 }` (`typ` auch `"ellipse"`/`"diamond"`).

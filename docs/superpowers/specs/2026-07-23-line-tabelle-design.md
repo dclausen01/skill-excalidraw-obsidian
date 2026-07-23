@@ -92,7 +92,7 @@ tabelle(frame, kopf, { zeilen?, inhalt?, x = 0, y = 0, breite, zeilenhoehe = 100
 ### 3.2 Layout
 
 - Frame-relative Platzierung ab `(x, y)`. Spaltenbreite `breite / n`.
-- **Kopfzeile:** je Spalte ein Text in `rolle: "frage"` (wie die Spaltenköpfe im Musterkatalog), linksbündig mit kleinem Innenabstand, oben in der Tabelle. Kopfhöhe = Texthöhe + Polsterung.
+- **Kopfzeile:** je Spalte ein Text in **größerer Typo** (`kernbegriff`), linksbündig mit kleinem Innenabstand, oben in der Tabelle. Kopfhöhe = Texthöhe + Polsterung. (Die Hierarchie kommt über die Schriftgröße, nicht über eine Farbrolle — `textElement` kennt kein `rolle`-Argument; die Köpfe heben sich durch `kernbegriff` gegenüber den `standard`-Zellen ab.)
 - **Körperzeilen:** je Zeile `zeilenhoehe` hoch. Gefüllte Zellen (`inhalt`) als Text in Standard-Typo, linksbündig mit Innenabstand; leere Zellen bleiben leer (nur die Trennlinien strukturieren — luftig, viel Schreibraum).
 - **Trennlinien (`line`, Rolle `kontext`):**
   - senkrecht: an jeder inneren Spaltengrenze, von Tabellenoberkante bis -unterkante (`n − 1` Linien);
