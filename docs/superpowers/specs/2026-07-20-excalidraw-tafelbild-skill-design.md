@@ -203,6 +203,31 @@ eigenen `x`/`y`), `lastCommittedPoint: null`, `startArrowhead`, `endArrowhead: "
 
 Bildelemente führen zusätzlich `status: "pending"`, `scale: [1, 1]` und `crop: null`.
 
+#### 2.5.1 Durch Spike verifiziert (2026-07-23)
+
+Vor der Planung von 3c an einem echten Vault-Bild geprüft.
+
+**Der Renderer zeigt ein Bild nur, wenn `files` die Bilddaten trägt.** Excalidraws
+`exportToBlob` kennt Obsidians `## Embedded Files`-Sektion nicht — es zieht das Bild aus
+dem Szenen-`files`-Objekt, `files[fileId] = { mimeType, id, dataURL, … }`. Ein Bildelement
+mit gesetztem `fileId`, aber leerem `files` rendert als leerer Rahmen.
+
+Daraus folgt der **zweigeteilte Umgang mit `files`**:
+- **Geschriebene Datei:** `files` bleibt `{}`, das Bild wird über `## Embedded Files`
+  (`<sha1>: [[Bild.png]]`) aufgelöst. Obsidian befüllt `files` beim Öffnen selbst.
+- **Render-Pfad:** `files` wird mit der base64-`dataURL` des Bildes befüllt, damit der
+  Renderer als Zeuge das Bild tatsächlich zeigt.
+
+Belegt: Ein `image`-Element mit befülltem `files` rendert das Bild vollständig, im korrekten
+Seitenverhältnis (getestet 276 × 417 → 600 × 906 hochkant).
+
+**Bildmaße** kommen aus `image-size` (v2, `imageSize(buffer)` → `{ width, height }`), damit
+das Seitenverhältnis stimmt. Kleine neue Dev-Abhängigkeit.
+
+**Datenschutz:** Bilder aus dem Vault können personenbezogene Daten enthalten (das
+Spike-Testbild war zufällig eine Klassenliste). Golden-Tests nutzen deshalb ein neutrales,
+im Repo erzeugtes Bild, nie ein Vault-Bild.
+
 ### 2.6 Weitere Elementfelder
 
 - `index`: fraktionaler Index für die z-Reihenfolge (`"a0"`, `"a1"`, …), muss aufsteigend sein.
