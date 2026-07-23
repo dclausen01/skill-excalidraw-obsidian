@@ -674,6 +674,35 @@ Referenzdokumente, Aufräumarbeiten in `CLAUDE.md`.
 
 Die Reihenfolge folgt dem Risiko, nicht dem Nutzen: Was scheitern kann, kommt zuerst.
 
+### 13.1 Erkenntnisse aus dem ersten Praxistest (2026-07-22)
+
+Nach Stufe 3b hat Dennis den Skill an einer echten Stunde erprobt: „Kants
+Kategoriensystem" als ein Board mit zwei Zoom-Bereichen (instruktive Einordnung +
+Kategorientafel zum Ausfüllen), gebaut über den vollen Ablauf (Struktur-Gate → Skript →
+validieren → rendern → in den Vault). Beide Frames wurden gerendert, vom Modell angesehen
+und von Dennis in Obsidian abgenommen: Beamer-Lesbarkeit, Zoom-Effekt und
+Weiterschreiben-per-Stift alle „perfekt/sehr gut".
+
+Zwei konkrete Signale aus dem realen Einsatz:
+
+1. **Wunsch: Trennlinien / echte Tabelle.** Die Kategorientafel aus freistehenden Kästen
+   funktioniert, aber Dennis hätte vertikale Trennlinien zwischen den Spalten gewünscht.
+   Der Skill hat dafür bislang **kein Primitiv** — es gibt Text-tragende Formen
+   (`rectangle`/`ellipse`/`diamond`) und Pfeile, aber keine schlichte Linie oder ein
+   dekoratives Rechteck ohne Text. Kandidat für ein kleines neues Primitiv (`line`) und/oder
+   einen `tabelle`-Helfer mit sichtbaren Zellenrahmen.
+2. **Handplatzierung bei „zwei Stämme zeigen auf ein Zentrum".** Die Layout-Helfer decken
+   Reihe/Spalte/Raster/Radial/Zeitstrahl ab; die symmetrische Zwei-Stämme-Figur musste
+   von Hand positioniert werden. Kein Mangel, aber ein Hinweis, welche Kompositionsmuster
+   im Alltag zusätzlich lohnen könnten.
+
+**Wichtigster Schluss:** Der Test lief nur, weil das Modell das Szenen-Skript von Hand
+schrieb und `bin/build.mjs` aufrief. Dennis kann den Skill **noch nicht selbst aufrufen** —
+es fehlt die `SKILL.md`. Genau der reale Einsatz erzeugt aber die wertvollste Rückmeldung
+(dieser Test hat es gezeigt). Deshalb ist zu erwägen, die `SKILL.md` aus Stufe 4
+**vorzuziehen**, damit Dennis den Skill in der eigenen Vorbereitung nutzt, bevor die
+restlichen Features (3c Obsidian-Anbindung, Spezialkomponenten) gebaut werden.
+
 ---
 
 ## 14. Offene Verifikationspunkte
