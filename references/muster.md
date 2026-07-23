@@ -27,6 +27,14 @@ Welcher Diagrammtyp mit welchem Werkzeug. Muster lassen sich in einem Frame komb
 - **Platz zum Weiterschreiben lassen.** Es sind Tafelbilder; Dennis ergänzt live per Stift. Lieber luftig als vollgestopft — großzügige Abstände, freie Flächen.
 - **Farbe ist Betonung, nicht Dekoration.** Siehe `references/hausstil.md`.
 
+## Obsidian-Anbindung
+
+Ein Board kann an den Vault binden (Details und Signaturen in `references/builder-api.md`):
+
+- **Notiz-Link** an einer Form: `f.box("…", { link: "[[Notiz]]" })` — in Obsidian anklickbar. Gut, um einen Begriff auf die vertiefende Notiz zu führen.
+- **Eingebettetes Bild**: `f.image("Anhänge/bild.png", { breite })` — das Bild muss schon im Vault liegen. Für Anschauungsmaterial (Foto, Grafik, gescanntes Schaubild).
+- **Transklusion**: `f.transclusion("[[Notiz#Abschnitt]]", { breite })` — zieht einen Notiz-Abschnitt ins Board. Eigenen Raum geben (die Höhe ist erst ein Platzhalter).
+
 ## Noch nicht baubar
 
-Mengenkreise (Venn), Dreiecke (z. B. Gewaltdreieck), Programmablaufpläne, sichtbare Trennlinien und Tabellenrahmen, eingebettete Bilder, klickbare Notiz-Links, Transklusionen. Wenn ein Board das braucht, ehrlich sagen — nicht behelfsmäßig mit falschen Primitiven nachbauen.
+Mengenkreise (Venn), Dreiecke (z. B. Gewaltdreieck), Programmablaufpläne, sichtbare Trennlinien und Tabellenrahmen. Wenn ein Board das braucht, ehrlich sagen — nicht behelfsmäßig mit falschen Primitiven nachbauen.

@@ -44,6 +44,26 @@ s.connect(ursache, wirkung, { label: "führt zu" });
 
 Der Pfeil bleibt in Obsidian verbunden, wenn Dennis eine Form verschiebt. **Die Formen müssen getrennt liegen** — überlappende oder bündige Formen ergeben einen entarteten Pfeil (Warnung).
 
+## Obsidian-Anbindung — Links, Bilder, Transklusion
+
+Bindet ein Board an den Vault. In Obsidian klickbar bzw. eingebettet; im Rendering ist der Link nicht sichtbar (aber gesetzt), Bilder erscheinen.
+
+```js
+// Klickbarer Notiz-Link an einer Form — als link-Option
+f.box("Zur Vertiefung", { rolle: "kern", typo: "kernbegriff", x: 120, y: 300,
+  link: "[[Der Mensch – ein Mängelwesen]]" });
+
+// Eingebettetes Vault-Bild
+f.image("Anhänge/schaubild.png", { x: 700, y: 300, breite: 400 });
+
+// Transklusion eines Notiz-Abschnitts
+f.transclusion("[[Mängelwesen#Definition]]", { x: 700, y: 300, breite: 600 });
+```
+
+- **`link`** (Option an `f.box`/`f.ellipse`/`f.diamond`): `"[[Notizname]]"`, optional mit `#Abschnitt`/`|Alias`. Der Validator **warnt** (blockiert nicht), wenn die Notiz nicht im Vault existiert — bewusst, damit ein Board auf eine erst noch anzulegende Notiz zeigen darf.
+- **`f.image(pfad, { x?, y?, breite? })`**: `pfad` relativ zum Vault (`/Users/dennis/Tafelbilder`) oder absolut. **Das Bild muss bereits im Vault liegen** — der Validator prüft hart (Datei existiert, Inhalt per SHA-1). Höhe folgt dem echten Seitenverhältnis; ohne `breite` eine Standardbreite. Formate: png, jpg, jpeg, gif, webp (sonst Fehler).
+- **`f.transclusion(verweis, { x?, y?, breite? })`**: bettet einen Notiz-Abschnitt ein. **Bekannte Grenze:** die Höhe ist beim Bauen nur ein Platzhalter (der echte Inhalt ist unbekannt) und kann beim ersten Öffnen in Obsidian nachrutschen — der Transklusion **eigenen Raum** geben, nicht in dichte Komposition setzen.
+
 ## Layout-Helfer — platzieren selbst
 
 Jeder Helfer bekommt den Frame, die Inhalte als **Strings** und Optionen, berechnet die Positionen, ruft intern `frame.box()` auf und gibt die platzierten Formen zurück. Gemeinsame Optionen: `{ typ = "box", rolle, typo, abstand = "normal", x = 0, y = 0 }` (`typ` auch `"ellipse"`/`"diamond"`).
