@@ -29,17 +29,44 @@ f.line(punkte, { rolle = "kontext", geschlossen = false, strichbreite? })
 
 `f.line` liegt wie die übrigen Form-Methoden auf dem Frame und platziert frame-relativ.
 
-### 2.2 Elementstruktur (durch Spike zu bestätigen)
+### 2.2 Elementstruktur (Spike bestätigt, 2026-07-23)
 
-Umgesetzt als Excalidraw-`line`-Element (`type: "line"`), punktbasiert: `x`/`y` = Position des ersten Punkts, `points` = Punkte **relativ** zu `x`/`y` (erster Punkt `[0,0]`), `width`/`height` = Bounding-Box. `backgroundColor: "transparent"`, `strokeColor` aus der Rolle. `startBinding`/`endBinding`/`startArrowhead`/`endArrowhead: null`, `lastCommittedPoint: null`.
+Umgesetzt als Excalidraw-`line`-Element (`type: "line"`), punktbasiert wie `arrowElement` (Vorlage in `lib/connect.js`), aber ohne Pfeilspitzen und Bindungen. Der Spike (`scratchpad/line-spike.mjs`, gerendert und angesehen) hat bestätigt:
 
-**Der erste Implementierungsschritt ist ein Wegwerf-Spike** (wie der Pfeil-Spike in Stufe 3a und der Bild-Spike in 3c), der gegen ein echtes Rendering festnagelt:
+- **Offene Linie rendert sauber.** Felder wie beim Pfeil, mit den Abweichungen unten.
+- **Geschlossene Form über Loopback:** den ersten Punkt zusätzlich als **letzten** Punkt anhängen (`points: [p0, p1, p2, p0]`). Damit rendert Excalidraw 0.18.1 einen geschlossenen Umriss und füllt ihn (Füllung im Dreieck-Zyklus, hier nicht genutzt).
+- **Das `polygon: true`-Flag wird NICHT beachtet** — eine nicht-geloopte Punktfolge mit `polygon: true` rendert als offener Pfad ohne Schließen/Füllung. Also **immer Loopback**, kein Flag.
 
-- die genaue Feldliste eines `line`-Elements in Excalidraw 0.18.1 (offen);
-- wie ein **geschlossenes** Polygon dargestellt wird (letzter Punkt = erster Punkt, oder ein `polygon`-Flag — beides kommt in Excalidraw-Versionen vor);
-- dass beides sauber rendert.
+Konkrete Feldwerte des `line`-Elements (abgeleitet aus `arrowElement`):
 
-Die Erkenntnisse werden in diesen Spec-Abschnitt zurückgeschrieben, bevor die eigentliche Fabrik entsteht.
+```js
+{
+  id,                          // elementId(`line:<schlüssel>`, ordnung)
+  type: "line",
+  x, y,                        // Position des ersten Punkts (absolut, nach frame-relativer Umrechnung)
+  width: <bbox-Breite>, height: <bbox-Höhe>,   // aus den Punkten (max−min je Achse)
+  angle: 0,
+  strokeColor: <Rolle.strich>, // Standard kontext "#868e96"
+  backgroundColor: "transparent",
+  fillStyle: STRICH.fillStyle, // "solid" (irrelevant ohne Füllung)
+  strokeWidth: strichbreite ?? STRICH.strokeWidth,  // 2
+  strokeStyle: "solid",
+  roughness: STRICH.roughness, // 1 — die leichte Handzeichnung passt zum Hausstil
+  opacity: 100,
+  groupIds: [],
+  frameId,                     // Frame-Zugehörigkeit (wie andere Kinder)
+  index: "a0",                 // von scene.elements() überschrieben
+  roundness: null,             // gerade Segmente, keine Rundung
+  seed: seedFor(id), version: 1, versionNonce: versionNonceFor(id),
+  isDeleted: false, boundElements: [], updated: 1, link: null, locked: false,
+  points,                      // [[0,0], [dx1,dy1], …]; geschlossen: erster Punkt am Ende wiederholt
+  lastCommittedPoint: null,
+  startArrowhead: null, endArrowhead: null,
+  startBinding: null, endBinding: null,
+}
+```
+
+`points` sind Offsets vom eigenen `x`/`y`; der erste Punkt liegt im Ursprung `[0,0]`. `x`/`y` = min-Ecke der absoluten Punkte, `points` entsprechend verschoben, `width`/`height` = Spannweite.
 
 ### 2.3 Determinismus
 
