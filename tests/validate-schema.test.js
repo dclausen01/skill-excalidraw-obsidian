@@ -37,10 +37,10 @@ describe("checkSchema", () => {
   });
 
   it("meldet einen unbekannten Elementtyp", () => {
-    // arrow ist seit Stufe 3a ein bekannter Typ (siehe ZUSATZFELDER) — line bleibt
-    // unbekannt und eignet sich weiterhin als Beispiel.
-    const befunde = pruefe([basis({ type: "line" })]);
-    expect(befunde.some((b) => b.meldung.includes("line"))).toBe(true);
+    // arrow ist seit Stufe 3a ein bekannter Typ (siehe ZUSATZFELDER) — freedraw bleibt
+    // unbekannt und eignet sich als Beispiel.
+    const befunde = pruefe([basis({ type: "freedraw" })]);
+    expect(befunde.some((b) => b.meldung.includes("freedraw"))).toBe(true);
   });
 
   it("verlangt bei Text die Textfelder", () => {
@@ -177,9 +177,9 @@ describe("detectOutOfScope", () => {
   });
 
   it("nennt einen fremden Elementtyp einmal, unabhängig von der Anzahl der Vorkommen", () => {
-    const linien = [basis({ type: "line", id: "1" }), basis({ type: "line", id: "2" })];
-    expect(detectOutOfScope(linien)).toEqual({
-      fremdeTypen: ["line"], fremdeSchriften: [], fehlendeKonventionsfelder: [],
+    const freihandzeich = [basis({ type: "freedraw", id: "1" }), basis({ type: "freedraw", id: "2" })];
+    expect(detectOutOfScope(freihandzeich)).toEqual({
+      fremdeTypen: ["freedraw"], fremdeSchriften: [], fehlendeKonventionsfelder: [],
     });
   });
 
@@ -187,10 +187,10 @@ describe("detectOutOfScope", () => {
     const gemischt = [
       basis({ type: "freedraw", id: "1" }),
       basis({ type: "rectangle", id: "2" }),
-      basis({ type: "line", id: "3" }),
+      basis({ type: "embeddable", id: "3" }),
       basis({ type: "freedraw", id: "4" }),
     ];
-    expect(detectOutOfScope(gemischt).fremdeTypen).toEqual(["freedraw", "line"]);
+    expect(detectOutOfScope(gemischt).fremdeTypen).toEqual(["freedraw", "embeddable"]);
   });
 
   it("nennt eine fremde fontFamily wie Virgil (1)", () => {
@@ -210,9 +210,9 @@ describe("detectOutOfScope", () => {
       fontSize: 20, fontFamily: 1, lineHeight: 1.25, textAlign: "left",
       verticalAlign: "top", containerId: null, autoResize: true, hasTextLink: false,
     });
-    const linie = basis({ type: "line", id: "1" });
-    expect(detectOutOfScope([linie, virgil])).toEqual({
-      fremdeTypen: ["line"], fremdeSchriften: [1], fehlendeKonventionsfelder: [],
+    const freihand = basis({ type: "freedraw", id: "1" });
+    expect(detectOutOfScope([freihand, virgil])).toEqual({
+      fremdeTypen: ["freedraw"], fremdeSchriften: [1], fehlendeKonventionsfelder: [],
     });
   });
 
@@ -249,10 +249,10 @@ describe("detectOutOfScope", () => {
   });
 
   it("prüft Konventionsfelder nicht bei fremden Elementtypen (dort sind sie ohnehin nicht definiert)", () => {
-    const linie = basis({ type: "line", id: "1" });
-    delete linie.link; // irrelevant: line ist schon über den Typ fremd
-    expect(detectOutOfScope([linie])).toEqual({
-      fremdeTypen: ["line"], fremdeSchriften: [], fehlendeKonventionsfelder: [],
+    const freihand = basis({ type: "freedraw", id: "1" });
+    delete freihand.link; // irrelevant: freedraw ist schon über den Typ fremd
+    expect(detectOutOfScope([freihand])).toEqual({
+      fremdeTypen: ["freedraw"], fremdeSchriften: [], fehlendeKonventionsfelder: [],
     });
   });
 });

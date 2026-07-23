@@ -58,12 +58,12 @@ describe("bin/validate.mjs", () => {
 
   it("stellt bei fremden Elementtypen einen Scope-Hinweis voran und nennt den Typ", () => {
     const alle = gueltigeSzene().elements();
-    alle.push({ ...alle[0], id: "fremdes-element", type: "line" });
+    alle.push({ ...alle[0], id: "fremdes-element", type: "freedraw" });
     const pfad = schreibeDatei(tmpDir, "fremd.excalidraw.md", alle);
     const { stdout } = fuehreAus(pfad);
 
     expect(stdout).toContain("Hinweis:");
-    expect(stdout).toContain("line");
+    expect(stdout).toContain("freedraw");
     expect(stdout).toContain("stammt also nicht aus diesem Skill");
   });
 
@@ -71,7 +71,7 @@ describe("bin/validate.mjs", () => {
     // Exit-Code 2 ist ein eigenes Signal: "kann ich nicht beurteilen", nicht "ist kaputt".
     // Automatisierung soll das unterscheiden können.
     const alle = gueltigeSzene().elements();
-    alle.push({ ...alle[0], id: "fremdes-element", type: "line" });
+    alle.push({ ...alle[0], id: "fremdes-element", type: "freedraw" });
     const pfad = schreibeDatei(tmpDir, "fremd-exit.excalidraw.md", alle);
     const { exitCode } = fuehreAus(pfad);
     expect(exitCode).toBe(2);
