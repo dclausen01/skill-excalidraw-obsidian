@@ -26,7 +26,8 @@ Erzeugt gültige `.excalidraw.md`-Boards für Dennis' Obsidian-Vault mit einer g
 
 - **Ein Board oder ein Ablauf?** Frag beim Struktur-Gate. *Ein Board* = eine Fläche (ein oder mehrere nebeneinanderliegende Frames als Zoom-Bereiche), Prezi-artig. *Ablauf* = Kapitel-Frames, mit `s.sequence(...)` durch nummerierte Übergänge verkettet, für den Stundenverlauf. Im Zweifel: ein Board.
 - **Welche Anordnung?** `references/muster.md` ordnet Diagrammtyp → Layout-Helfer zu (Mindmap → `radial`, Prozesskette → `timeline`, Vierfelder → `grid`, Reihe/Spalte → `row`/`column`).
-- **Was der Skill (noch) nicht kann:** klickbare Notiz-Links, eingebettete Bilder, Transklusionen, Mengenkreise, Dreiecke, Programmablaufpläne, reine Trennlinien/Tabellenrahmen. Wenn Dennis das braucht, sag es ehrlich, statt es zu behelfsmäßig nachzubauen.
+- **Obsidian-Anbindung** (siehe `references/builder-api.md`): klickbare Notiz-Links (`link`-Option), eingebettete Vault-Bilder (`f.image`), Transklusionen (`f.transclusion`) sind baubar.
+- **Was der Skill (noch) nicht kann:** Mengenkreise/Venn, Dreiecke, Programmablaufpläne, reine Trennlinien/Tabellenrahmen. Wenn Dennis das braucht, sag es ehrlich, statt es zu behelfsmäßig nachzubauen.
 
 ## Red Flags — STOP
 
