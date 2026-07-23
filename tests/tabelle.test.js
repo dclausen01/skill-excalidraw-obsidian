@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { scene } from "../lib/scene.js";
 import { tabelle } from "../lib/layout.js";
+import { sceneToMarkdown } from "../lib/document.js";
+import { validateScene } from "../lib/validate/index.js";
 
 function frame() {
   const s = scene();
@@ -58,5 +60,15 @@ describe("tabelle", () => {
   it("wirft, wenn eine inhalt-Zeile nicht zur Spaltenzahl passt", () => {
     const { f } = frame();
     expect(() => tabelle(f, ["A", "B"], { inhalt: [["x"]], x: 0, y: 0, breite: 600 })).toThrow();
+  });
+
+  it("eine ganze Tabelle validiert ohne Befund (neuer line-Typ erzeugt keine Falschwarnung)", () => {
+    const s = scene();
+    const f = s.frame("Kategorientafel");
+    f.text("Die Kategorien nach Kant", { typo: "frametitel", x: 60, y: 55 });
+    tabelle(f, ["Kategorie", "Erklärung", "Beispiel"], { zeilen: 4, x: 120, y: 220, breite: 1600, zeilenhoehe: 120 });
+    const md = sceneToMarkdown(s, { pluginVersion: "x" });
+    const { findings } = validateScene(s.elements(), { markdown: md });
+    expect(findings).toEqual([]);
   });
 });
