@@ -37,7 +37,7 @@ describe("Golden-Renderings", () => {
       // würde readPluginVersion() aber das Manifest im (maschinenlokalen) Vault-Pfad
       // lesen — das pinnen wir hier weg, damit der Test auf jeder Maschine portabel
       // läuft und nicht abstürzt, wenn der Vault fehlt.
-      const szenenObjekt = sceneToObject(szene, { pluginVersion: "golden" });
+      const szenenObjekt = sceneToObject(szene, { pluginVersion: "golden", mitBilddaten: true });
 
       const jetzt = await renderer.renderBoard(szenenObjekt, { breite: 1200 });
       const referenz = fs.readFileSync(path.join(GOLDEN, `${name}.png`));

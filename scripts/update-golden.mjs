@@ -16,7 +16,7 @@ try {
     // würde readPluginVersion() aber das Manifest im (maschinenlokalen) Vault-Pfad
     // lesen — das pinnen wir hier weg, damit die Golden-Erzeugung auf jeder
     // Maschine portabel läuft und nicht abstürzt, wenn der Vault fehlt.
-    const szenenObjekt = sceneToObject(szene, { pluginVersion: "golden" });
+    const szenenObjekt = sceneToObject(szene, { pluginVersion: "golden", mitBilddaten: true });
 
     const name = path.basename(datei, ".mjs");
     const png = await renderer.renderBoard(szenenObjekt, { breite: 1200 });
