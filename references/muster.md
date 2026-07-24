@@ -19,6 +19,7 @@ Welcher Diagrammtyp mit welchem Werkzeug. Muster lassen sich in einem Frame komb
 | **These – Antithese – Synthese** | drei Kästen (`kern` / `kontra` / `ergebnis`), mit `connect` verbunden | dialektische Figur |
 | **Schichtenmodell** | `column(frame, schichten, { abstand: "eng" })` | aufeinander aufbauende Ebenen |
 | **Zwei Stämme auf ein Zentrum** | drei Kästen von Hand platziert (links / Mitte / rechts), zwei `connect` aufs Zentrum mit Label | „X und Y ergeben Z" (z. B. Sinnlichkeit + Verstand → Erkenntnis) |
+| **Dreieck / Gewaltdreieck** | `dreieck(frame, [oben, links, rechts], { breite })` | drei Pole/Begriffe an den Ecken (z. B. Galtung) |
 
 ## Grundsätze
 
@@ -37,4 +38,4 @@ Ein Board kann an den Vault binden (Details und Signaturen in `references/builde
 
 ## Noch nicht baubar
 
-Mengenkreise (Venn), Dreiecke (z. B. Gewaltdreieck), Programmablaufpläne. Wenn ein Board das braucht, ehrlich sagen — nicht behelfsmäßig mit falschen Primitiven nachbauen.
+Mengenkreise (Venn), Programmablaufpläne. Wenn ein Board das braucht, ehrlich sagen — nicht behelfsmäßig mit falschen Primitiven nachbauen.
