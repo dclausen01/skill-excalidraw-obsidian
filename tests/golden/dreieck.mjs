@@ -6,6 +6,6 @@ const s = scene();
 const f = s.frame("Gewaltdreieck");
 f.text("Das Gewaltdreieck nach Galtung", { typo: "frametitel", x: 60, y: 55 });
 dreieck(f, ["personelle Gewalt", "strukturelle Gewalt", "kulturelle Gewalt"],
-  { x: 560, y: 320, breite: 800 });
+  { x: 580, y: 300, breite: 760 });
 
 export default s;

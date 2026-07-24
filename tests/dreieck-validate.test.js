@@ -1,19 +1,16 @@
 // tests/dreieck-validate.test.js
+// Validiert die TATSÄCHLICH ausgelieferte Golden-Referenzszene (eine Quelle der
+// Wahrheit) — so kann die Referenz nie von ihrer "validiert sauber"-Zusage
+// abweichen (Schlussprüfungs-Fund: Golden und Test hatten verschiedene Parameter).
 import { describe, it, expect } from "vitest";
-import { scene } from "../lib/scene.js";
-import { dreieck } from "../lib/shapes/dreieck.js";
 import { sceneToMarkdown } from "../lib/document.js";
 import { validateScene } from "../lib/validate/index.js";
+import gewaltdreieck from "./golden/dreieck.mjs";
 
 describe("Dreieck validiert sauber", () => {
-  it("erzeugt keinen Befund (neue Form → keine Falschwarnung)", () => {
-    const s = scene();
-    const f = s.frame("Gewaltdreieck");
-    f.text("Das Gewaltdreieck nach Galtung", { typo: "frametitel", x: 60, y: 55 });
-    dreieck(f, ["personelle Gewalt", "strukturelle Gewalt", "kulturelle Gewalt"],
-      { x: 600, y: 300, breite: 700 });
-    const md = sceneToMarkdown(s, { pluginVersion: "x" });
-    const { findings } = validateScene(s.elements(), { markdown: md });
+  it("die ausgelieferte Gewaltdreieck-Golden erzeugt keinen Befund", () => {
+    const md = sceneToMarkdown(gewaltdreieck, { pluginVersion: "x" });
+    const { findings } = validateScene(gewaltdreieck.elements(), { markdown: md });
     expect(findings).toEqual([]);
   });
 });
