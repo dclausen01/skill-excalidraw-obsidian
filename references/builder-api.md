@@ -78,6 +78,15 @@ tabelle(f, ["Pro", "Contra"], { inhalt: [["…", "…"], ["", ""]], x: 100, y: 2
 
 - `f.line(punkte, { rolle?, geschlossen?, strichbreite? })` — punktbasiert (≥ 2 Punkte), keine Füllung, kein Text. `geschlossen: true` schließt den Umriss.
 - `tabelle(frame, kopf, { zeilen? | inhalt?, x, y, breite, zeilenhoehe?, rahmen? })` — Kopf Pflicht; genau `zeilen: N` (leer) **oder** `inhalt` (2D-Array, `""` = Ausfüllfeld). `rahmen`: `"spalten"` (Standard, nur Spalten-Trennlinien + Kopflinie) oder `"gitter"`. Rückgabe `{ kopf, zellen, linien }`.
+- `dreieck(frame, [oben, untenLinks, untenRechts], { x, y, breite, hoehe?, fuellung?, rolle?, typo? })` — gleichseitiges Dreieck (Spitze oben) als geschlossene Linie; drei Ecken-Labels (leerer String = keins). `hoehe` Standard gleichseitig. `fuellung` (Farbe/Rolle) tönt dezent, sonst nur Umriss. Rückgabe `{ dreieck, ecken }`. **Die Ecken-Labels ragen über das Dreieck hinaus** (oben nach oben, unten-links nach links, unten-rechts nach rechts, je um Abstand + Textgröße) — genug Rand zum Frame lassen, sonst warnt der Validator „ragt über den Frame hinaus".
+
+```js
+// Dreieck (z. B. Gewaltdreieck): Spitze oben, drei Begriffe an den Ecken
+dreieck(f, ["personelle Gewalt", "strukturelle Gewalt", "kulturelle Gewalt"],
+  { x: 600, y: 300, breite: 700 });
+// mit dezenter Tönung:
+dreieck(f, ["These", "Antithese", "Synthese"], { x: 100, y: 200, breite: 500, fuellung: "ergebnis" });
+```
 
 ## Layout-Helfer — platzieren selbst
 
